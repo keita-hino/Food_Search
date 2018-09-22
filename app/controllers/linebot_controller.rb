@@ -30,7 +30,7 @@ class LinebotController < ApplicationController
             type: 'text',
             text: event.message['text']
           }
-          client.reply_message(event['replyToken'], "#{message}！！！")
+          client.reply_message(event['replyToken'], "test")
         end
       end
     }
