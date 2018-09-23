@@ -39,9 +39,9 @@ class LinebotController < ApplicationController
             軽度:#{event.message['longitude'] }
           EOP
 
-          # lat = event.message['latitude']
-          # lon = event.message['longitude']
-          # reply_text = food_search(lat,lon)
+          lat = event.message['latitude']
+          lon = event.message['longitude']
+          reply_text = food_search(lat,lon)
 
           message = {
             type: 'text',
@@ -55,7 +55,7 @@ class LinebotController < ApplicationController
     head :ok
   end
 
-  def food_search
+  def food_search(lat,lon)
     # latitude = 38.444207
     # longitude = 141.288718
 
