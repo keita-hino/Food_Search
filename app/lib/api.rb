@@ -44,5 +44,5 @@ class Api
     pro = Processer.new(json)
     return pro.extraction
   end
-  
+
 end

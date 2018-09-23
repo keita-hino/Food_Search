@@ -12,4 +12,9 @@ class Searcher
     api = Api.new(uri)
     json = api.get
   end
+
+  def out
+    a = "out"
+  end
+
 end
