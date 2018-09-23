@@ -39,31 +39,13 @@ class LinebotController < ApplicationController
             軽度:#{event.message['longitude'] }
           EOP
 
-          lat = event.message['latitude'].to_i
-          lon = event.message['longitude'].to_i
-          # reply_text = food_search(lat,lon)
-
-
-          url = "https://api.gnavi.co.jp/RestSearchAPI/20150630/?keyid=#{ENV['FOOD_SEARCH_APIKEY']}&format=json&latitude=#{lat}&longitude=#{lon}"
-
-          uri = URI.parse(url)
-          get_json = Net::HTTP.get(uri)
-          json = JSON.parse(get_json)
-
-          category = []
-          buf = ""
-
-          #LINEで送る文章作成
-          for i in 0..json["hit_per_page"].to_i - 1
-            buf << "店名：#{json["rest"][i]["name"]}\n"
-            buf << "URL：#{json["rest"][i]["url_mobile"]}\n"
-            buf << "ジャンル：#{json["rest"][i]["category"]}\n"
-            buf << "アクセス：#{json["rest"][i]["address"]}\n\n"
-          end
+          lat = event.message['latitude']
+          lon = event.message['longitude']
+          reply_text = food_search(lat,lon)
 
           message = {
             type: 'text',
-            text: buf
+            text: locate
           }
           client.reply_message(event['replyToken'], message)
         end
@@ -73,22 +55,14 @@ class LinebotController < ApplicationController
     head :ok
   end
 
-  # def rest
-  #   json["rest"]
-  # end
+  def food_search(lat,lon)
+    # latitude = 38.444207
+    # longitude = 141.288718
 
-  # def count
-  #   json["hit_per_page"].to_i
-  # end
-
-  # def food_search(lat,lon)
-  #   # latitude = 38.444207
-  #   # longitude = 141.288718
-  #
-  #   # search = Searcher.new(lat.to_i,lon.to_i)
-  #   # json = search.get_info
-  #   # pro = Processer.new(json)
-  #   return pro.extraction
-  # end
+    search = Searcher.new(lat.to_i,lon.to_i)
+    json = search.get_info
+    pro = Processer.new(json)
+    return pro.extraction
+  end
 
 end
