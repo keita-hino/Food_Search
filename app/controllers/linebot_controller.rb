@@ -62,8 +62,7 @@ class LinebotController < ApplicationController
     # longitude = 141.288718
 
     search = Searcher.new(lat.to_i,lon.to_i)
-    search.out
-    # json = search.get_info
+    json = search.get_info
     # pro = Processer.new(json)
     # return pro.extraction
   end
