@@ -41,11 +41,15 @@ class LinebotController < ApplicationController
 
           lat = event.message['latitude']
           lon = event.message['longitude']
-          reply_text = food_search(lat,lon)
+          
+          search = Searcher.new(lat.to_i,lon.to_i)
+          json = search.get_info
+          pro = Processer.new(json)
+
 
           message = {
             type: 'text',
-            text: food_search(lat,lon)
+            text: pro.extraction
           }
           client.reply_message(event['replyToken'], message)
         end
@@ -55,14 +59,14 @@ class LinebotController < ApplicationController
     head :ok
   end
 
-  # def food_search(lat,lon)
-  #   # latitude = 38.444207
-  #   # longitude = 141.288718
-  #
-  #   search = Searcher.new(lat.to_i,lon.to_i)
-  #   json = search.get_info
-  #   pro = Processer.new(json)
-  #   return pro.extraction
-  # end
+  def food_search(lat,lon)
+    # latitude = 38.444207
+    # longitude = 141.288718
+
+    search = Searcher.new(lat.to_i,lon.to_i)
+    json = search.get_info
+    pro = Processer.new(json)
+    return pro.extraction
+  end
 
 end
