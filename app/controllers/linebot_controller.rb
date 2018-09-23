@@ -55,7 +55,7 @@ class LinebotController < ApplicationController
     head :ok
   end
 
-  def food_search(lat,lon)
+  def food_search
     # latitude = 38.444207
     # longitude = 141.288718
 
