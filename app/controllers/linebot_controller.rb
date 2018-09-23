@@ -39,13 +39,15 @@ class LinebotController < ApplicationController
             軽度:#{event.message['longitude'] }
           EOP
 
+          a = "test"
+
           lat = event.message['latitude']
           lon = event.message['longitude']
           reply_text = food_search(lat,lon)
 
           message = {
             type: 'text',
-            text: locate
+            text: a
           }
           client.reply_message(event['replyToken'], message)
         end
