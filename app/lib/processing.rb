@@ -18,7 +18,7 @@ class Processer
       buf << "アクセス：#{rest[i]["address"]}\n\n"
     end
 
-    puts buf
+    return buf
   end
 
   def rest
