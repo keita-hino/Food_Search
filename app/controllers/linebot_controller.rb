@@ -28,13 +28,20 @@ class LinebotController < ApplicationController
         when Line::Bot::Event::MessageType::Text
           message = {
             type: 'text',
-            text: "#{event.message['text']}とみっしゅう君"
+            text: "#{event.message['text']}[テスト用です]"
           }
           client.reply_message(event['replyToken'], message)
         when Line::Bot::Event::MessageType::Location
+          locate =<<-EOP
+            住所:#{event.message['address']}
+            緯度:#{event.message['latitude']}
+            軽度:#{event.message['longitude'] }
+
+          EOP
+
           message = {
             type: 'text',
-            text: event.message['address']
+            text: locate
           }
           client.reply_message(event['replyToken'], message)
         end
