@@ -18,7 +18,7 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
-# gem 'net/http'
+gem 'net/http'
 # gem 'uri'
 # gem 'json'
 # See https://github.com/rails/execjs#readme for more supported runtimes
