@@ -34,7 +34,7 @@ class LinebotController < ApplicationController
         when Line::Bot::Event::MessageType::Location
           message = {
             type: 'text',
-            text: get_message_content(ENV["LINE_CHANNEL_TOKEN"])
+            text: get_message_content(ENV["LINE_CHANNEL_SECRET"])
           }
           client.reply_message(event['replyToken'], message)
         end
