@@ -63,8 +63,8 @@ class LinebotController < ApplicationController
 
     search = Searcher.new(lat.to_f,lon.to_f)
     json = search.get_info
-    pro = Processer.new(json)
-    return pro.extraction
+    # pro = Processer.new(json)
+    # return pro.extraction
   end
 
 end
