@@ -57,10 +57,20 @@ class LinebotController < ApplicationController
           # pro = Processer.new(json)
           # a = pro.extraction
 
+          category = []
+          buf = ""
+
+          #LINEで送る文章作成
+          for i in 0..json["hit_per_page"].to_i - 1
+            buf << "店名：#{json["rest"][i]["name"]}\n"
+            buf << "URL：#{json["rest"][i]["url_mobile"]}\n"
+            buf << "ジャンル：#{json["rest"][i]["category"]}\n"
+            buf << "アクセス：#{json["rest"][i]["address"]}\n\n"
+          end
 
           message = {
             type: 'text',
-            text: json
+            text: buf
           }
           client.reply_message(event['replyToken'], message)
         end
@@ -69,6 +79,14 @@ class LinebotController < ApplicationController
 
     head :ok
   end
+
+  # def rest
+  #   json["rest"]
+  # end
+
+  # def count
+  #   json["hit_per_page"].to_i
+  # end
 
   # def food_search(lat,lon)
   #   # latitude = 38.444207
