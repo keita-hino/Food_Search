@@ -10,13 +10,14 @@ class Processer
     category = []
     buf = ""
 
+  buf << "店名：#{rest[0]["name"]}\n"
     #LINEで送る文章作成
-    for i in 0..count - 1
-      buf << "店名：#{rest[i]["name"]}\n"
-      buf << "URL：#{rest[i]["url_mobile"]}\n"
-      buf << "ジャンル：#{rest[i]["category"]}\n"
-      buf << "アクセス：#{rest[i]["address"]}\n\n"
-    end
+    # for i in 0..count - 1
+    #   buf << "店名：#{rest[i]["name"]}\n"
+    #   buf << "URL：#{rest[i]["url_mobile"]}\n"
+    #   buf << "ジャンル：#{rest[i]["category"]}\n"
+    #   buf << "アクセス：#{rest[i]["address"]}\n\n"
+    # end
 
     return buf
   end
