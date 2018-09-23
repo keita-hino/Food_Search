@@ -41,7 +41,7 @@ class LinebotController < ApplicationController
 
           lat = event.message['latitude']
           lon = event.message['longitude']
-          # reply_text = food_search(lat,lon)
+          reply_text = food_search(lat,lon)
 
           message = {
             type: 'text',
