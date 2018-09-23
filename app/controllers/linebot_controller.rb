@@ -45,7 +45,7 @@ class LinebotController < ApplicationController
 
           message = {
             type: 'text',
-            text: locate
+            text: (food_search(lat,lon)).class
           }
           client.reply_message(event['replyToken'], message)
         end
