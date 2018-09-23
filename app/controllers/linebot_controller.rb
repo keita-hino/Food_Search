@@ -33,11 +33,11 @@ class LinebotController < ApplicationController
           client.reply_message(event['replyToken'], message)
         when Line::Bot::Event::MessageType::Location
 
-          locate =<<~EOP
-            住所:#{event.message['address']}
-            緯度:#{event.message['latitude']}
-            軽度:#{event.message['longitude'] }
-          EOP
+          # locate =<<~EOP
+          #   住所:#{event.message['address']}
+          #   緯度:#{event.message['latitude']}
+          #   軽度:#{event.message['longitude'] }
+          # EOP
 
           # lat = event.message['latitude']
           # lon = event.message['longitude']
