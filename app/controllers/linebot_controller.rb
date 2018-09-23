@@ -56,13 +56,13 @@ class LinebotController < ApplicationController
   end
 
   def food_search(lat,lon)
-    # latitude = 38.444207
-    # longitude = 141.288718
+    latitude = 38.444207
+    longitude = 141.288718
 
-    search = Searcher.new(lat,lon)
+    search = Searcher.new(lat.to_i,lon.to_i)
     json = search.get_info
     pro = Processer.new(json)
-    # return pro.extraction
+    return pro.extraction
   end
 
 end
