@@ -1,4 +1,4 @@
-require './api'
+# require './api'
 
 class Searcher
   attr_accessor :latitude,:longitude
