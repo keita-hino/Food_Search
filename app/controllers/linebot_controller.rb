@@ -39,12 +39,21 @@ class LinebotController < ApplicationController
             軽度:#{event.message['longitude'] }
           EOP
 
-          lat = event.message['latitude']
-          lon = event.message['longitude']
+          lat = event.message['latitude'].to_i
+          lon = event.message['longitude'].to_i
           # reply_text = food_search(lat,lon)
 
-          search = Searcher.new(lat.to_i,lon.to_i)
-          json = search.get_info
+
+          uri = "https://api.gnavi.co.jp/RestSearchAPI/20150630/?keyid=#{ENV['FOOD_SEARCH_APIKEY']}&format=json&latitude=#{lat}&longitude=#{lon}"
+
+          uri = URI.parse(uri)
+          begin
+            json = Net::HTTP.get(uri)
+            JSON.parse(json)
+          rescue
+            puts "オフラインです"
+            exit
+          end
           # pro = Processer.new(json)
           # a = pro.extraction
 
