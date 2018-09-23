@@ -44,18 +44,11 @@ class LinebotController < ApplicationController
           # reply_text = food_search(lat,lon)
 
 
-          uri = "https://api.gnavi.co.jp/RestSearchAPI/20150630/?keyid=#{ENV['FOOD_SEARCH_APIKEY']}&format=json&latitude=#{lat}&longitude=#{lon}"
+          url = "https://api.gnavi.co.jp/RestSearchAPI/20150630/?keyid=#{ENV['FOOD_SEARCH_APIKEY']}&format=json&latitude=#{lat}&longitude=#{lon}"
 
-          uri = URI.parse(uri)
-          begin
-            json = Net::HTTP.get(uri)
-            JSON.parse(json)
-          rescue
-            puts "オフラインです"
-            exit
-          end
-          # pro = Processer.new(json)
-          # a = pro.extraction
+          uri = URI.parse(url)
+          get_json = Net::HTTP.get(uri)
+          json = JSON.parse(get_json)
 
           category = []
           buf = ""
