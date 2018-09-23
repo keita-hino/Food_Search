@@ -11,7 +11,7 @@ class Processer
     buf = ""
 
     #LINEで送る文章作成
-    for i in 0..5
+    for i in 0..10
       buf << "店名：#{rest[i]["name"]}\n"
       buf << "ジャンル：#{rest[i]["category"]}\n"
       buf << "アクセス：#{rest[i]["address"]}\n"
