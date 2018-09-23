@@ -13,9 +13,9 @@ class Processer
     #LINEで送る文章作成
     for i in 0..5
       buf << "店名：#{rest[i]["name"]}\n"
-      buf << "URL：#{rest[i]["url_mobile"]}\n"
       buf << "ジャンル：#{rest[i]["category"]}\n"
-      buf << "アクセス：#{rest[i]["address"]}\n\n"
+      buf << "アクセス：#{rest[i]["address"]}\n"
+      buf << "URL：#{rest[i]["url_mobile"]}\n\n"
     end
 
     return buf
