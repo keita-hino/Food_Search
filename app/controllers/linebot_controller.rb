@@ -32,16 +32,20 @@ class LinebotController < ApplicationController
           }
           client.reply_message(event['replyToken'], message)
         when Line::Bot::Event::MessageType::Location
+
           locate =<<~EOP
             住所:#{event.message['address']}
             緯度:#{event.message['latitude']}
             軽度:#{event.message['longitude'] }
-
           EOP
+
+          lat = event.message['latitude']
+          lon = event.message['longitude']
+          reply_text = food_search(lat,lon)
 
           message = {
             type: 'text',
-            text: locate
+            text: reply_text
           }
           client.reply_message(event['replyToken'], message)
         end
@@ -50,5 +54,15 @@ class LinebotController < ApplicationController
 
     head :ok
   end
-  
+
+  def food_search(lat,lon)
+    # latitude = 38.444207
+    # longitude = 141.288718
+
+    search = Searcher.new(lat,lon)
+    json = search.get_info
+    pro = Processer.new(json)
+    pro.extraction
+  end
+
 end
