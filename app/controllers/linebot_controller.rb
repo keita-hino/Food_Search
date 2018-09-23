@@ -34,7 +34,7 @@ class LinebotController < ApplicationController
         when Line::Bot::Event::MessageType::Location
           message = {
             type: 'location',
-            text: event.message['Location']
+            text: event.message['location']
           }
           client.reply_message(event['replyToken'], message)
         end
