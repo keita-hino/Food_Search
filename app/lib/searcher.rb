@@ -1,5 +1,3 @@
-# require './api'
-
 class Searcher
   attr_accessor :latitude,:longitude
   def initialize(latitude,longitude)
