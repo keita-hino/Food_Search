@@ -90,7 +90,7 @@ class LinebotController < ApplicationController
             contents: [
               {
                 type: "text",
-                text: "スターバックスコーヒー",
+                text: "糀や仁太郎 仙台駅前店",
                 weight: "bold",
                 size: "xl"
               },
