@@ -160,7 +160,7 @@ class LinebotController < ApplicationController
                     height: "sm",
                       action: {
                       type: "uri",
-                      label: "CALL",
+                      label: "WEBSITE",
                       uri: "http://mobile.gnavi.co.jp/shop/t006913/coupon"
                     }
                   }
