@@ -11,8 +11,4 @@ class Searcher
     json = api.get
   end
 
-  def out
-    a = "out"
-  end
-
 end
