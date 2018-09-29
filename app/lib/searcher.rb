@@ -11,4 +11,10 @@ class Searcher
     json = api.get
   end
 
+  def get_food_json
+    uri = "https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=#{ENV['FOOD_SEARCH_APIKEY']}&latitude=#{latitude}&longitude=#{longitude}"
+    api = Api.new(uri)
+    json = api.get
+  end
+
 end

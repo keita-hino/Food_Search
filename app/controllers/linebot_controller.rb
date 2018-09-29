@@ -29,30 +29,37 @@ class LinebotController < ApplicationController
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
-          # message = {
-          #   type: 'text',
-          #   text: "testです"
-          # }
+          message = {
+            type: 'text',
+            text: "testです"
+          }
 
         image_uri = "https://uds.gnst.jp/rest/img/mu3dgf0e0000/t_0n66.jpg"
         message = get_json(image_uri)
         client.reply_message(event['replyToken'], message)
         when Line::Bot::Event::MessageType::Location
 
-          locate =<<~EOP
-            住所:#{event.message['address']}
-            緯度:#{event.message['latitude']}
-            軽度:#{event.message['longitude'] }
-          EOP
+          # locate =<<~EOP
+          #   住所:#{event.message['address']}
+          #   緯度:#{event.message['latitude']}
+          #   軽度:#{event.message['longitude'] }
+          # EOP
 
           lat = event.message['latitude']
           lon = event.message['longitude']
-          reply_text = food_search(lat,lon)
+          reply = food_search(lat,lon)
 
-          message = {
-            type: 'text',
-            text: reply_text
-          }
+          message = get_json(
+            reply[0]["category"],
+            reply[0]["url_mobile"],
+            reply[0]["image_url"]["shop_image1"],
+            reply[0]["address"],
+            reply[0]["opentime"],
+          )
+          # message = {
+          #   type: 'text',
+          #   text: reply_text
+          # }
           client.reply_message(event['replyToken'], message)
         end
       end
@@ -64,12 +71,12 @@ class LinebotController < ApplicationController
   def food_search(lat,lon)
 
     search = Searcher.new(lat.to_f,lon.to_f)
-    json = search.get_info
+    json = search.get_food_json
     pro = Processer.new(json)
     return pro.extraction
   end
 
-  def get_json(image_uri)
+  def get_json(category,store_uri,image_uri,address,opentime)
     buf_test = {
       type: "flex",
       altText: "this is a flex message",
