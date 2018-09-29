@@ -27,7 +27,7 @@ class Processer
         "opentime" => rest[i]["opentime"]
       }
       if buf[i]["shop_image"] == ""
-        buf[i]["shop_image"] ='../assets/no_image.png'
+        buf[i]["shop_image"] ='https://uds.gnst.jp/rest/img/mu3dgf0e0000/t_0n66.jpg'
       end
     end
 
