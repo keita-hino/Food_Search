@@ -18,6 +18,9 @@ class Processer
     #   buf << "URL：#{rest[i]["url_mobile"]}\n\n"
     # end
     for i in 0..5
+      if rest[i]["name"] == ""
+        next
+      end
       buf[i] = {
         "name" => rest[i]["name"],
         "category" => rest[i]["category"],
