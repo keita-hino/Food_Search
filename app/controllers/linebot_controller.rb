@@ -35,7 +35,7 @@ class LinebotController < ApplicationController
           }
 
         image_uri = "https://uds.gnst.jp/rest/img/mu3dgf0e0000/t_0n66.jpg"
-        message = "test"
+        # message = get_json(image_uri)
         client.reply_message(event['replyToken'], message)
         when Line::Bot::Event::MessageType::Location
 
@@ -48,7 +48,7 @@ class LinebotController < ApplicationController
           lat = event.message['latitude']
           lon = event.message['longitude']
           reply = food_search(lat,lon)
-          message = "aaa"
+
           # message = get_json(
           #   reply[0]["category"],
           #   reply[0]["url_mobile"],
@@ -57,10 +57,10 @@ class LinebotController < ApplicationController
           #   reply[0]["opentime"]
           # )
           # message = get_json
-          # message = {
-          #   type: 'text',
-          #   text: reply_text
-          # }
+          message = {
+            type: 'text',
+            text: reply[0]["category"]
+          }
           client.reply_message(event['replyToken'], message)
         end
       end
