@@ -59,8 +59,10 @@ class LinebotController < ApplicationController
               layout: "vertical",
               contents: [
                 {
-                  type: "text",
+                  type: "店名",
                   text: "Body text",
+                  size: "xl",
+                  weight: "bold",
                 }
               ]
             },
