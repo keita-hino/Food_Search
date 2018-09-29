@@ -57,10 +57,10 @@ class LinebotController < ApplicationController
             reply[0]["opentime"]
           )
           # message = get_json
-          message = {
-            type: 'text',
-            text: reply[0]["shop_image"]
-          }
+          # message = {
+          #   type: 'text',
+          #   text: reply[0]["shop_image"]
+          # }
           client.reply_message(event['replyToken'], message)
         end
       end
