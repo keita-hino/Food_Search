@@ -26,9 +26,64 @@ class LinebotController < ApplicationController
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
+          buf_test =  {
+          "type": "flex",
+          "altText": "hogehoge",
+          "contents": {
+              "type": "bubble",
+              "styles": {
+                  "header": {
+                      "backgroundColor": "#ff62ae"
+                  },
+                  "body": {
+                      "backgroundColor": "#5bff54"
+                  },
+                  "footer": {
+                      "backgroundColor": "#7b78ff"
+                  }
+              },
+              "header": {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                      {
+                          "type": "text",
+                          "text": "header"
+                      }
+                  ]
+              },
+              "hero": {
+                  "type": "image",
+                  "url": "<imageUrl>",
+                  "size": "full",
+                  "aspectRatio": "1:1"
+              },
+              "body": {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                      {
+                          "type": "text",
+                          "text": "body"
+                      }
+                  ]
+              },
+              "footer": {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                      {
+                          "type": "text",
+                          "text": "footer"
+                      }
+                  ]
+              }
+          }
+  }
+
           message = {
             type: 'text',
-            text: "#{event.message['text']}[テスト用です]"
+            text: buf_test
           }
           client.reply_message(event['replyToken'], message)
         when Line::Bot::Event::MessageType::Location
