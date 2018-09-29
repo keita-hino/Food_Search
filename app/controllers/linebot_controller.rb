@@ -42,7 +42,7 @@ class LinebotController < ApplicationController
                 type: "image",
                 url: HORIZONTAL_THUMBNAIL_URL,
                 size: "full",
-                aspectRatio: "4:3"
+                aspectRatio: "20:13"
               },
               body: {
                 type: "box",
