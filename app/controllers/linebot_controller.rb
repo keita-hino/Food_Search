@@ -44,7 +44,7 @@ class LinebotController < ApplicationController
                 contents: [
                   {
                     type: "text",
-                    text: "Header text"
+                    text: "店名"
                   }
                 ]
               },
