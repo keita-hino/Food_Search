@@ -54,7 +54,7 @@ class LinebotController < ApplicationController
             reply[0]["url_mobile"],
             reply[0]["image_url"]["shop_image1"],
             reply[0]["address"],
-            reply[0]["opentime"],
+            reply[0]["opentime"]
           )
           # message = {
           #   type: 'text',
