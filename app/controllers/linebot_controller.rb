@@ -102,7 +102,7 @@ class LinebotController < ApplicationController
             type: 'flex',
             text: reply_text
           }
-          client.reply_message(event['replyToken'], message)
+          client.reply_message(event['replyToken'], reply_text)
         end
       end
     }
