@@ -8,7 +8,7 @@ class Processer
 
   def extraction
     category = []
-    buf = ""
+    buf = []
 
     #LINEで送る文章作成
     # for i in 0..6
