@@ -38,16 +38,6 @@ class LinebotController < ApplicationController
             altText: "this is a flex message",
             contents: {
               type: "bubble",
-              header: {
-                type: "box",
-                layout: "vertical",
-                contents: [
-                  {
-                    type: "text",
-                    text: "店名"
-                  }
-                ]
-              },
               hero: {
                 type: "image",
                 url: HORIZONTAL_THUMBNAIL_URL,
