@@ -34,8 +34,6 @@ class LinebotController < ApplicationController
           #   text: "testです"
           # }
           buf_test = {
-          type: "flex",
-          altText: "this is a flex message",
           contents: {
             type: "bubble",
             header: {
