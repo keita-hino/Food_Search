@@ -50,6 +50,7 @@ class LinebotController < ApplicationController
           reply = food_search(lat,lon)
 
           message = get_json(
+            reply[0]["name"],
             reply[0]["category"],
             reply[0]["url_mobile"],
             reply[0]["shop_image"],
@@ -77,7 +78,7 @@ class LinebotController < ApplicationController
     return pro.extraction
   end
 
-  def get_json(category,store_uri,image_uri,address,opentime)
+  def get_json(name,category,store_uri,image_uri,address,opentime)
     buf_test = {
       type: "flex",
       altText: "this is a flex message",
@@ -98,7 +99,7 @@ class LinebotController < ApplicationController
             contents: [
               {
                 type: "text",
-                text: "クラフトマン SENDAI",
+                text: name,
                 weight: "bold",
                 size: "xl"
               },
@@ -164,7 +165,7 @@ class LinebotController < ApplicationController
                     },
                     {
                       type: "text",
-                      text: "〒980-0021 宮城県仙台市青葉区中央2-2-38 フォーシーズンビル1F",
+                      text: address,
                       wrap: true,
                       color: "#666666",
                       size: "sm",
@@ -186,7 +187,7 @@ class LinebotController < ApplicationController
                     },
                     {
                       type: "text",
-                      text: "10:00 - 23:00",
+                      text: opentime,
                       wrap: true,
                       color: "#666666",
                       size: "sm",
