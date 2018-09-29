@@ -30,7 +30,7 @@ class LinebotController < ApplicationController
           #   type: 'text',
           #   text: "testです"
           # }
-          reply_content(event, {
+        client.reply_message(event['replyToken'], {
         type: "flex",
         altText: "this is a flex message",
         contents: {
