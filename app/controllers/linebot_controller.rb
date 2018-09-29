@@ -47,8 +47,8 @@ class LinebotController < ApplicationController
 
           lat = event.message['latitude']
           lon = event.message['longitude']
-          # reply = food_search(lat,lon)
-
+          reply = food_search(lat,lon)
+          message = "aaa"
           # message = get_json(
           #   reply[0]["category"],
           #   reply[0]["url_mobile"],
@@ -56,7 +56,7 @@ class LinebotController < ApplicationController
           #   reply[0]["address"],
           #   reply[0]["opentime"]
           # )
-          message = get_json
+          # message = get_json
           # message = {
           #   type: 'text',
           #   text: reply_text
@@ -77,7 +77,7 @@ class LinebotController < ApplicationController
     return pro.extraction
   end
 
-  def get_json
+  def get_json(category,store_uri,image_uri,address,opentime)
     buf_test = {
       type: "flex",
       altText: "this is a flex message",
