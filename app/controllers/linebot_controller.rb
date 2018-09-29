@@ -201,7 +201,7 @@ class LinebotController < ApplicationController
                   action: {
                   type: "uri",
                   label: "WEBSITE",
-                  uri: "http://mobile.gnavi.co.jp/shop/t006913/?ak=FttuwHWr4RPF4xpOulk3Z1ouZrp1pzxSR2g80sgnVZc%3D"
+                  uri: "http://mobile.gnavi.co.jp/shop/ta1v400/?ak=FttuwHWr4RPF4xpOulk3Z1ouZrp1pzxSR2g80sgnVZc%3D"
                 }
               }
             ]
