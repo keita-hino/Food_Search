@@ -51,6 +51,8 @@ class LinebotController < ApplicationController
                   {
                     type: "text",
                     text: "ほっともっと",
+                    weight: "bold",
+                    size: "xl"
                   }
                 ]
               },
