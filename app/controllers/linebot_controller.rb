@@ -338,7 +338,7 @@ class LinebotController < ApplicationController
               }
             ]
           }
-        }]
+        ]
       }
     }
   end
