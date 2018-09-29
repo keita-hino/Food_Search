@@ -30,7 +30,7 @@ class LinebotController < ApplicationController
           #   type: 'text',
           #   text: "testです"
           # }
-          client.reply_message(
+          client.reply_message(event['replyToken'],
             {
                 type: "template",
                 altText: "this is a buttons template",
