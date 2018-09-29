@@ -116,7 +116,7 @@ class LinebotController < ApplicationController
                         },
                         {
                           type: "text",
-                          text: "Miraina Tower, 4-1-6 Shinjuku, Tokyo",
+                          text: "宮城県仙台市青葉区中央2-2-38 フォーシーズンビル8F",
                           wrap: true,
                           color: "#666666",
                           size: "sm",
@@ -155,10 +155,14 @@ class LinebotController < ApplicationController
                 layout: "vertical",
                 contents: [
                   {
-                    type: "text",
-                    text: "Footer text",
-                    align: "center",
-                    color: "#888888"
+                    type: "button",
+                    text: "link",
+                    height: "sm",
+                      action: {
+                      type: "uri",
+                      label: "CALL",
+                      uri: "http://mobile.gnavi.co.jp/shop/t006913/coupon"
+                    }
                   }
                 ]
               }
