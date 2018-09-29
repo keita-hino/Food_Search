@@ -52,7 +52,7 @@ class LinebotController < ApplicationController
           message = get_json(
             reply[0]["category"],
             reply[0]["url_mobile"],
-            reply[0]["image_url"]["shop_image1"],
+            reply[0]["shop_image"],
             reply[0]["address"],
             reply[0]["opentime"]
           )
