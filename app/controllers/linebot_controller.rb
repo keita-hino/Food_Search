@@ -34,11 +34,9 @@ class LinebotController < ApplicationController
           #   text: "testです"
           # }
 
-        for i in 0..2
-          image_uri = "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_2_restaurant.png"
-          message = get_json(image_uri)
-          client.reply_message(event['replyToken'], message)
-        end
+        image_uri = "https://uds.gnst.jp/rest/img/dx9c9xch0000/t_0022.gif"
+        message = get_json(image_uri)
+        client.reply_message(event['replyToken'], message)
         when Line::Bot::Event::MessageType::Location
 
           locate =<<~EOP
