@@ -31,48 +31,36 @@ class LinebotController < ApplicationController
           #   text: "testです"
           # }
         client.reply_message(event['replyToken'], {
-        type: "flex",
-        altText: "this is a flex message",
-        contents: {
-          type: "bubble",
-          header: {
-            type: "box",
-            layout: "vertical",
-            contents: [
-              {
-                type: "text",
-                text: "Header text"
+        type: 'template',
+        altText: 'Image carousel alt text',
+        template: {
+          type: 'image_carousel',
+          columns: [
+            {
+              imageUrl: THUMBNAIL_URL,
+              action: { label: 'line.me', type: 'uri', uri: 'https://line.me' }
+            },
+            {
+              imageUrl: THUMBNAIL_URL,
+              action: { label: 'postback', type: 'postback', data: 'hello world' }
+            },
+            {
+              imageUrl: THUMBNAIL_URL,
+              action: { label: 'message', type: 'message', text: 'This is message' }
+            },
+            {
+              imageUrl: THUMBNAIL_URL,
+              action: {
+                type: 'datetimepicker',
+                label: "Datetime",
+                data: 'action=sel',
+                mode: 'datetime',
+                initial: '2017-06-18T06:15',
+                max: '2100-12-31T23:59',
+                min: '1900-01-01T00:00'
               }
-            ]
-          },
-          hero: {
-            type: "image",
-            url: HORIZONTAL_THUMBNAIL_URL,
-            size: "full",
-            aspectRatio: "4:3"
-          },
-          body: {
-            type: "box",
-            layout: "vertical",
-            contents: [
-              {
-                type: "text",
-                text: "Body text",
-              }
-            ]
-          },
-          footer: {
-            type: "box",
-            layout: "vertical",
-            contents: [
-              {
-                type: "text",
-                text: "Footer text",
-                align: "center",
-                color: "#888888"
-              }
-            ]
-          }
+            }
+          ]
         }
       })
         when Line::Bot::Event::MessageType::Location
