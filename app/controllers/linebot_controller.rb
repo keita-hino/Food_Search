@@ -34,8 +34,9 @@ class LinebotController < ApplicationController
           #   text: "testです"
           # }
 
-
-        client.reply_message(event['replyToken'], get_json)
+        image_uri = "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_2_restaurant.png"
+        message = get_json(image_uri)
+        client.reply_message(event['replyToken'], message)
         when Line::Bot::Event::MessageType::Location
 
           locate =<<~EOP
@@ -68,7 +69,7 @@ class LinebotController < ApplicationController
     return pro.extraction
   end
 
-  def get_json
+  def get_json(image_uri)
     buf_test = {
       type: "flex",
       altText: "this is a flex message",
@@ -76,7 +77,7 @@ class LinebotController < ApplicationController
         type: "bubble",
         hero: {
           type: "image",
-          url: HORIZONTAL_THUMBNAIL_URL,
+          url: image_uri,
           size: "full",
           aspectRatio: "20:13"
         },
