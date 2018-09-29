@@ -49,18 +49,18 @@ class LinebotController < ApplicationController
           lon = event.message['longitude']
           reply = food_search(lat,lon)
 
-          # message = get_json(
-          #   reply[0]["category"],
-          #   reply[0]["url_mobile"],
-          #   reply[0]["image_url"]["shop_image1"],
-          #   reply[0]["address"],
-          #   reply[0]["opentime"]
-          # )
+          message = get_json(
+            reply[0]["category"],
+            reply[0]["url_mobile"],
+            reply[0]["image_url"]["shop_image1"],
+            reply[0]["address"],
+            reply[0]["opentime"]
+          )
           # message = get_json
-          message = {
-            type: 'text',
-            text: reply[0]["category"]
-          }
+          # message = {
+          #   type: 'text',
+          #   text: reply[0]["category"]
+          # }
           client.reply_message(event['replyToken'], message)
         end
       end

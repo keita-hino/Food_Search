@@ -26,6 +26,9 @@ class Processer
         "address" => rest[i]["address"],
         "opentime" => rest[i]["opentime"]
       }
+      if buf[i]["shop_image"] == ""
+        buf[i]["shop_image"] ='no_image.png'
+      end
     end
 
     return buf
