@@ -50,7 +50,7 @@ class LinebotController < ApplicationController
                 contents: [
                   {
                     type: "text",
-                    text: "Body text",
+                    text: "ほっともっと",
                   }
                 ]
               },
