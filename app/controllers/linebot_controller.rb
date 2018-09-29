@@ -56,46 +56,48 @@ class LinebotController < ApplicationController
                   }
                 ]
               },
-              {
-              type: "box",
-              layout: "baseline",
-              margin: "md",
-              contents: [
-                {
-                  type: "icon",
-                  size: "sm",
-                  url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
-                },
-                {
-                  type: "icon",
-                  size: "sm",
-                  url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
-                },
-                {
-                  type: "icon",
-                  size: "sm",
-                  url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
-                },
-                {
-                  type: "icon",
-                  size: "sm",
-                  url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
-                },
-                {
-                  type: "icon",
-                  size: "sm",
-                  url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
-                },
-                {
-                  type: "text",
-                  text: "4.0",
-                  size: "sm",
-                  color: "#999999",
-                  margin: "md",
-                  flex: 0
-                }
-              ]
-            },
+            #   {
+            #   type: "box",
+            #   layout: "baseline",
+            #   margin: "md",
+            #   # 星の評価の部分
+            #   contents: [
+            #     {
+            #       type: "icon",
+            #       size: "sm",
+            #       url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+            #     },
+            #     {
+            #       type: "icon",
+            #       size: "sm",
+            #       url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+            #     },
+            #     {
+            #       type: "icon",
+            #       size: "sm",
+            #       url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+            #     },
+            #     {
+            #       type: "icon",
+            #       size: "sm",
+            #       url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+            #     },
+            #     {
+            #       type: "icon",
+            #       size: "sm",
+            #       url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
+            #     },
+            #     {
+            #
+            #       type: "text",
+            #       text: "4.0",
+            #       size: "sm",
+            #       color: "#999999",
+            #       margin: "md",
+            #       flex: 0
+            #     }
+            #   ]
+            # },
               footer: {
                 type: "box",
                 layout: "vertical",
