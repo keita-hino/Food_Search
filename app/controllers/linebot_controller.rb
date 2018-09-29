@@ -30,51 +30,53 @@ class LinebotController < ApplicationController
           #   type: 'text',
           #   text: "testです"
           # }
-        client.reply_message(event['replyToken'], {
-        type: "flex",
-        altText: "this is a flex message",
-        contents: {
-          type: "bubble",
-          header: {
-            type: "box",
-            layout: "vertical",
-            contents: [
-              {
-                type: "text",
-                text: "Header text"
-              }
-            ]
-          },
-          hero: {
-            type: "image",
-            url: HORIZONTAL_THUMBNAIL_URL,
-            size: "full",
-            aspectRatio: "4:3"
-          },
-          body: {
-            type: "box",
-            layout: "vertical",
-            contents: [
-              {
-                type: "text",
-                text: "Body text",
-              }
-            ]
-          },
-          footer: {
-            type: "box",
-            layout: "vertical",
-            contents: [
-              {
-                type: "text",
-                text: "Footer text",
-                align: "center",
-                color: "#888888"
-              }
-            ]
+          buf_test = {
+          type: "flex",
+          altText: "this is a flex message",
+          contents: {
+            type: "bubble",
+            header: {
+              type: "box",
+              layout: "vertical",
+              contents: [
+                {
+                  type: "text",
+                  text: "Header text"
+                }
+              ]
+            },
+            hero: {
+              type: "image",
+              url: HORIZONTAL_THUMBNAIL_URL,
+              size: "full",
+              aspectRatio: "4:3"
+            },
+            body: {
+              type: "box",
+              layout: "vertical",
+              contents: [
+                {
+                  type: "text",
+                  text: "Body text",
+                }
+              ]
+            },
+            footer: {
+              type: "box",
+              layout: "vertical",
+              contents: [
+                {
+                  type: "text",
+                  text: "Footer text",
+                  align: "center",
+                  color: "#888888"
+                }
+              ]
+            }
           }
         }
-      })
+
+        client.reply_message(event['replyToken'], buf_test)
         when Line::Bot::Event::MessageType::Location
 
           locate =<<~EOP
