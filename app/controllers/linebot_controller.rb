@@ -34,18 +34,10 @@ class LinebotController < ApplicationController
           #   text: "testです"
           # }
           buf_test = {
+          type: "flex",
+          altText: "this is a flex message",
           contents: {
             type: "bubble",
-            header: {
-              type: "box",
-              layout: "vertical",
-              contents: [
-                {
-                  type: "text",
-                  text: "Header text"
-                }
-              ]
-            },
             hero: {
               type: "image",
               url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_2_restaurant.png",
