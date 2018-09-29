@@ -156,7 +156,7 @@ class LinebotController < ApplicationController
                 contents: [
                   {
                     type: "button",
-                    text: "link",
+                    style: "link",
                     height: "sm",
                       action: {
                       type: "uri",
