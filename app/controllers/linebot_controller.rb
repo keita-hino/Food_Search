@@ -99,7 +99,7 @@ class LinebotController < ApplicationController
           reply_text = food_search(lat,lon)
 
           message = {
-            type: 'text',
+            type: 'flex',
             text: reply_text
           }
           client.reply_message(event['replyToken'], message)
