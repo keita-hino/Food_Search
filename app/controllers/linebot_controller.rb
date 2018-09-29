@@ -85,7 +85,7 @@ class LinebotController < ApplicationController
             type: 'text',
             text: buf_test
           }
-          client.reply_message(event['replyToken'], message)
+          client.reply_message(event['replyToken'], buf_test)
         when Line::Bot::Event::MessageType::Location
 
           locate =<<~EOP
@@ -102,7 +102,7 @@ class LinebotController < ApplicationController
             type: 'flex',
             text: reply_text
           }
-          client.reply_message(event['replyToken'], reply_text)
+          client.reply_message(event['replyToken'], message)
         end
       end
     }
