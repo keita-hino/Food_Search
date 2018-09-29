@@ -1,7 +1,7 @@
 class LinebotController < ApplicationController
   require 'line/bot'  # gem 'line-bot-api'
   THUMBNAIL_URL = 'https://via.placeholder.com/1024x1024'
-  HORIZONTAL_THUMBNAIL_URL = 'https://via.placeholder.com/1024x768'
+  HORIZONTAL_THUMBNAIL_URL = 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_2_restaurant.png'
   QUICK_REPLY_ICON_URL = 'https://via.placeholder.com/64x64'
 
   # callbackアクションのCSRFトークン認証を無効
