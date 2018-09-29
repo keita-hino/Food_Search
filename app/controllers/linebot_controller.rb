@@ -30,35 +30,51 @@ class LinebotController < ApplicationController
           #   type: 'text',
           #   text: "testです"
           # }
-          client.reply_message(event['replyToken'],
-            {
-                type: "template",
-                altText: "this is a buttons template",
-                template: {
-                    type: "buttons",
-                    actions: [
-                        {
-                            type: "message",
-                            label: "アクション 1",
-                            text: "アクション 1"
-                        },
-                        {
-                            type: "message",
-                            label: "アクション 2",
-                            text: "アクション 2"
-                        },
-                        {
-                            type: "message",
-                            label: "アクション 3",
-                            text: "アクション 3"
-                        }
-                    ],
-                thumbnailImageUrl: "SPECIFY_YOUR_IMAGE_URL",
-                title: "タイトルです",
-                text: "テキストです"
+          reply_content(event, {
+        type: "flex",
+        altText: "this is a flex message",
+        contents: {
+          type: "bubble",
+          header: {
+            type: "box",
+            layout: "vertical",
+            contents: [
+              {
+                type: "text",
+                text: "Header text"
               }
-            }
-            )
+            ]
+          },
+          hero: {
+            type: "image",
+            url: HORIZONTAL_THUMBNAIL_URL,
+            size: "full",
+            aspectRatio: "4:3"
+          },
+          body: {
+            type: "box",
+            layout: "vertical",
+            contents: [
+              {
+                type: "text",
+                text: "Body text",
+              }
+            ]
+          },
+          footer: {
+            type: "box",
+            layout: "vertical",
+            contents: [
+              {
+                type: "text",
+                text: "Footer text",
+                align: "center",
+                color: "#888888"
+              }
+            ]
+          }
+        }
+      })
         when Line::Bot::Event::MessageType::Location
 
           locate =<<~EOP
