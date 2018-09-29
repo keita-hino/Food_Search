@@ -50,7 +50,7 @@ class LinebotController < ApplicationController
             },
             hero: {
               type: "image",
-              url: HORIZONTAL_THUMBNAIL_URL,
+              url: https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_2_restaurant.png,
               size: "full",
               aspectRatio: "4:3"
             },
