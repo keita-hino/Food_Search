@@ -34,7 +34,7 @@ class LinebotController < ApplicationController
           #   text: "testです"
           # }
 
-        image_uri = "https://uds.gnst.jp/rest/img/dx9c9xch0000/t_0022.gif"
+        image_uri = "https://uds.gnst.jp/rest/img/mu3dgf0e0000/t_0n66.jpg"
         message = get_json(image_uri)
         client.reply_message(event['replyToken'], message)
         when Line::Bot::Event::MessageType::Location
@@ -90,7 +90,7 @@ class LinebotController < ApplicationController
             contents: [
               {
                 type: "text",
-                text: "糀や仁太郎 仙台駅前店",
+                text: "クラフトマン SENDAI",
                 weight: "bold",
                 size: "xl"
               },
@@ -156,7 +156,7 @@ class LinebotController < ApplicationController
                     },
                     {
                       type: "text",
-                      text: "宮城県仙台市青葉区中央2-2-38 フォーシーズンビル8F",
+                      text: "〒980-0021 宮城県仙台市青葉区中央2-2-38 フォーシーズンビル1F",
                       wrap: true,
                       color: "#666666",
                       size: "sm",
