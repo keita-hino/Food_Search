@@ -15,7 +15,7 @@ class Processer
       count = 4
     end
 
-    for i in 0..count
+    for i in 0..count - 1
       buf[i] = {
         "name" => rest[i]["name"],
         "category" => rest[i]["category"],
