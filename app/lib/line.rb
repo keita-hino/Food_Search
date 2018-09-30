@@ -1,4 +1,4 @@
-class Line
+class LineJson
   def get_json(name,category,store_uri,image_uri,address,opentime)
     buf_test = {
       type: "flex",
