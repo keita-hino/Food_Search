@@ -10,26 +10,31 @@ class Processer
     category = []
     buf = []
 
-    #LINEで送る文章作成
-    # for i in 0..6
-    #   buf << "店名：#{rest[i]["name"]}\n"
-    #   buf << "ジャンル：#{rest[i]["category"]}\n"
-    #   buf << "アクセス：#{rest[i]["address"]}\n"
-    #   buf << "URL：#{rest[i]["url_mobile"]}\n\n"
+    # for i in 0..4
+    #   buf[i] = {
+    #     "name" => rest[i]["name"],
+    #     "category" => rest[i]["category"],
+    #     "url_mobile" => rest[i]["url_mobile"],
+    #     "shop_image" => rest[i]["image_url"]["shop_image1"],
+    #     "address" => rest[i]["address"],
+    #     "opentime" => rest[i]["opentime"]
+    #   }
+    #   if buf[i]["shop_image"] == ""
+    #     buf[i]["shop_image"] ='https://uds.gnst.jp/rest/img/mu3dgf0e0000/t_0n66.jpg'
+    #   end
     # end
-    for i in 0..5
-      buf[i] = {
-        "name" => rest[i]["name"],
-        "category" => rest[i]["category"],
-        "url_mobile" => rest[i]["url_mobile"],
-        "shop_image" => rest[i]["image_url"]["shop_image1"],
-        "address" => rest[i]["address"],
-        "opentime" => rest[i]["opentime"]
+
+      buf[0] = {
+        "name" => rest[0]["name"],
+        "category" => rest[0]["category"],
+        "url_mobile" => rest[0]["url_mobile"],
+        "shop_image" => rest[0]["image_url"]["shop_image1"],
+        "address" => rest[0]["address"],
+        "opentime" => rest[0]["opentime"]
       }
-      if buf[i]["shop_image"] == ""
-        buf[i]["shop_image"] ='https://uds.gnst.jp/rest/img/mu3dgf0e0000/t_0n66.jpg'
+      if buf[0]["shop_image"] == ""
+        buf[0]["shop_image"] ='https://uds.gnst.jp/rest/img/mu3dgf0e0000/t_0n66.jpg'
       end
-    end
 
     return buf
   end
