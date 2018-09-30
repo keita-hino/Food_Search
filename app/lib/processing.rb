@@ -10,12 +10,12 @@ class Processer
     category = []
     buf = []
     if json["total_hit_count"].to_i < 5
-      count = json["total_hit_count"]
+      count = json["total_hit_count"].to_i
     else
       count = 5
     end
 
-    for i in 0..count - 1
+    for i in 0..count
       buf[i] = {
         "name" => rest[i]["name"],
         "category" => rest[i]["category"],
