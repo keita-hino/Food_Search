@@ -9,8 +9,13 @@ class Processer
   def extraction
     category = []
     buf = []
+    if json["total_hit_count"].to_i < 5
+      count = json["total_hit_count"]
+    else
+      count = 5
+    end
 
-    for i in 0..1
+    for i in 0..count - 1
       buf[i] = {
         "name" => rest[i]["name"],
         "category" => rest[i]["category"],
@@ -28,18 +33,6 @@ class Processer
       end
 
     end
-
-      # buf[0] = {
-      #   "name" => rest[0]["name"],
-      #   "category" => rest[0]["category"],
-      #   "url_mobile" => rest[0]["url_mobile"],
-      #   "shop_image" => rest[0]["image_url"]["shop_image1"],
-      #   "address" => rest[0]["address"],
-      #   "opentime" => rest[0]["opentime"]
-      # }
-      # if buf[0]["shop_image"] == ""
-      #   buf[0]["shop_image"] ='https://uds.gnst.jp/rest/img/mu3dgf0e0000/t_0n66.jpg'
-      # end
 
     return buf
   end
