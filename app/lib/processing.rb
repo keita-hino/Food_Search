@@ -25,7 +25,7 @@ class Processer
         "opentime" => rest[i]["opentime"]
       }
       if buf[i]["shop_image"] == ""
-        buf[i]["shop_image"] ='https://uds.gnst.jp/rest/img/mu3dgf0e0000/t_0n66.jpg'
+        buf[i]["shop_image"] ="#{Rails.public_path.join 'no_image.png'}"
       end
 
       if buf[i]["opentime"] == ""
