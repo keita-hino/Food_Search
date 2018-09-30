@@ -25,7 +25,7 @@ class Processer
         "opentime" => rest[i]["opentime"]
       }
       if buf[i]["shop_image"] == ""
-        buf[i]["shop_image"] = "#{Rails.public_path}/no_image.png"
+        buf[i]["shop_image"] = image_tag　"#{Rails.public_path}/no_image.png"
       end
 
       if buf[i]["opentime"] == ""
