@@ -10,7 +10,7 @@ class Processer
     category = []
     buf = []
 
-    for i in 0..4
+    for i in 0..1
       buf[i] = {
         "name" => rest[i]["name"],
         "category" => rest[i]["category"],
