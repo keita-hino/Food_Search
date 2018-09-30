@@ -81,4 +81,8 @@ class LinebotController < ApplicationController
 
   end
 
+  def show
+
+  end
+
 end
