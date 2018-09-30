@@ -58,7 +58,7 @@ class LinebotController < ApplicationController
           #   reply[0]["address"],
           #   reply[0]["opentime"]
           # )
-          message = get_json
+          
           message = {
             type: 'text',
             text: reply[0]["shop_image"]
