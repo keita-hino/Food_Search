@@ -10,7 +10,7 @@ class Processer
     category = []
     buf = []
     if json["total_hit_count"].to_i <= 5
-      count = json["total_hit_count"].to_i
+      count = json["total_hit_count"].to_i - 1
     else
       count = 4
     end
