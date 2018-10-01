@@ -25,7 +25,7 @@ class Processer
         "opentime" => rest[i]["opentime"]
       }
       if buf[i]["shop_image"] == ""
-        buf[i]["shop_image"] = "https://food-line.herokuapp.com/no_image.png"
+        buf[i]["shop_image"] = "https://food-line.herokuapp.com/no_image2.png"
       end
 
       if buf[i]["opentime"] == ""
