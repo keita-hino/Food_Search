@@ -383,7 +383,7 @@ class LineJson
                   },
                   {
                     type: "text",
-                    text: reply[1["opentime"],
+                    text: reply[1]["opentime"],
                     wrap: true,
                     color: "#666666",
                     size: "sm",
