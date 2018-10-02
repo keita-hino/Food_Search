@@ -141,6 +141,7 @@ class LineJson
   #   }
   # end
 
+
   def get_json(reply)
     buf_test = {
       type: "flex",
