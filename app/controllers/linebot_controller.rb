@@ -50,7 +50,7 @@ class LinebotController < ApplicationController
           reply = food_search(lat,lon)
 
           line = LineJson.new
-          message = line.get_json(reply)
+          message = line.get_json_advance(reply)
 
           # message = line.get_json(
           #   reply[0]["name"],
