@@ -818,8 +818,8 @@ class LineJson
 
 
 
-    buf_test = <<-EOF {
-      #{
+    buf_test = <<~EOF
+    {
       type: "flex",
       altText: "this is a flex message",
       contents: {
@@ -958,7 +958,6 @@ class LineJson
         }
       ]}
     }
-  }
   EOF
 
   end
