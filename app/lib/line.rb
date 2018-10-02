@@ -675,7 +675,7 @@ class LineJson
             }
           ]
         }
-      },
+      }
       #複数表示
     #   {
     #   type: "bubble",
