@@ -815,11 +815,7 @@ class LineJson
 
   def get_json_advance(reply)
 
-
-
-
-    buf_test = <<~EOF
-    {
+    buf_test = {
       type: "flex",
       altText: "this is a flex message",
       contents: {
@@ -958,7 +954,6 @@ class LineJson
         }
       ]}
     }
-  EOF
 
   end
 
