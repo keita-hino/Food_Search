@@ -63,6 +63,7 @@ class LinebotController < ApplicationController
           #   type: 'text',
           #   text: reply[0]["shop_image"]
           # }
+
           client.reply_message(event['replyToken'], message)
         end
       end
@@ -78,6 +79,10 @@ class LinebotController < ApplicationController
     pro = Processer.new(json)
 
     return pro.extraction
+
+  end
+
+  def index
 
   end
 
