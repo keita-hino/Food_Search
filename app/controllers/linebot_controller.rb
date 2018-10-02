@@ -50,14 +50,16 @@ class LinebotController < ApplicationController
           reply = food_search(lat,lon)
 
           line = LineJson.new
-          message = line.get_json(
-            reply[0]["name"],
-            reply[0]["category"],
-            reply[0]["url_mobile"],
-            reply[0]["shop_image"],
-            reply[0]["address"],
-            reply[0]["opentime"]
-          )
+          message = line.get_json(reply)
+
+          # message = line.get_json(
+          #   reply[0]["name"],
+          #   reply[0]["category"],
+          #   reply[0]["url_mobile"],
+          #   reply[0]["shop_image"],
+          #   reply[0]["address"],
+          #   reply[0]["opentime"]
+          # )
 
           # message = {
           #   type: 'text',

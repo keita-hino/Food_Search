@@ -141,7 +141,7 @@ class LineJson
   #   }
   # end
 
-  def get_json(name,category,store_uri,image_uri,address,opentime)
+  def get_json(reply)
     buf_test = {
       type: "flex",
       altText: "this is a flex message",
@@ -152,7 +152,7 @@ class LineJson
           type: "bubble",
           hero: {
             type: "image",
-            url: image_uri,
+            url: reply[0]["shop_image"],
             size: "full",
             aspectRatio: "20:13"
           },
@@ -162,7 +162,7 @@ class LineJson
             contents: [
               {
                 type: "text",
-                text: name,
+                text: reply[0]["name"],
                 weight: "bold",
                 size: "xl"
               },
@@ -228,7 +228,7 @@ class LineJson
                     },
                     {
                       type: "text",
-                      text: address,
+                      text: reply[0]["address"],
                       wrap: true,
                       color: "#666666",
                       size: "sm",
@@ -250,7 +250,7 @@ class LineJson
                     },
                     {
                       type: "text",
-                      text: opentime,
+                      text: reply[0]["opentime"],
                       wrap: true,
                       color: "#666666",
                       size: "sm",
@@ -273,7 +273,7 @@ class LineJson
                   action: {
                   type: "uri",
                   label: "WEBSITE",
-                  uri: store_uri
+                  uri: reply[0]["url_mobile"]
                 }
               }
             ]
@@ -284,7 +284,7 @@ class LineJson
         type: "bubble",
         hero: {
           type: "image",
-          url: image_uri,
+          url: reply[1]["shop_image"],
           size: "full",
           aspectRatio: "20:13"
         },
@@ -294,7 +294,7 @@ class LineJson
           contents: [
             {
               type: "text",
-              text: name,
+              text: reply[1]["name"],
               weight: "bold",
               size: "xl"
             },
@@ -360,7 +360,7 @@ class LineJson
                   },
                   {
                     type: "text",
-                    text: address,
+                    text: reply[1]["address"],
                     wrap: true,
                     color: "#666666",
                     size: "sm",
@@ -382,7 +382,7 @@ class LineJson
                   },
                   {
                     type: "text",
-                    text: opentime,
+                    text: reply[1["opentime"],
                     wrap: true,
                     color: "#666666",
                     size: "sm",
@@ -405,7 +405,7 @@ class LineJson
                 action: {
                 type: "uri",
                 label: "WEBSITE",
-                uri: store_uri
+                uri: reply[1]["url_mobile"]
               }
             }
           ]
