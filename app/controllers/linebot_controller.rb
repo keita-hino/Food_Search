@@ -42,15 +42,15 @@ class LinebotController < ApplicationController
           lat = event.message['latitude']
           lon = event.message['longitude']
 
-          # reply = food_search(lat,lon)
-          #
-          # line = LineJson.new
-          # message = line.get_json(reply)
+          reply = food_search(lat,lon)
 
-          message = {
-            type: 'text',
-            text: params[:no]
-          }
+          line = LineJson.new
+          message = line.get_json(reply)
+
+          # message = {
+          #   type: 'text',
+          #   text: params[:no]
+          # }
 
           client.reply_message(event['replyToken'], message)
         end
