@@ -677,7 +677,7 @@ class LineJson
         }
       }
 
-      複数表示
+      # 複数表示
       {
       type: "bubble",
       hero: {
