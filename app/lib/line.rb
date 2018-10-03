@@ -808,9 +808,8 @@ class LineJson
           }
         ]
       }
-    }
 
-      }
+      ]}
     }
   end
 
