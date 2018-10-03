@@ -49,7 +49,7 @@ class LinebotController < ApplicationController
 
           message = {
             type: 'text',
-            text: params[:id]
+            text: params[:no]
           }
 
           client.reply_message(event['replyToken'], message)
