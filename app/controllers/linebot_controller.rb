@@ -32,10 +32,7 @@ class LinebotController < ApplicationController
           case event.message['text']
           when '$help'
             c = Command.new
-            message = {
-              type: 'text',
-              text: c.get_help_test
-            }
+            message = c.get_help_test
           else
             message = {
               type: 'text',

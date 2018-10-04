@@ -14,7 +14,7 @@ class Command
   end
 
   def get_help_test
-    {
+    a = {
       type: "bubble",
       header: {
         type: "box",
