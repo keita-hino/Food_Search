@@ -31,9 +31,10 @@ class LinebotController < ApplicationController
         when Line::Bot::Event::MessageType::Text
           case event.message['text']
           when '$help'
+            c = Command.new
             message = {
               type: 'text',
-              text: "使い方を説明するね"
+              text: c.get_help
             }
           else
             message = {
