@@ -72,13 +72,7 @@ class Command
                       size: "xs",
                       weight: "bold",
                       color: "#666666"
-                    }
-                  ]
-                },
-                {
-                  type: "box",
-                  layout: "vertical",
-                  contents: [
+                    },
                     {
                       type: "image",
                       url: "https://food-line.herokuapp.com/man2.png",
