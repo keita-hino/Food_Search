@@ -88,7 +88,7 @@ class Command
                   contents: [
                     {
                       type: "text",
-                      text: "送信ボタンを押下",
+                      text: "「送信」を押下",
                       size: "sm",
                       weight: "bold",
                       color: "#00bfff"
