@@ -35,7 +35,6 @@ class LinebotController < ApplicationController
               type: 'text',
               text: "使い方を説明するね"
             }
-          end
           else
             message = {
               type: 'text',
