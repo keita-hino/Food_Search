@@ -47,7 +47,7 @@ class Command
                     {
                       type: "text",
                       text: "下記のアイコンを押下",
-                      size: "xs",
+                      size: "sm",
                       weight: "bold",
                       gravity: "bottom",
                       color: "#666666"
@@ -69,7 +69,7 @@ class Command
                     {
                       type: "text",
                       text: "「この位置を送信」を押下",
-                      size: "xs",
+                      size: "sm",
                       weight: "bold",
                       color: "#666666"
                     },
@@ -89,7 +89,7 @@ class Command
                     {
                       type: "text",
                       text: "送信ボタンを押下",
-                      size: "xs",
+                      size: "sm",
                       weight: "bold",
                       color: "#666666"
                     },
