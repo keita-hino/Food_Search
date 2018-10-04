@@ -50,7 +50,7 @@ class Command
                       size: "sm",
                       weight: "bold",
                       gravity: "bottom",
-                      color: "#666666"
+                      color: "#00bfff"
                     },
                     {
                       type: "image",
@@ -71,7 +71,7 @@ class Command
                       text: "「この位置を送信」を押下",
                       size: "sm",
                       weight: "bold",
-                      color: "#666666"
+                      color: "#00bfff"
                     },
                     {
                       type: "image",
@@ -91,7 +91,7 @@ class Command
                       text: "送信ボタンを押下",
                       size: "sm",
                       weight: "bold",
-                      color: "#666666"
+                      color: "#00bfff"
                     },
                     {
                       type: "image",
