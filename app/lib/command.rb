@@ -122,8 +122,7 @@ class Command
                 }
               ]
             }
-          }
-        }]
+          }]
       }
     }
   end
