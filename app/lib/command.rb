@@ -51,13 +51,7 @@ class Command
                       weight: "bold",
                       gravity: "bottom",
                       color: "#666666"
-                    }
-                  ]
-                },
-                {
-                  type: "box",
-                  layout: "vertical",
-                  contents: [
+                    },
                     {
                       type: "image",
                       url: "https://food-line.herokuapp.com/man1.png",
@@ -123,7 +117,7 @@ class Command
               ]
             }
           }]
+        }
       }
-    }
   end
 end
