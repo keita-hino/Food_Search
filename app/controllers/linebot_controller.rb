@@ -34,7 +34,7 @@ class LinebotController < ApplicationController
             c = Command.new
             message = {
               type: 'text',
-              text: c.get_help
+              text: c.get_help_test
             }
           else
             message = {
