@@ -1,19 +1,5 @@
 class Command
   def get_help
-    s = <<~EOS
-      -------------本ボットの使い方-------------
-      1.4種のアイコンの中から利用したいサービスを選択。
-      2.位置情報を送信。
-
-      -------------各種コマンド----------------
-      $help
-      →操作方法を表示
-
-    EOS
-    return s
-  end
-
-  def get_help_test
     a = {
       type: "flex",
       altText: "this is a flex message",
