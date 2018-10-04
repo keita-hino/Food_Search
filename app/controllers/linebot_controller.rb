@@ -29,13 +29,20 @@ class LinebotController < ApplicationController
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
-          message = {
-            type: 'text',
-            text: "#{event.message['text']}"
-          }
+          case event.message['text']
+          when '$help'
+            message = {
+              type: 'text',
+              text: "使い方を説明するね"
+            }
+          end
+          else
+            message = {
+              type: 'text',
+              text: "#{event.message['text']}"
+            }
+          end
 
-        image_uri = "https://uds.gnst.jp/rest/img/mu3dgf0e0000/t_0n66.jpg"
-        # message = get_json(image_uri)
         client.reply_message(event['replyToken'], message)
         when Line::Bot::Event::MessageType::Location
 
