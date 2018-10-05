@@ -136,15 +136,11 @@ class LineJson
             contents: [
               {
                 type: "button",
-                style: "link",
                 height: "sm",
                 action: {
-                  type: "location",
-                  label: "test"
-                  # ,
-                  # address: reply[0]["address"],
-                  # latitude:  38.439581098551379,
-                  # longitude:  141.26561770587961
+                  type: "postback",
+                  label: "ACCESS",
+                  data: "action=buy&itemid=111"
                 }
               },
               {

@@ -58,6 +58,12 @@ class LinebotController < ApplicationController
           # }
 
           client.reply_message(event['replyToken'], message)
+        when Line::Bot::Event::MessageType::Postback
+          message = {
+            type: "text",
+            text: "成功です"
+          }
+            client.reply_message(event['replyToken'], message)
         end
       end
     }
