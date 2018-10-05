@@ -60,7 +60,9 @@ class LinebotController < ApplicationController
           client.reply_message(event['replyToken'], message)
         # when Line::Bot::Event::MessageType::Unsupport
 
-      when "postback"
+        end
+        case event
+        when "postback"
           message = {
             type: 'text',
             text: "成功です"
