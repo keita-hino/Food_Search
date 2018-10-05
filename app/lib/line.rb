@@ -140,7 +140,7 @@ class LineJson
                 action: {
                   type: "postback",
                   label: "ACCESS",
-                  data: "action=buy&itemid=111"
+                  data: "#{reply[0]["address"]},#{reply[0]["latitude"]},#{reply[0]["longitude"]}"
                 }
               },
               {
