@@ -1,5 +1,4 @@
 
-
 class Processer
   attr_accessor :json
   def initialize(json)
