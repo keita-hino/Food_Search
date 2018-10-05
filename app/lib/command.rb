@@ -13,6 +13,16 @@ class Command
     }
   end
 
+  def get_locate_test
+    a = {
+      type: "location",
+      title: "テスト用です",
+      address: "住所",
+      latitude:  38.439581098551379,
+      longitude:  141.26561770587961
+    }
+  end
+
   def get_help
     a = {
       type: "flex",
