@@ -138,17 +138,19 @@ class LineJson
                 type: "button",
                 style: "link",
                 height: "sm",
-                  action: {
-                  type: "uri",
-                  label: "ACCESS",
-                  uri: reply[0]["url_mobile"]
+                action: {
+                  type: "location",
+                  title: "テスト用です",
+                  address: reply[0]["address"],
+                  latitude:  38.439581098551379,
+                  longitude:  141.26561770587961
                 }
               },
               {
                 type: "button",
                 style: "link",
                 height: "sm",
-                  action: {
+                action: {
                   type: "uri",
                   label: "WEBSITE",
                   uri: reply[0]["url_mobile"]
