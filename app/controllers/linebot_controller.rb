@@ -31,9 +31,9 @@ class LinebotController < ApplicationController
         when Line::Bot::Event::MessageType::Text
           c = Command.new
           case event.message['text']
-          when '$help'
+          when '$help','マニュアル','使い方'
             message = c.get_help
-          when '$creater'
+          when '$creater','製作者'
             message = c.get_creater
           else
             message = {
