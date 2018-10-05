@@ -282,6 +282,16 @@ class LineJson
               height: "sm",
                 action: {
                 type: "uri",
+                label: "ACCESS",
+                uri: reply[1]["url_mobile"]
+              }
+            },
+            {
+              type: "button",
+              style: "link",
+              height: "sm",
+                action: {
+                type: "uri",
                 label: "WEBSITE",
                 uri: reply[1]["url_mobile"]
               }
