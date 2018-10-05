@@ -65,10 +65,10 @@ class LinebotController < ApplicationController
           array = event['postback']['data'].split(",")
           message = {
             type: "location",
-            title: "テスト用です",
-            address: array[0],
-            latitude:  array[1],
-            longitude:  array[2]
+            title: array[0],
+            address: array[1],
+            latitude:  array[2],
+            longitude:  array[3]
           }
             client.reply_message(event['replyToken'], message)
       end
