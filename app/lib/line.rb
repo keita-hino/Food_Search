@@ -140,7 +140,7 @@ class LineJson
                 height: "sm",
                   action: {
                   type: "uri",
-                  label: "WEBSITE",
+                  label: "ACCESS",
                   uri: reply[0]["url_mobile"]
                 }
               },
@@ -150,7 +150,7 @@ class LineJson
                 height: "sm",
                   action: {
                   type: "uri",
-                  label: "ACCESS",
+                  label: "WEBSITE",
                   uri: reply[0]["url_mobile"]
                 }
               }
@@ -424,6 +424,16 @@ class LineJson
               height: "sm",
                 action: {
                 type: "uri",
+                label: "ACCESS",
+                uri: reply[2]["url_mobile"]
+              }
+            },
+            {
+              type: "button",
+              style: "link",
+              height: "sm",
+                action: {
+                type: "uri",
                 label: "WEBSITE",
                 uri: reply[2]["url_mobile"]
               }
@@ -550,6 +560,16 @@ class LineJson
           type: "box",
           layout: "vertical",
           contents: [
+            {
+              type: "button",
+              style: "link",
+              height: "sm",
+                action: {
+                type: "uri",
+                label: "ACCESS",
+                uri: reply[3]["url_mobile"]
+              }
+            },
             {
               type: "button",
               style: "link",
@@ -683,6 +703,16 @@ class LineJson
         type: "box",
         layout: "vertical",
         contents: [
+          {
+            type: "button",
+            style: "link",
+            height: "sm",
+              action: {
+              type: "uri",
+              label: "ACCESS",
+              uri: reply[4]["url_mobile"]
+            }
+          },
           {
             type: "button",
             style: "link",
