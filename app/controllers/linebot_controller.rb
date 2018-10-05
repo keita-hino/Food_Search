@@ -62,9 +62,13 @@ class LinebotController < ApplicationController
 
         end
       when Line::Bot::Event::Postback
+          array = event['postback']['data'].split(",")
           message = {
-            type: 'text',
-            text: event['postback']['data']
+            type: "location",
+            title: "テスト用です",
+            address: array[0],
+            latitude:  array[1],
+            longitude:  array[2]
           }
             client.reply_message(event['replyToken'], message)
       end
