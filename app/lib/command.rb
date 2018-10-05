@@ -1,4 +1,11 @@
 class Command
+  def get_creater
+      a = {
+        type: "text",
+        text: "creater_info"
+      }
+  end
+
   def get_help
     a = {
       type: "flex",
