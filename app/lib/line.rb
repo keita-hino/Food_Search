@@ -139,8 +139,9 @@ class LineJson
                 style: "link",
                 height: "sm",
                 action: {
-                  type: "location",
-                  label: "テスト用です"
+                  type: "uri",
+                  label: "WEBSITE",
+                  uri: reply[0]["url_mobile"]
                   # ,
                   # address: reply[0]["address"],
                   # latitude:  38.439581098551379,
