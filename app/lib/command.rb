@@ -6,6 +6,13 @@ class Command
       }
   end
 
+  def get_another_text(message)
+    a = {
+      type: "text",
+      text: message
+    }
+  end
+
   def get_help
     a = {
       type: "flex",

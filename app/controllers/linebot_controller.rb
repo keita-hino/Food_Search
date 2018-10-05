@@ -36,10 +36,7 @@ class LinebotController < ApplicationController
           when '$creater','製作者'
             message = c.get_creater
           else
-            message = {
-              type: 'text',
-              text: "#{event.message['text']}"
-            }
+            message = get_another_text(event.message['text'])
           end
 
         client.reply_message(event['replyToken'], message)
