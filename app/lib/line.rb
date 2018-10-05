@@ -140,10 +140,11 @@ class LineJson
                 height: "sm",
                 action: {
                   type: "location",
-                  title: "テスト用です",
-                  address: reply[0]["address"],
-                  latitude:  38.439581098551379,
-                  longitude:  141.26561770587961
+                  label: "テスト用です"
+                  # ,
+                  # address: reply[0]["address"],
+                  # latitude:  38.439581098551379,
+                  # longitude:  141.26561770587961
                 }
               },
               {
