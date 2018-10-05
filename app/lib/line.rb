@@ -143,6 +143,16 @@ class LineJson
                   label: "WEBSITE",
                   uri: reply[0]["url_mobile"]
                 }
+              },
+              {
+                type: "button",
+                style: "link",
+                height: "sm",
+                  action: {
+                  type: "uri",
+                  label: "ACCESS",
+                  uri: reply[0]["url_mobile"]
+                }
               }
             ]
           }
