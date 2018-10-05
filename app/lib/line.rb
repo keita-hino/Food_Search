@@ -279,10 +279,10 @@ class LineJson
               type: "button",
               style: "link",
               height: "sm",
-                action: {
-                type: "uri",
+              action: {
+                type: "postback",
                 label: "ACCESS",
-                uri: reply[1]["url_mobile"]
+                data: "#{reply[1]["name"]},#{reply[1]["address"]},#{reply[1]["latitude"]},#{reply[1]["longitude"]}"
               }
             },
             {
@@ -421,10 +421,10 @@ class LineJson
               type: "button",
               style: "link",
               height: "sm",
-                action: {
-                type: "uri",
+              action: {
+                type: "postback",
                 label: "ACCESS",
-                uri: reply[2]["url_mobile"]
+                data: "#{reply[2]["name"]},#{reply[2]["address"]},#{reply[2]["latitude"]},#{reply[2]["longitude"]}"
               }
             },
             {
@@ -563,17 +563,17 @@ class LineJson
               type: "button",
               style: "link",
               height: "sm",
-                action: {
-                type: "uri",
+              action: {
+                type: "postback",
                 label: "ACCESS",
-                uri: reply[3]["url_mobile"]
+                data: "#{reply[3]["name"]},#{reply[3]["address"]},#{reply[3]["latitude"]},#{reply[3]["longitude"]}"
               }
             },
             {
               type: "button",
               style: "link",
               height: "sm",
-                action: {
+              action: {
                 type: "uri",
                 label: "WEBSITE",
                 uri: reply[3]["url_mobile"]
@@ -706,10 +706,10 @@ class LineJson
             type: "button",
             style: "link",
             height: "sm",
-              action: {
-              type: "uri",
+            action: {
+              type: "postback",
               label: "ACCESS",
-              uri: reply[4]["url_mobile"]
+              data: "#{reply[4]["name"]},#{reply[4]["address"]},#{reply[4]["latitude"]},#{reply[4]["longitude"]}"
             }
           },
           {

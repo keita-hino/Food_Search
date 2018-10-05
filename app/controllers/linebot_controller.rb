@@ -58,7 +58,6 @@ class LinebotController < ApplicationController
           # }
 
           client.reply_message(event['replyToken'], message)
-        # when Line::Bot::Event::MessageType::Unsupport
 
         end
       when Line::Bot::Event::Postback
