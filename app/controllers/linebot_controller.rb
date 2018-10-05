@@ -61,7 +61,7 @@ class LinebotController < ApplicationController
         # when Line::Bot::Event::MessageType::Unsupport
 
         end
-        when "postback"
+      when Line::Bot::Event::Postback
           message = {
             type: 'text',
             text: "成功です"
