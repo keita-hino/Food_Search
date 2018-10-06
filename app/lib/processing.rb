@@ -19,14 +19,14 @@ class Processer
 
       next if rest[i]["latitude"] == ""
       buf[j] = {
-        "name" => rest[j]["name"],
-        "category" => rest[j]["category"],
-        "url_mobile" => rest[j]["url_mobile"],
-        "shop_image" => rest[j]["image_url"]["shop_image1"],
-        "address" => rest[j]["address"],
-        "opentime" => rest[j]["opentime"],
-        "latitude" => rest[j]["latitude"],
-        "longitude" => rest[j]["longitude"]
+        "name" => rest[i]["name"],
+        "category" => rest[i]["category"],
+        "url_mobile" => rest[i]["url_mobile"],
+        "shop_image" => rest[i]["image_url"]["shop_image1"],
+        "address" => rest[i]["address"],
+        "opentime" => rest[i]["opentime"],
+        "latitude" => rest[i]["latitude"],
+        "longitude" => rest[i]["longitude"]
       }
       if buf[j]["shop_image"] == ""
         buf[j]["shop_image"] = "https://food-line.herokuapp.com/no_image.png"
