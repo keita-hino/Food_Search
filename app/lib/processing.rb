@@ -1,6 +1,7 @@
 
 class Processer
   attr_accessor :json
+  NOT_FOUND_IMAGE = "https://food-line.herokuapp.com/no_image.png"
   def initialize(json)
     @json = json
   end
@@ -27,7 +28,7 @@ class Processer
         "longitude" => rest[i]["longitude"]
       }
       if buf[i]["shop_image"] == ""
-        buf[i]["shop_image"] = "https://food-line.herokuapp.com/no_image.png"
+        buf[i]["shop_image"] = NOT_FOUND_IMAGE
       end
 
       if buf[i]["opentime"] == ""
