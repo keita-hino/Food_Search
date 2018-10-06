@@ -15,7 +15,9 @@ class Processer
     end
 
     for i in 0..count
-      next if rest[i]["latitude"] == ""
+      if rest[i]["latitude"] == ""
+        next
+      end
       buf[i] = {
         "name" => rest[i]["name"],
         "category" => rest[i]["category"],
