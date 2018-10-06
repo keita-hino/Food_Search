@@ -15,7 +15,7 @@ class Processer
     end
 
     for i in 0..count
-      
+
       buf[i] = {
         "name" => rest[i]["name"],
         "category" => rest[i]["category"],
