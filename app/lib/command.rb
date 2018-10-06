@@ -13,6 +13,22 @@ class Command
     return buf
   end
 
+  # def get_help_test
+  #   buf = Hash.new
+  #   buf["type"] = "flex"
+  #   buf["altText"] = "this is a flex message"
+  #   buf["contents"] = Hash.new
+  #   buf["contents"]["type"] = "carousel"
+  #   buf["contents"]["contents"][0] = Hash.new
+  #   buf["contents"]["contents"][0]["type"] = "bubble"
+  #   buf["contents"]["contents"][0]["header"] = Hash.new
+  #   buf["contents"]["contents"][0]["header"]["type"] = "box"
+  #   buf["contents"]["contents"][0]["header"]["layout"] = "vertical"
+  #   buf["contents"]["contents"][0]["header"]["layout"]["contents"] = Hash.new
+  #
+  #
+  # end
+
   def get_help
     a = {
       type: "flex",
