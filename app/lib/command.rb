@@ -19,7 +19,7 @@ class Command
     a = Hash.new
     a["type"] = "text"
     a["text"] = "creater_info"
-    return JSON.generate(a)
+    return a
   end
 
 
