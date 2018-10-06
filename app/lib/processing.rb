@@ -1,7 +1,6 @@
 
 class Processer
   attr_accessor :json
-  # NOT_FOUND_IMAGE = "https://food-line.herokuapp.com/no_image.png"
   def initialize(json)
     @json = json
   end
