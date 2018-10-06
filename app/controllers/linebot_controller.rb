@@ -31,7 +31,7 @@ class LinebotController < ApplicationController
           when '$help','マニュアル','使い方'
             message = c.get_help
           when '$creater','製作者'
-            message = c.get_creater_test
+            message = c.get_creater
           when '$locate'
             message = c.get_locate_test
           else

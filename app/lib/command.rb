@@ -1,28 +1,17 @@
-require 'json'
-
 class Command
   def get_creater
-      a = {
-        type: "text",
-        text: "creater_info"
-      }
+    buf = Hash.new
+    buf["type"] = "text"
+    buf["text"] = "creater_info"
+    return buf
   end
 
   def get_another_text(message)
-    a = {
-      type: "text",
-      text: message
-    }
+    buf = Hash.new
+    buf["type"] = "text"
+    buf["text"] = message
+    return buf
   end
-
-  def get_creater_test
-    a = Hash.new
-    a["type"] = "text"
-    a["text"] = "creater_info"
-    return a
-  end
-
-
 
   def get_help
     a = {
