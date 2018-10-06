@@ -31,11 +31,11 @@ class LinebotController < ApplicationController
           when '$help','マニュアル','使い方'
             message = c.get_help
           when '$creater','製作者'
-            message = c.get_creater
+            message = c.get_creater_test
           when '$locate'
             message = c.get_locate_test
           else
-            message = c.get_another_text_test(event.message['text'])
+            message = c.get_another_text(event.message['text'])
           end
 
         client.reply_message(event['replyToken'], message)

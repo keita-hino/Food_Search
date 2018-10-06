@@ -15,10 +15,10 @@ class Command
     }
   end
 
-  def get_another_text_test(message)
+  def get_creater_test
     a = Hash.new
     a["type"] = "text"
-    a["text"] = message
+    a["text"] = "creater_info"
     return JSON.generate(a)
   end
 
