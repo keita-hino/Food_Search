@@ -29,7 +29,7 @@ class LinebotController < ApplicationController
           c = Command.new
           case event.message['text']
           when '$help','マニュアル','使い方'
-            message = c.get_help
+            message = c.get_help_test
           when '$creater','製作者'
             message = c.get_creater
           when '$locate'
