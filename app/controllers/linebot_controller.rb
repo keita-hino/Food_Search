@@ -1,6 +1,6 @@
 class LinebotController < ApplicationController
   require 'line/bot'  # gem 'line-bot-api'
-  
+
   # callbackアクションのCSRFトークン認証を無効
   protect_from_forgery :except => [:callback]
 
@@ -35,7 +35,7 @@ class LinebotController < ApplicationController
           when '$locate'
             message = c.get_locate_test
           else
-            message = c.get_another_text(event.message['text'])
+            message = c.get_another_text_test(event.message['text'])
           end
 
         client.reply_message(event['replyToken'], message)

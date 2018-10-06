@@ -1,3 +1,5 @@
+require 'json'
+
 class Command
   def get_creater
       a = {
@@ -12,6 +14,15 @@ class Command
       text: message
     }
   end
+
+  def get_another_text_test(message)
+    a = Hash.new
+    a["type"] = "text"
+    a["text"] = message
+    return JSON.generate(a)
+  end
+
+
 
   def get_help
     a = {
