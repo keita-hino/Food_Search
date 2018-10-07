@@ -1,8 +1,8 @@
 class Command
   def get_creater
     buf = Hash.new
-    buf["type"] = "text"
-    buf["text"] = "creater_info"
+    buf[:type] = "text"
+    buf[:text] = "creater_info"
     return buf
   end
 
