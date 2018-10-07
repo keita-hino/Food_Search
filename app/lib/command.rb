@@ -8,8 +8,8 @@ class Command
 
   def get_another_text(message)
     buf = Hash.new
-    buf["type"] = "text"
-    buf["text"] = message
+    buf[:type] = "text"
+    buf[:text] = message
     return buf
   end
 
