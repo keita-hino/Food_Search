@@ -20,7 +20,7 @@ class LineJson
           type: "bubble",
           hero: {
             type: "image",
-            url: reply[0]["shop_image"],
+            url: reply[0][:shop_image],
             size: "full",
             aspectRatio: "20:13"
           },
@@ -30,7 +30,7 @@ class LineJson
             contents: [
               {
                 type: "text",
-                text: reply[0]["name"],
+                text: reply[0][:name],
                 weight: "bold",
                 size: "xl"
               },
@@ -96,7 +96,7 @@ class LineJson
                     },
                     {
                       type: "text",
-                      text: reply[0]["address"],
+                      text: reply[0][:address],
                       wrap: true,
                       color: "#666666",
                       size: "sm",
@@ -118,7 +118,7 @@ class LineJson
                     },
                     {
                       type: "text",
-                      text: reply[0]["opentime"],
+                      text: reply[0][:opentime],
                       wrap: true,
                       color: "#666666",
                       size: "sm",
@@ -140,7 +140,7 @@ class LineJson
                 action: {
                   type: "postback",
                   label: "ACCESS",
-                  data: "#{reply[0]["name"]},#{reply[0]["address"]},#{reply[0]["latitude"]},#{reply[0]["longitude"]}"
+                  data: "#{reply[0][:name]},#{reply[0][:address]},#{reply[0][:latitude]},#{reply[0][:longitude]}"
                 }
               },
               {
@@ -150,7 +150,7 @@ class LineJson
                 action: {
                   type: "uri",
                   label: "WEBSITE",
-                  uri: reply[0]["url_mobile"]
+                  uri: reply[0][:url_mobile]
                 }
               }
             ]
@@ -161,7 +161,7 @@ class LineJson
         type: "bubble",
         hero: {
           type: "image",
-          url: reply[1]["shop_image"],
+          url: reply[1][:shop_image],
           size: "full",
           aspectRatio: "20:13"
         },
@@ -171,7 +171,7 @@ class LineJson
           contents: [
             {
               type: "text",
-              text: reply[1]["name"],
+              text: reply[1][:name],
               weight: "bold",
               size: "xl"
             },
@@ -237,7 +237,7 @@ class LineJson
                   },
                   {
                     type: "text",
-                    text: reply[1]["address"],
+                    text: reply[1][:address],
                     wrap: true,
                     color: "#666666",
                     size: "sm",
@@ -259,7 +259,7 @@ class LineJson
                   },
                   {
                     type: "text",
-                    text: reply[1]["opentime"],
+                    text: reply[1][:opentime],
                     wrap: true,
                     color: "#666666",
                     size: "sm",
@@ -282,7 +282,7 @@ class LineJson
               action: {
                 type: "postback",
                 label: "ACCESS",
-                data: "#{reply[1]["name"]},#{reply[1]["address"]},#{reply[1]["latitude"]},#{reply[1]["longitude"]}"
+                data: "#{reply[1][:name]},#{reply[1][:address]},#{reply[1][:latitude]},#{reply[1][:longitude]}"
               }
             },
             {
@@ -292,7 +292,7 @@ class LineJson
                 action: {
                 type: "uri",
                 label: "WEBSITE",
-                uri: reply[1]["url_mobile"]
+                uri: reply[1][:url_mobile]
               }
             }
           ]
@@ -303,7 +303,7 @@ class LineJson
         type: "bubble",
         hero: {
           type: "image",
-          url: reply[2]["shop_image"],
+          url: reply[2][:shop_image],
           size: "full",
           aspectRatio: "20:13"
         },
@@ -313,7 +313,7 @@ class LineJson
           contents: [
             {
               type: "text",
-              text: reply[2]["name"],
+              text: reply[2][:name],
               weight: "bold",
               size: "xl"
             },
@@ -379,7 +379,7 @@ class LineJson
                   },
                   {
                     type: "text",
-                    text: reply[2]["address"],
+                    text: reply[2][:address],
                     wrap: true,
                     color: "#666666",
                     size: "sm",
@@ -401,7 +401,7 @@ class LineJson
                   },
                   {
                     type: "text",
-                    text: reply[2]["opentime"],
+                    text: reply[2][:opentime],
                     wrap: true,
                     color: "#666666",
                     size: "sm",
@@ -424,7 +424,7 @@ class LineJson
               action: {
                 type: "postback",
                 label: "ACCESS",
-                data: "#{reply[2]["name"]},#{reply[2]["address"]},#{reply[2]["latitude"]},#{reply[2]["longitude"]}"
+                data: "#{reply[2][:name]},#{reply[2][:address]},#{reply[2][:latitude]},#{reply[2][:longitude]}"
               }
             },
             {
@@ -434,7 +434,7 @@ class LineJson
                 action: {
                 type: "uri",
                 label: "WEBSITE",
-                uri: reply[2]["url_mobile"]
+                uri: reply[2][:url_mobile]
               }
             }
           ]
@@ -445,7 +445,7 @@ class LineJson
         type: "bubble",
         hero: {
           type: "image",
-          url: reply[3]["shop_image"],
+          url: reply[3][:shop_image],
           size: "full",
           aspectRatio: "20:13"
         },
@@ -455,7 +455,7 @@ class LineJson
           contents: [
             {
               type: "text",
-              text: reply[3]["name"],
+              text: reply[3][:name],
               weight: "bold",
               size: "xl"
             },
@@ -521,7 +521,7 @@ class LineJson
                   },
                   {
                     type: "text",
-                    text: reply[3]["address"],
+                    text: reply[3][:address],
                     wrap: true,
                     color: "#666666",
                     size: "sm",
@@ -543,7 +543,7 @@ class LineJson
                   },
                   {
                     type: "text",
-                    text: reply[3]["opentime"],
+                    text: reply[3][:opentime],
                     wrap: true,
                     color: "#666666",
                     size: "sm",
@@ -566,7 +566,7 @@ class LineJson
               action: {
                 type: "postback",
                 label: "ACCESS",
-                data: "#{reply[3]["name"]},#{reply[3]["address"]},#{reply[3]["latitude"]},#{reply[3]["longitude"]}"
+                data: "#{reply[3][:name]},#{reply[3][:address]},#{reply[3][:latitude]},#{reply[3][:longitude]}"
               }
             },
             {
@@ -576,7 +576,7 @@ class LineJson
               action: {
                 type: "uri",
                 label: "WEBSITE",
-                uri: reply[3]["url_mobile"]
+                uri: reply[3][:url_mobile]
               }
             }
           ]
@@ -588,7 +588,7 @@ class LineJson
       type: "bubble",
       hero: {
         type: "image",
-        url: reply[4]["shop_image"],
+        url: reply[4][:shop_image],
         size: "full",
         aspectRatio: "20:13"
       },
@@ -598,7 +598,7 @@ class LineJson
         contents: [
           {
             type: "text",
-            text: reply[4]["name"],
+            text: reply[4][:name],
             weight: "bold",
             size: "xl"
           },
@@ -664,7 +664,7 @@ class LineJson
                 },
                 {
                   type: "text",
-                  text: reply[4]["address"],
+                  text: reply[4][:address],
                   wrap: true,
                   color: "#666666",
                   size: "sm",
@@ -686,7 +686,7 @@ class LineJson
                 },
                 {
                   type: "text",
-                  text: reply[4]["opentime"],
+                  text: reply[4][:opentime],
                   wrap: true,
                   color: "#666666",
                   size: "sm",
@@ -709,7 +709,7 @@ class LineJson
             action: {
               type: "postback",
               label: "ACCESS",
-              data: "#{reply[4]["name"]},#{reply[4]["address"]},#{reply[4]["latitude"]},#{reply[4]["longitude"]}"
+              data: "#{reply[4][:name]},#{reply[4][:address]},#{reply[4][:latitude]},#{reply[4][:longitude]}"
             }
           },
           {
@@ -719,7 +719,7 @@ class LineJson
               action: {
               type: "uri",
               label: "WEBSITE",
-              uri: reply[4]["url_mobile"]
+              uri: reply[4][:url_mobile]
             }
           }
         ]
@@ -742,7 +742,7 @@ class LineJson
   #         type: "bubble",
   #         hero: {
   #           type: "image",
-  #           url: reply[0]["shop_image"],
+  #           url: reply[0][:shop_image],
   #           size: "full",
   #           aspectRatio: "20:13"
   #         },
@@ -752,7 +752,7 @@ class LineJson
   #           contents: [
   #             {
   #               type: "text",
-  #               text: reply[0]["name"],
+  #               text: reply[0][:name],
   #               weight: "bold",
   #               size: "xl"
   #             },
@@ -818,7 +818,7 @@ class LineJson
   #                   },
   #                   {
   #                     type: "text",
-  #                     text: reply[0]["address"],
+  #                     text: reply[0][:address],
   #                     wrap: true,
   #                     color: "#666666",
   #                     size: "sm",
@@ -840,7 +840,7 @@ class LineJson
   #                   },
   #                   {
   #                     type: "text",
-  #                     text: reply[0]["opentime"],
+  #                     text: reply[0][:opentime],
   #                     wrap: true,
   #                     color: "#666666",
   #                     size: "sm",
@@ -863,7 +863,7 @@ class LineJson
   #                 action: {
   #                 type: "uri",
   #                 label: "WEBSITE",
-  #                 uri: reply[0]["url_mobile"]
+  #                 uri: reply[0][:url_mobile]
   #               }
   #             }
   #           ]
