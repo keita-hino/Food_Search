@@ -9,7 +9,7 @@ class Processer
     category = []
     buf = []
 
-    range = (0..(json["total_hit_count"].to_i)).to_a
+    range = (0..(json["total_hit_count"])).to_a
     # range = (0..6).to_a
 
     range.each do |i|
