@@ -34,10 +34,6 @@ class Processer
 
       end
 
-      return buf
-    end
-
-
     # if json["total_hit_count"].to_i <= 5
     #   count = json["total_hit_count"].to_i - 1
     # else
