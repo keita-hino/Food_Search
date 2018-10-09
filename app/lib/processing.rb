@@ -10,7 +10,7 @@ class Processer
     buf = []
 
     # range = (0..(json["total_hit_count"].to_i) - 2).to_a
-    range = (0..1).to_a
+    range = (0..6).to_a
 
     range.each do |i|
 
@@ -33,7 +33,10 @@ class Processer
         longitude: rest[i]["longitude"]
       })
 
-      end
+    end
+
+    return buf
+  end
 
     # if json["total_hit_count"].to_i <= 5
     #   count = json["total_hit_count"].to_i - 1
@@ -93,8 +96,8 @@ class Processer
     #
     # end
 
-    return buf
-  end
+  #   return buf
+  # end
 
   def rest
     json["rest"]
