@@ -11,7 +11,7 @@ class Processer
     if json["total_hit_count"].to_i <= 5
       count = json["total_hit_count"].to_i - 1
     else
-      count = 4
+      count = 5
     end
 
     for i in 0..count - 1

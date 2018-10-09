@@ -49,7 +49,7 @@ class LinebotController < ApplicationController
           # デバッグ用
           message = {
             type: 'text',
-            text: reply[4][:shop_image]
+            text: reply[3][:shop_image]
           }
 
           client.reply_message(event['replyToken'], message)
