@@ -49,7 +49,7 @@ class LinebotController < ApplicationController
           # デバッグ用
           message = {
             type: 'text',
-            text: reply.length
+            text: reply.class
           }
 
           client.reply_message(event['replyToken'], message)
