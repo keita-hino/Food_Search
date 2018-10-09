@@ -13,7 +13,8 @@ class Processer
     # range = (0..6).to_a
 
     range.each do |i|
-
+      
+      break if i > 9
       next if rest[i]["latitude"] == ""
       if rest[i]["image_url"]["shop_image1"] == ""
         rest[i]["image_url"]["shop_image1"] = "https://food-line.herokuapp.com/no_image.png"
