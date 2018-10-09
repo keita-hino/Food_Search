@@ -10,10 +10,10 @@ class Processer
     buf = []
 
     range = (0..(json["total_hit_count"])).to_a
-    # range = (0..6).to_a
 
+    # なぜかiが10以上になるとエラーになる。
     range.each do |i|
-      
+
       break if i > 9
       next if rest[i]["latitude"] == ""
       if rest[i]["image_url"]["shop_image1"] == ""
