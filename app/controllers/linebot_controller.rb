@@ -44,13 +44,13 @@ class LinebotController < ApplicationController
 
           line = LineJson.new
           reply = line.food_search(lat,lon)
-          # message = line.get_json(reply)
+          message = line.get_json(reply)
 
           # デバッグ用
-          message = {
-            type: 'text',
-            text: reply.class
-          }
+          # message = {
+          #   type: 'text',
+          #   text: reply.class
+          # }
 
           client.reply_message(event['replyToken'], message)
 
