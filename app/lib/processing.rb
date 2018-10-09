@@ -17,6 +17,13 @@ class Processer
     for i in 0..count
 
       next if rest[i]["latitude"] == ""
+      if rest[i]["image_url"]["shop_image1"] ""
+        rest[i]["image_url"]["shop_image1"] = "https://food-line.herokuapp.com/no_image.png"
+      end
+      if rest[i]["opentime"] == ""
+        rest[i]["opentime"] ='不明'
+      end
+
       buf.push({
         name: rest[i]["name"],
         category: rest[i]["category"],
@@ -27,13 +34,6 @@ class Processer
         latitude: rest[i]["latitude"],
         longitude: rest[i]["longitude"]
       })
-      if buf[i][:shop_image] == ""
-        buf[i][:shop_image] = "https://food-line.herokuapp.com/no_image.png"
-      end
-
-      if buf[i][:opentime] == ""
-        buf[i][:opentime] ='不明'
-      end
 
     # for i in 0..count
     #
