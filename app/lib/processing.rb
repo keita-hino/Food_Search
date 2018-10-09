@@ -39,66 +39,6 @@ class Processer
     return buf
   end
 
-    # if json["total_hit_count"].to_i <= 5
-    #   count = json["total_hit_count"].to_i - 1
-    # else
-    #   count = 5
-    # end
-    #
-    #
-    # for i in 0..count
-    #
-    #   next if rest[i]["latitude"] == ""
-    #   if rest[i]["image_url"]["shop_image1"] == ""
-    #     rest[i]["image_url"]["shop_image1"] = "https://food-line.herokuapp.com/no_image.png"
-    #   end
-    #   if rest[i]["opentime"] == ""
-    #     rest[i]["opentime"] = '不明'
-    #   end
-    #
-    #   buf.push({
-    #     name: rest[i]["name"],
-    #     category: rest[i]["category"],
-    #     url_mobile: rest[i]["url_mobile"],
-    #     shop_image: rest[i]["image_url"]["shop_image1"],
-    #     address: rest[i]["address"],
-    #     opentime: rest[i]["opentime"],
-    #     latitude: rest[i]["latitude"],
-    #     longitude: rest[i]["longitude"]
-    #   })
-    #
-    #   end
-    #
-    #   return buf
-    # end
-
-
-
-    # for i in 0..count
-    #
-    #   next if rest[i]["latitude"] == ""
-    #   if rest[i]["image_url"]["shop_image1"] == ""
-    #     rest[i]["image_url"]["shop_image1"] = "https://food-line.herokuapp.com/no_image.png"
-    #   end
-    #   if rest[i]["opentime"] == ""
-    #     rest[i]["opentime"] = '不明'
-    #   end
-    #
-    #   buf.push({
-    #     name: rest[i]["name"],
-    #     category: rest[i]["category"],
-    #     url_mobile: rest[i]["url_mobile"],
-    #     shop_image: rest[i]["image_url"]["shop_image1"],
-    #     address: rest[i]["address"],
-    #     opentime: rest[i]["opentime"],
-    #     latitude: rest[i]["latitude"],
-    #     longitude: rest[i]["longitude"]
-    #   })
-    #
-    # end
-
-  #   return buf
-  # end
 
   def rest
     json["rest"]
