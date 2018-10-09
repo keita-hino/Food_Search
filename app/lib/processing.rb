@@ -10,7 +10,7 @@ class Processer
     buf = []
 
     # range = (0..(json["total_hit_count"].to_i) - 2).to_a
-    range = (0..4).to_a
+    range = (0..1).to_a
 
     range.each do |i|
 
