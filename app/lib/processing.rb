@@ -17,11 +17,11 @@ class Processer
     for i in 0..count
 
       next if rest[i]["latitude"] == ""
-      if rest[i]["image_url"]["shop_image1"] ""
+      if rest[i]["image_url"]["shop_image1"] == ""
         rest[i]["image_url"]["shop_image1"] = "https://food-line.herokuapp.com/no_image.png"
       end
       if rest[i]["opentime"] == ""
-        rest[i]["opentime"] ='不明'
+        rest[i]["opentime"] = '不明'
       end
 
       buf.push({
