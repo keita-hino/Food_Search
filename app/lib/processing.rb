@@ -14,7 +14,7 @@ class Processer
       count = 5
     end
 
-    for i in 0..count - 1
+    for i in 0..count
 
       next if rest[i]["latitude"] == ""
       if rest[i]["image_url"]["shop_image1"] == ""
