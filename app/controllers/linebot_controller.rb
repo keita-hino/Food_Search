@@ -1,7 +1,6 @@
 class LinebotController < ApplicationController
   require 'line/bot'  # gem 'line-bot-api'
 
-
   # callbackアクションのCSRFトークン認証を無効
   protect_from_forgery :except => [:callback]
 
@@ -43,7 +42,7 @@ class LinebotController < ApplicationController
           lat = event.message['latitude']
           lon = event.message['longitude']
 
-          line = LineJson.new
+          line = Linejson.new
           reply = line.food_search(lat,lon)
           message = line.get_json(reply)
 

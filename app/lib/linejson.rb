@@ -1,10 +1,10 @@
-class LineJson
+class Linejson
 
   def food_search(lat,lon)
 
     search = Searcher.new(lat.to_f,lon.to_f)
     json = search.get_food_json
-    pro = Processer.new(json)
+    pro = Processing.new(json)
 
     return pro.extraction
   end
@@ -873,7 +873,4 @@ class LineJson
   #   }
   #
   # end
-
-
-
 end
