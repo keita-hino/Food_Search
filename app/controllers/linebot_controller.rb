@@ -48,10 +48,10 @@ class LinebotController < ApplicationController
           message = line.get_json(reply)
 
           # デバッグ用
-          message = {
-            type: 'text',
-            text: "test"
-          }
+          # message = {
+          #   type: 'text',
+          #   text: "test"
+          # }
 
           client.reply_message(event['replyToken'], message)
 
