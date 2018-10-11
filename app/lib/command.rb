@@ -42,7 +42,7 @@ class Command
                   action: {
                     type: "uri",
                     label: "商品検索画面へ",
-                    uri: "line://app/1609459955-eYkqpdnA"
+                    uri: "line://app/1609459955-oG9zQX76"
                   }
                 }
               ]
