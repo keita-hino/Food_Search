@@ -13,6 +13,46 @@ class Command
     return buf
   end
 
+  def get_search_form
+    {
+      type: "flex",
+      altText: "this is a flex message",
+      contents: {
+        type: "bubble",
+        body: {
+          type: "box",
+          layout: "vertical",
+          contents: [
+            {
+              type: "text",
+              text: "検索したい商品を入力してください",
+              weight: "bold",
+              size: "md",
+              wrap: true
+            },
+            {
+              type: "box",
+              layout: "vertical",
+              margin: "md",
+              contents: [
+                {
+                  type: "button",
+                  style: "link",
+                  height: "sm",
+                  action: {
+                    type: "uri",
+                    label: "商品検索画面へ",
+                    uri: "line://app/1609459955-0Aw3AXjZ"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  end
+
   # def get_help_test
   #   buf = Hash.new
   #   buf["type"] = "flex"

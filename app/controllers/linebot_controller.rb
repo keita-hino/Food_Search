@@ -32,6 +32,13 @@ class LinebotController < ApplicationController
             message = c.get_help
           when '$creater','製作者'
             message = c.get_creater
+          when '$search','商品検索'
+            message = c.get_search_form
+          when /【商品検索】*/
+            message = {
+              "type": "text",
+              "text": "成功してるよ"
+            }
           else
             message = c.get_another_text(event.message['text'])
           end
@@ -39,8 +46,8 @@ class LinebotController < ApplicationController
         client.reply_message(event['replyToken'], message)
         when Line::Bot::Event::MessageType::Location
 
-          lat = event.message['latitude']
-          lon = event.message['longitude']
+          lat = (event.message['latitude']).to_f
+          lon = (event.message['longitude']).to_f
 
           line = Linejson.new
           reply = line.food_search(lat,lon)
@@ -70,6 +77,9 @@ class LinebotController < ApplicationController
     }
 
     head :ok
+  end
+  def index
+
   end
 
 end

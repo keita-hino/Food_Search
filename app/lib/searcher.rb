@@ -1,6 +1,6 @@
 class Searcher
   attr_accessor :latitude,:longitude
-  def initialize(latitude,longitude)
+  def initialize(latitude=0,longitude=0)
     @latitude = latitude
     @longitude = longitude
   end

@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>sample application</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    </head>
+
+    <body>
+        <h2>商品検索画面</h2>
+        <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+        <div id='user_name'>Name : XXXX</div>
+        <img id='user_photo' src="" width="200px"/><br>
+        <label for="name1">キーワードを入力してください</label><br>
+        <input name="textBox1" id="id_textBox1" size="40" type="text" value="" placeholder="例）ナイキ　黒"/><br><br>
+        <button onclick='clicked()'>商品検索</button>
+        <script>
+            liff.init(
+              data => {
+                // Now you can call LIFF API
+                const userId = data.context.userId;
+                liff.getProfile()
+                .then(profile => {
+                  document.getElementById('user_name').innerText = 'Name : ' + profile.displayName;
+                  const name = profile.displayName
+                  document.getElementById('user_photo').src = profile.pictureUrl;
+                })
+                .catch((err) => {
+                  console.log('error', err);
+                });
+
+              },
+              err => {
+                // LIFF initialization failed
+              }
+            );
+            clicked = function(){
+                liff.sendMessages([
+                  {
+                    type:'text',
+                    text: "【商品検索】" + document.getElementById('id_textBox1').value
+                  }
+                ])
+                // liff.closeWindow()
+            }
+        </script>
+    </body>
+
+</html>

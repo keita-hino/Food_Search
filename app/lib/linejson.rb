@@ -1,8 +1,7 @@
 class Linejson
 
   def food_search(lat,lon)
-
-    search = Searcher.new(lat.to_f,lon.to_f)
+    search = Searcher.new(lat,lon)
     json = search.get_food_json
     pro = Processing.new(json)
 
