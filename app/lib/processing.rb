@@ -4,6 +4,24 @@ class Processing
     @json = json
   end
 
+  # 楽天のAPIで取得したjsonを加工する
+  def rakuten_extraction
+    buf = []
+
+    parsed = @json["Products"]
+    parsed.each do |value|
+      buf.push({
+        name: value["Product"]["productName"],
+        review_avg: value["Product"]["reviewAverage"].to_s,
+        price: "¥#{value["Product"]["minPrice"]}",
+        image_url: value["Product"]["mediumImageUrl"].sub!(/\?.*/, ""),
+        affi_url: value["Product"]["affiliateUrl"]
+      })
+    end
+    return buf
+
+  end
+
   def extraction
     category = []
     buf = []

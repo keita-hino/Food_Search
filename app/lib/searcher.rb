@@ -5,6 +5,12 @@ class Searcher
     @longitude = longitude
   end
 
+  def get_rakuten_info(name)
+    uri = "https://app.rakuten.co.jp/services/api/Product/Search/20170426?format=json&keyword=#{name}&applicationId=#{ENV['RAKUTEN_APPLICATION_ID']}&affiliateId=#{ENV['RAKUTEN_AFFILIATE_ID']}"
+    api = Api.new(URI.escape(uri))
+    json = api.get
+  end
+
   def get_info
     uri = "https://api.gnavi.co.jp/RestSearchAPI/20150630/?keyid=#{ENV['FOOD_SEARCH_APIKEY']}&format=json&latitude=#{latitude}&longitude=#{longitude}"
     api = Api.new(uri)

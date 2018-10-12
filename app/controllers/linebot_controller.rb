@@ -35,10 +35,11 @@ class LinebotController < ApplicationController
           when '$search','商品検索'
             message = c.get_search_form
           when /【商品検索】*/
-            message = {
-              "type": "text",
-              "text": "成功してるよ"
-            }
+            keyword = event.message['text']
+            keyword.slice!(0..5)
+            r = Rakutenjson.new
+            message = r.fashion_search(keyword)
+            puts message
           else
             message = c.get_another_text(event.message['text'])
           end
