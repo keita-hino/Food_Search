@@ -42,7 +42,8 @@ class Command
                   action: {
                     type: "uri",
                     label: "商品検索画面へ",
-                    uri: "line://app/1609459955-oG9zQX76"
+                    #heoku用
+                    uri: ENV['LIFF_URL']
                   }
                 }
               ]
