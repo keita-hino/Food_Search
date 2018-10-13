@@ -39,6 +39,7 @@ class LinebotController < ApplicationController
             keyword.slice!(0..5)
             r = Rakutenjson.new
             message = r.fashion_search(keyword)
+            puts message
           else
             message = c.get_another_text(event.message['text'])
           end
