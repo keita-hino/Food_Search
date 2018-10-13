@@ -117,6 +117,7 @@ class Rakutenjson
               }
 
           EOF
+          #現状カルーセルは10個までしか表示できないため
           if i == 9
             break
           end

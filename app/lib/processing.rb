@@ -7,13 +7,13 @@ class Processing
   # 楽天のAPIで取得したjsonを加工する
   def rakuten_extraction
     buf = []
-
+    # puts 12345.to_s(:delimited)
     parsed = @json["Products"]
     parsed.each do |value|
       buf.push({
         name: value["Product"]["productName"],
-        review_avg: value["Product"]["reviewAverage"].to_s,
-        price: "¥#{value["Product"]["minPrice"]}",
+        review_avg: value["Product"]["reviewAverage"].to_f.to_s,
+        price: "¥#{value["Product"]["minPrice"].to_s(:delimited)}",
         image_url: value["Product"]["mediumImageUrl"].sub!(/\?.*/, ""),
         affi_url: value["Product"]["affiliateUrl"]
       })
@@ -22,72 +22,35 @@ class Processing
 
   end
 
-  def extraction
+  def line_extraction
     category = []
     buf = []
 
-    range = (0..(json["total_hit_count"])).to_a
-
-    puts json.class
-
-    range.each do |i|
-
-      break if i > 9
-      next if rest[i]["latitude"] == ""
-      if rest[i]["image_url"]["shop_image1"] == ""
-        rest[i]["image_url"]["shop_image1"] = "https://food-line.herokuapp.com/no_image.png"
+    rest.each do |value|
+      next if value["latitude"] == ""
+      if value["image_url"]["shop_image1"] == ""
+        value["image_url"]["shop_image1"] = "https://food-line.herokuapp.com/no_image.png"
       end
-      if rest[i]["opentime"] == ""
-        rest[i]["opentime"] = '不明'
+      if value["opentime"] == ""
+        value["opentime"] = '不明'
       end
-
-      buf.push({
-        name: rest[i]["name"],
-        category: rest[i]["category"],
-        url_mobile: rest[i]["url_mobile"],
-        shop_image: rest[i]["image_url"]["shop_image1"],
-        address: rest[i]["address"],
-        opentime: rest[i]["opentime"],
-        latitude: rest[i]["latitude"],
-        longitude: rest[i]["longitude"]
-      })
-
+        buf.push({
+          name: value["name"],
+          category: value["category"],
+          url_mobile: value["url_mobile"],
+          shop_image: value["image_url"]["shop_image1"],
+          address: value["address"],
+          opentime: value["opentime"],
+          latitude: value["latitude"],
+          longitude: value["longitude"]
+        })
     end
-
-    # なぜかiが10以上になるとエラーになる。
-    # range.each do |i|
-    #
-    #   break if i > 9
-    #   next if rest[i]["latitude"] == ""
-    #   if rest[i]["image_url"]["shop_image1"] == ""
-    #     rest[i]["image_url"]["shop_image1"] = "https://food-line.herokuapp.com/no_image.png"
-    #   end
-    #   if rest[i]["opentime"] == ""
-    #     rest[i]["opentime"] = '不明'
-    #   end
-    #
-    #   buf.push({
-    #     name: rest[i]["name"],
-    #     category: rest[i]["category"],
-    #     url_mobile: rest[i]["url_mobile"],
-    #     shop_image: rest[i]["image_url"]["shop_image1"],
-    #     address: rest[i]["address"],
-    #     opentime: rest[i]["opentime"],
-    #     latitude: rest[i]["latitude"],
-    #     longitude: rest[i]["longitude"]
-    #   })
-    #
-    # end
 
     return buf
   end
-
 
   def rest
     json["rest"]
   end
 
-  # def count
-  #   json["hit_per_page"].to_i
-  # end
 end

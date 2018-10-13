@@ -5,7 +5,7 @@ class Linejson
     json = search.get_food_json
     pro = Processing.new(json)
 
-    return pro.extraction
+    return pro.line_extraction
   end
 
   def get_json(reply)
