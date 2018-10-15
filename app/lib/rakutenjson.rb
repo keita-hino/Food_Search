@@ -5,131 +5,115 @@ class Rakutenjson
     pro = Processing.new(json)
     hash = pro.rakuten_extraction
     message = line_post_json_test(hash)
+    reply = JSON.generate(message)
 
-    #lineでメッセージを送るメソッドでハッシュかどうかチェックしている処理があるため、
-    #Hash形式煮直す。
-    return eval(message)
+    return eval(reply)
+
   end
 
   def line_post_json_test(reply)
-    a =<<~EOF
-    {
+    a = {
       type: "flex",
       altText: "this is a flex message",
       contents: {
         type: "carousel",
-        contents: [
-    EOF
-    reply.each_with_index do |key,i|
-      unless i == 0
-        a << "},"
-      end
-      a <<<<~EOF
-              {
-              type: "bubble",
-              hero: {
-                type: "image",
-                size: "full",
-                aspectRatio: "20:13",
-                url: '#{key[:image_url]}'
-              },
-              body: {
-                type: "box",
-                layout: "vertical",
-                contents: [
-                  {
-                    type: "text",
-                    text: '#{key[:name]}',
-                    wrap: true,
-                    weight: "bold",
-                    size: "md",
-                    flex: 1
-                  },
-                  {
-                    type: "box",
-                    layout: "horizontal",
-                    margin: "lg",
-                    contents: [
-                      {
-                        type: "text",
-                        text: "Place",
-                        color: "#aaaaaa",
-                        size: "md",
-                        flex: 1
-                      },
-                      {
-                        type: "text",
-                        text: '#{key[:price]}',
-                        wrap: true,
-                        weight: "bold",
-                        size: "md",
-                        flex: 3
-                      }
-                    ]
-                  },
-                  {
-                    type: "box",
-                    layout: "horizontal",
-                    margin: "lg",
-                    contents: [
-                      {
-                        type: "text",
-                        text: "Review",
-                        color: "#aaaaaa",
-                        size: "md",
-                        flex: 1
-                      },
-                      {
-                        type: "text",
-                        text: '#{key[:review_avg]}',
-                        wrap: true,
-                        weight: "bold",
-                        size: "md",
-                        flex: 3
-                      }
-                    ]
-                  }
-                ]
-              },
-              footer: {
-                type: "box",
-                layout: "vertical",
-                spacing: "sm",
-                contents: [
-                  {
-                    type: "button",
-                    style: "primary",
-                    action: {
-                      type: "uri",
-                      label: "これにする！",
-                      uri: '#{key[:affi_url]}'
-                    }
-                  },
+        contents:
+          reply.map do |json|
+            {
+            type: "bubble",
+            hero: {
+              type: "image",
+              size: "full",
+              aspectRatio: "20:13",
+              url: json[:image_url]
+            },
+            body: {
+              type: "box",
+              layout: "vertical",
+              contents: [
+                {
+                  type: "text",
+                  text: json[:name],
+                  wrap: true,
+                  weight: "bold",
+                  size: "md",
+                  flex: 1
+                },
+                {
+                  type: "box",
+                  layout: "horizontal",
+                  margin: "lg",
+                  contents: [
                     {
-                      type: "button",
-                      action: {
-                        type: "uri",
-                        label: "他のショッピングサイトと比較",
-                        uri: "https://linecorp.com"
-                      }
+                      type: "text",
+                      text: "Place",
+                      color: "#aaaaaa",
+                      size: "md",
+                      flex: 1
+                    },
+                    {
+                      type: "text",
+                      text: json[:price],
+                      wrap: true,
+                      weight: "bold",
+                      size: "md",
+                      flex: 3
                     }
                   ]
-              }
-
-          EOF
-          #現状カルーセルは10個までしか表示できないため
-          if i == 9
-            break
-          end
-
-    end
-    a <<<<~EOF
+                },
+                {
+                  type: "box",
+                  layout: "horizontal",
+                  margin: "lg",
+                  contents: [
+                    {
+                      type: "text",
+                      text: "Review",
+                      color: "#aaaaaa",
+                      size: "md",
+                      flex: 1
+                    },
+                    {
+                      type: "text",
+                      text: json[:review_avg],
+                      wrap: true,
+                      weight: "bold",
+                      size: "md",
+                      flex: 3
+                    }
+                  ]
                 }
               ]
+            },
+            footer: {
+              type: "box",
+              layout: "vertical",
+              spacing: "sm",
+              contents:
+              [
+                {
+                  type: "button",
+                  style: "primary",
+                  action: {
+                    type: "uri",
+                    label: "これにする！",
+                    uri: json[:affi_url]
+                  }
+                },
+                  {
+                    type: "button",
+                    action: {
+                      type: "uri",
+                      label: "他のショッピングサイトと比較",
+                      uri: "https://linecorp.com"
+                    }
+                  }
+                ]
+              }
             }
-          }
-
-    EOF
+          end
+        }
+      }
 
   end
 

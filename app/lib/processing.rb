@@ -7,9 +7,12 @@ class Processing
   # 楽天のAPIで取得したjsonを加工する
   def rakuten_extraction
     buf = []
+    counter = 0
     # puts 12345.to_s(:delimited)
     parsed = @json["Products"]
     parsed.each do |value|
+      counter += 1
+      break if counter == 10
       buf.push({
         name: value["Product"]["productName"],
         review_avg: value["Product"]["reviewAverage"].to_f.to_s,

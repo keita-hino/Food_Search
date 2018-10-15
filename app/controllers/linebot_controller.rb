@@ -51,7 +51,7 @@ class LinebotController < ApplicationController
 
           line = Linejson.new
           reply = line.food_search(lat,lon)
-          message = line.get_json(reply)
+          message = line.get_json_test(reply)
 
           # デバッグ用
           # message = {
