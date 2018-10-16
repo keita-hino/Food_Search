@@ -1,4 +1,6 @@
 class Command
+
+  #作成者の情報を取得(未実装)
   def get_creater
     buf = Hash.new
     buf[:type] = "text"
@@ -6,6 +8,7 @@ class Command
     return buf
   end
 
+  #想定していないメッセージが送られた場合はオウム返し
   def get_another_text(message)
     buf = Hash.new
     buf[:type] = "text"
@@ -13,6 +16,7 @@ class Command
     return buf
   end
 
+  #liffのURLを送信
   def get_search_form
     {
       type: "flex",
@@ -53,26 +57,7 @@ class Command
     }
   end
 
-  # def get_help_test
-  #   buf = Hash.new
-  #   buf["type"] = "flex"
-  #   buf["altText"] = "this is a flex message"
-  #   buf["contents"] = Hash.new
-  #   buf["contents"]["type"] = "carousel"
-  #   buf["contents"]["contents"][0] = Hash.new
-  #   buf["contents"]["contents"][0]["type"] = "bubble"
-  #   buf["contents"]["contents"][0]["header"] = Hash.new
-  #   buf["contents"]["contents"][0]["header"]["type"] = "box"
-  #   buf["contents"]["contents"][0]["header"]["layout"] = "vertical"
-  #   buf["contents"]["contents"][0]["header"]["layout"]["contents"] = Hash.new
-  #
-  #
-  # end
-  #
-  # def contents
-  #   ["contents"]
-  # end
-
+  #help画面表示
   def get_help
     a = {
       type: "flex",

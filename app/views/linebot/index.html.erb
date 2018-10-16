@@ -8,7 +8,7 @@
         <h2>商品検索画面</h2>
         <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
         <div id='user_name'>Name : XXXX</div>
-        <img id='user_photo' src="" width="200px"/><br>
+        <img id='user_photo' src="" width="200px"/><br><br>
         <label for="name1">キーワードを入力してください</label><br>
         <input name="textBox1" id="id_textBox1" size="40" type="text" value="" placeholder="例）ナイキ　黒"/><br><br>
         <button onclick='clicked()'>商品検索</button>
@@ -33,13 +33,17 @@
               }
             );
             clicked = function(){
-                liff.sendMessages([
-                  {
-                    type:'text',
-                    text: "【商品検索】" + document.getElementById('id_textBox1').value
-                  }
-                ])
-                // liff.closeWindow()
+                if(document.getElementById('id_textBox1').value == "" ){
+                  window.alert('キーワードを入力してください。');
+                }else{
+                  liff.sendMessages([
+                    {
+                      type:'text',
+                      text: "【商品検索】" + document.getElementById('id_textBox1').value
+                    }
+                  ])
+                  // liff.closeWindow();
+                }
             }
         </script>
     </body>

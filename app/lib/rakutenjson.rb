@@ -11,6 +11,7 @@ class Rakutenjson
 
   end
 
+  #LINEにPOSTするJSON作成
   def line_post_json_test(reply)
     a = {
       type: "flex",

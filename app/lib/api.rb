@@ -1,7 +1,3 @@
-require 'net/http'
-require 'uri'
-require 'json'
-
 class Api
   attr_accessor :url
   def initialize(url)
@@ -33,16 +29,6 @@ class Api
     response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
       http.request(request)
     end
-  end
-
-  def food_search(lat,lon)
-    # latitude = 38.444207
-    # longitude = 141.288718
-
-    search = Searcher.new(lat.to_i,lon.to_i)
-    json = search.get_info
-    pro = Processer.new(json)
-    return pro.extraction
   end
 
 end

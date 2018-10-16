@@ -8,6 +8,7 @@ class Linejson
     return pro.line_extraction
   end
 
+  #LINEにPOSTするJSON作成
   def get_json_test(reply)
     buf_test = {
       type: "flex",
