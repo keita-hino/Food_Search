@@ -9,7 +9,6 @@ class Processing
   def rakuten_extraction
     buf = []
     counter = 0
-    puts @json
     parsed = @json["Products"]
     parsed.each do |value|
       counter += 1
@@ -18,7 +17,8 @@ class Processing
       buf.push({
         name:       get_name,
         review_avg: get_review_avg,
-        price:      get_price,
+        old_price:  get_old_price,
+        new_price:  get_new_price,
         image_url:  get_image_url,
         affi_url:   get_affi_url
       })
@@ -35,8 +35,12 @@ class Processing
     @value["Product"]["reviewAverage"].to_f.to_s
   end
 
-  def get_price
-    "¥#{@value["Product"]["minPrice"].to_s(:delimited)}"
+  def get_old_price
+    "¥#{@value["Product"]["salesMinPrice"].to_s(:delimited)}"
+  end
+
+  def get_new_price
+    "¥#{@value["Product"]["usedExcludeSalesMinPrice"].to_s(:delimited)}"
   end
 
   def get_image_url

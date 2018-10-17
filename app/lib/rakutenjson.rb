@@ -6,7 +6,7 @@ class Rakutenjson
     hash = pro.rakuten_extraction
     message = line_post_json_test(hash)
     reply = JSON.generate(message)
-
+    puts reply
     return eval(reply)
 
   end
@@ -43,22 +43,23 @@ class Rakutenjson
                 {
                   type: "box",
                   layout: "horizontal",
-                  margin: "lg",
+                  margin: "xl",
                   contents: [
                     {
                       type: "text",
-                      text: "Place",
+                      text: "New Price",
                       color: "#aaaaaa",
                       size: "md",
+                      align: "center",
                       flex: 1
                     },
                     {
                       type: "text",
-                      text: json[:price],
+                      text: json[:new_price],
                       wrap: true,
                       weight: "bold",
                       size: "md",
-                      flex: 3
+                      flex: 1
                     }
                   ]
                 },
@@ -69,18 +70,42 @@ class Rakutenjson
                   contents: [
                     {
                       type: "text",
-                      text: "Review",
+                      text: "Old Price",
                       color: "#aaaaaa",
                       size: "md",
+                      align: "center",
                       flex: 1
                     },
                     {
                       type: "text",
-                      text: json[:review_avg],
+                      text: json[:old_price],
                       wrap: true,
                       weight: "bold",
                       size: "md",
-                      flex: 3
+                      flex: 1
+                    }
+                  ]
+                },
+                {
+                  type: "box",
+                  layout: "horizontal",
+                  margin: "lg",
+                  contents: [
+                    {
+                      type: "text",
+                      text: "　Review",
+                      color: "#aaaaaa",
+                      size: "md",
+                      align: "center",
+                      flex: 1
+                    },
+                    {
+                      type: "text",
+                      text: json[:review_avg] + " (2件)",
+                      wrap: true,
+                      weight: "bold",
+                      size: "md",
+                      flex: 1
                     }
                   ]
                 }
