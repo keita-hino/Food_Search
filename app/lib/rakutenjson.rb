@@ -115,7 +115,6 @@ class Rakutenjson
           end
         }
       }
-
   end
 
 end

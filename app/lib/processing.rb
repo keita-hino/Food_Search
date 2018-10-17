@@ -9,17 +9,18 @@ class Processing
   def rakuten_extraction
     buf = []
     counter = 0
+    puts @json
     parsed = @json["Products"]
     parsed.each do |value|
       counter += 1
       break if counter == 10
       @value = value
       buf.push({
-        name: get_name,
+        name:       get_name,
         review_avg: get_review_avg,
-        price: get_price,
-        image_url: get_image_url,
-        affi_url: get_affi_url
+        price:      get_price,
+        image_url:  get_image_url,
+        affi_url:   get_affi_url
       })
     end
     return buf
@@ -61,14 +62,14 @@ class Processing
         value["opentime"] = '不明'
       end
         buf.push({
-          name: get_rest_name,
-          category: get_category,
+          name:       get_rest_name,
+          category:   get_category,
           url_mobile: get_url_mobile,
           shop_image: get_shop_image,
-          address: get_address,
-          opentime: get_opentime,
-          latitude: get_latitude,
-          longitude: get_longitude
+          address:    get_address,
+          opentime:   get_opentime,
+          latitude:   get_latitude,
+          longitude:  get_longitude
         })
     end
 

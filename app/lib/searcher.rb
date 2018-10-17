@@ -6,8 +6,8 @@ class Searcher
   end
 
   #楽天APIのリクエスト
-  def get_rakuten_info(name)
-    uri = "https://app.rakuten.co.jp/services/api/Product/Search/20170426?format=json&keyword=#{name}&applicationId=#{ENV['RAKUTEN_APPLICATION_ID']}&affiliateId=#{ENV['RAKUTEN_AFFILIATE_ID']}"
+  def get_rakuten_info(keyword)
+    uri = "https://app.rakuten.co.jp/services/api/Product/Search/20170426?format=json&keyword=#{keyword}&applicationId=#{ENV['RAKUTEN_APPLICATION_ID']}&affiliateId=#{ENV['RAKUTEN_AFFILIATE_ID']}"
     api = Api.new(URI.escape(uri))
     json = api.get
   end
