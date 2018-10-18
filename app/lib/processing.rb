@@ -26,7 +26,9 @@ class Processing
         review_avg:   get_yahoo_review,
         review_count: get_yahoo_rcount,
         image_url:    get_yahoo_image,
-        affi_url:     get_yahoo_url
+        affi_url:     get_yahoo_url,
+        site_kagi:  "【rakuten】",
+        site_name:  "楽天ショッピング"
       })
     end
     return buf
@@ -50,7 +52,7 @@ class Processing
   end
 
   def get_yahoo_image
-    @value["Image"]["Small"]
+    @value["Image"]["Medium"]
   end
 
   def get_yahoo_url
@@ -77,8 +79,6 @@ class Processing
     @json["ResultSet"]["0"]["Result"].delete("_container")
   end
 
-
-
   # 楽天のAPIで取得したjsonを加工する
   def rakuten_extraction
     buf = []
@@ -95,9 +95,12 @@ class Processing
         new_price:    get_new_price,
         image_url:    get_image_url,
         affi_url:     get_affi_url,
-        review_count: get_review_count
+        review_count: get_review_count,
+        site_kagi:  "【yahoo】",
+        site_name:  "Yahooショッピング"
       })
     end
+
     return buf
 
   end

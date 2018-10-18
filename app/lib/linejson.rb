@@ -126,9 +126,9 @@ class Linejson
                   {
                     type: "button",
                     action: {
-                      type: "uri",
-                      label: "他のショッピングサイトと比較",
-                      uri: "https://linecorp.com"
+                      type: "postback",
+                      label: "#{json[:site_name]}と比較",
+                      data: "#{json[:site_kagi]}#{json[:name]}"
                     }
                   }
                 ]

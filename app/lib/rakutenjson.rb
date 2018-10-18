@@ -10,5 +10,5 @@ class Rakutenjson
     reply = JSON.generate(message)
     return eval(reply)
   end
-  
+
 end
