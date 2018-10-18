@@ -7,10 +7,15 @@
     <body>
         <h2>商品検索画面</h2>
         <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
-        <div id='user_name'>Name : XXXX</div>
-        <img id='user_photo' src="" width="200px"/><br><br>
+        <!-- <div id='user_name'>Name : XXXX</div> -->
+        <!-- <img id='user_photo' src="" width="200px"/><br><br> -->
         <label for="name1">キーワードを入力してください</label><br>
         <input name="textBox1" id="id_textBox1" size="40" type="text" value="" placeholder="例）ナイキ　黒"/><br><br>
+        <label for="name1">商品を検索するサイトを選択してください</label><br>
+        <form id="target">
+        	<input id="raku" name="site" type="radio" value="【rakuten】" checked="checked"> 楽天<br>
+        	<input id="ya" name="site" type="radio" value="【yahoo】"> Yahoo
+        </form><br>
         <button onclick='clicked()'>商品検索</button>
         <script>
             liff.init(
@@ -33,13 +38,23 @@
               }
             );
             clicked = function(){
+
                 if(document.getElementById('id_textBox1').value == "" ){
                   window.alert('キーワードを入力してください。');
+                  // window.alert(document.getElementById('raku').checked);
+                  // window.alert(document.getElementById('target').elements[1].value);
+                  // window.alert(document.getElementById('target').length);
                 }else{
+                  var search_site;
+                  for(var i=0; i<document.getElementById('target').length;i++){
+                      if(document.getElementById('target').elements[i].checked){
+                          search_site = document.getElementById('target').elements[i].value;
+                      }
+                  }
                   liff.sendMessages([
                     {
                       type:'text',
-                      text: "【商品検索】" + document.getElementById('id_textBox1').value
+                      text: search_site + document.getElementById('id_textBox1').value
                     }
                   ])
                   // liff.closeWindow();

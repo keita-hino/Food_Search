@@ -5,6 +5,80 @@ class Processing
     @value
   end
 
+  #yahooのAPIで取得したjsonを加工する
+  def yahoo_extraction
+    buf = []
+    counter = 0
+
+    #yahooのAPIのレスポンスに使わない項目があるため、削除
+    remove_key
+
+    parsed = @json["ResultSet"]["0"]["Result"]
+
+    parsed.each do |key,value|
+      counter += 1
+      break if counter == 10
+      @value = value
+      buf.push({
+        name:         get_yahoo_name,
+        new_price:    get_yahoo_price,
+        old_price:    "-",
+        review_avg:   get_yahoo_review,
+        review_count: get_yahoo_rcount,
+        image_url:    get_yahoo_image,
+        affi_url:     get_yahoo_url
+      })
+    end
+    return buf
+
+  end
+
+  def get_yahoo_name
+    @value["Name"]
+  end
+
+  def get_yahoo_price
+    addcomma(@value["Price"]["_value"],3)
+  end
+
+  def get_yahoo_review
+    @value["Review"]["Rate"]
+  end
+
+  def get_yahoo_rcount
+    @value["Review"]["Count"]
+  end
+
+  def get_yahoo_image
+    @value["Image"]["Medium"]
+  end
+
+  def get_yahoo_url
+    @value["Url"]
+  end
+
+  # 金額関係のデータにカンマを入れる。
+  def addcomma(num, sep)
+    temp = num.to_s.reverse
+    result = ""
+    for i in 0..temp.length - 1
+      if i % sep == 0 and i != 0
+        result = "," + result
+    end
+      result = temp[i] + result
+    end
+    return "¥#{result}"
+  end
+
+  #yahooのAPIでgetした項目の中で不要なkeyを削除
+  def remove_key
+    @json["ResultSet"]["0"]["Result"].delete("Request")
+    @json["ResultSet"]["0"]["Result"].delete("Modules")
+    @json["ResultSet"]["0"]["Result"].delete("_container")
+  end
+
+
+
   # 楽天のAPIで取得したjsonを加工する
   def rakuten_extraction
     buf = []
@@ -15,12 +89,13 @@ class Processing
       break if counter == 10
       @value = value
       buf.push({
-        name:       get_name,
-        review_avg: get_review_avg,
-        old_price:  get_old_price,
-        new_price:  get_new_price,
-        image_url:  get_image_url,
-        affi_url:   get_affi_url
+        name:         get_name,
+        review_avg:   get_review_avg,
+        old_price:    get_old_price,
+        new_price:    get_new_price,
+        image_url:    get_image_url,
+        affi_url:     get_affi_url,
+        review_count: get_review_count
       })
     end
     return buf
@@ -49,6 +124,10 @@ class Processing
 
   def get_affi_url
     @value["Product"]["affiliateUrl"]
+  end
+
+  def get_review_count
+    @value["Product"]["reviewCount"].to_s
   end
 
   #リファクタリング用
@@ -115,6 +194,8 @@ class Processing
   def get_longitude
     @value["longitude"]
   end
+
+
 
   # def line_extraction
   #   buf = []

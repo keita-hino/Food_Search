@@ -5,6 +5,13 @@ class Searcher
     @longitude = longitude
   end
 
+  # YahooAPIのリクエスト
+  def get_yahoo_info(keyword)
+    uri = "http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?appid=#{ENV['YAHOO_APP_ID']}&query=#{keyword}&sort=-review_count"
+    api = Api.new(URI.escape(uri))
+    json = api.get
+  end
+
   #楽天APIのリクエスト
   def get_rakuten_info(keyword)
     uri = "https://app.rakuten.co.jp/services/api/Product/Search/20170426?format=json&keyword=#{keyword}&applicationId=#{ENV['RAKUTEN_APPLICATION_ID']}&affiliateId=#{ENV['RAKUTEN_AFFILIATE_ID']}"
