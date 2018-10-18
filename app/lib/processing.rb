@@ -50,7 +50,7 @@ class Processing
   end
 
   def get_yahoo_image
-    @value["Image"]["Medium"]
+    @value["Image"]["Small"]
   end
 
   def get_yahoo_url
