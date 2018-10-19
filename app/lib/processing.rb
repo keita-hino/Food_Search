@@ -10,6 +10,14 @@ class Processing
     buf = []
     counter = 0
 
+    if @json["ResultSet"]["0"]["Result"]["0"]["_attributes"]["index"] == "0"
+      buf.push({
+        site_name:  "Yahooショッピング",
+        hit_flag:   false
+      })
+      return buf
+    end
+
     #yahooのAPIのレスポンスに使わない項目があるため、削除
     remove_key
 
@@ -28,7 +36,8 @@ class Processing
         image_url:    get_yahoo_image,
         affi_url:     get_yahoo_url,
         site_kagi:  "【rakuten】",
-        site_name:  "楽天ショッピング"
+        site_name:  "楽天ショッピング",
+        hit_flag:   true
       })
     end
     return buf
@@ -83,6 +92,14 @@ class Processing
   def rakuten_extraction
     buf = []
     counter = 0
+    if @json["Products"].blank?
+      buf.push({
+        site_name:  "楽天ショッピング",
+        hit_flag:   false
+      })
+      return buf
+    end
+
     parsed = @json["Products"]
     parsed.each do |value|
       counter += 1
@@ -97,7 +114,8 @@ class Processing
         affi_url:     get_affi_url,
         review_count: get_review_count,
         site_kagi:  "【yahoo】",
-        site_name:  "Yahooショッピング"
+        site_name:  "Yahooショッピング",
+        hit_flag:   true
       })
     end
 

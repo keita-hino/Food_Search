@@ -10,6 +10,13 @@ class Linejson
 
   #LINEにPOSTするJSON作成
   def line_fashion_json(reply)
+    if reply[0][:hit_flag] == false
+      a = {
+        type: "text",
+        text: "この商品は#{reply[0][:site_name]}にないみたい・・・"
+      }
+      return a
+    end
     a = {
       type: "flex",
       altText: "this is a flex message",
