@@ -9,6 +9,8 @@ class Processing
   def yahoo_extraction
     buf = []
     counter = 0
+    # SITE_KAGI = '【rakuten】'
+    # SITE_NAME = '楽天ショッピング'
 
     if @json["ResultSet"]["0"]["Result"]["0"]["_attributes"]["index"] == "0"
       buf.push({
@@ -21,9 +23,7 @@ class Processing
     #yahooのAPIのレスポンスに使わない項目があるため、削除
     remove_key
 
-    parsed = @json["ResultSet"]["0"]["Result"]
-
-    parsed.each do |key,value|
+    get_yahoo_result.each do |key,value|
       counter += 1
       break if counter == 10
       @value = value
@@ -42,6 +42,10 @@ class Processing
     end
     return buf
 
+  end
+
+  def get_yahoo_result
+    @json["ResultSet"]["0"]["Result"]
   end
 
   def get_yahoo_name

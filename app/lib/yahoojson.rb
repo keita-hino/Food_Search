@@ -1,8 +1,11 @@
 class Yahoojson
 
-  def fashion_search(pro_name)
+  def fashion_search(keyword)
     s = Searcher.new
-    json = s.get_yahoo_info(pro_name)
+
+    re_keyword = s.keyword_sanitizing(keyword)
+    uri = "http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?appid=#{ENV['YAHOO_APP_ID']}&query=#{re_keyword}&sort=-review_count&image_size=76"
+    json = s.get_search(uri)
     pro = Processing.new(json)
     line_json = Linejson.new
     hash = pro.yahoo_extraction
