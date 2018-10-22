@@ -9,10 +9,17 @@ class Processing
   def yahoo_extraction
     buf = []
     counter = 0
+
+    # include(Fashion)
+    # puts YAHOO_SITE_NAME
+    # a = ActiveSupport::Dependencies.autoload_paths
+    # a.each {|v| puts v}
+
+
     # SITE_KAGI = '【rakuten】'
     # SITE_NAME = '楽天ショッピング'
 
-    if @json["ResultSet"]["0"]["Result"]["0"]["_attributes"]["index"] == "0"
+    if no_item?
       buf.push({
         site_name:  "Yahooショッピング",
         hit_flag:   false
@@ -42,6 +49,10 @@ class Processing
     end
     return buf
 
+  end
+
+  def no_item?
+     @json["ResultSet"]["0"]["Result"]["0"]["_attributes"]["index"] == "0"
   end
 
   def get_yahoo_result
@@ -96,7 +107,8 @@ class Processing
   def rakuten_extraction
     buf = []
     counter = 0
-    if @json["Products"].blank?
+    puts "😄#{rakuten_no_item?}"
+    if rakuten_no_item?
       buf.push({
         site_name:  "楽天ショッピング",
         hit_flag:   false
@@ -125,6 +137,10 @@ class Processing
 
     return buf
 
+  end
+
+  def rakuten_no_item?
+    @json["Products"].blank?
   end
 
   def get_name
@@ -219,37 +235,5 @@ class Processing
   def get_longitude
     @value["longitude"]
   end
-
-
-
-  # def line_extraction
-  #   buf = []
-  #
-  #   rest.each do |value|
-  #     next if value["latitude"] == ""
-  #     if value["image_url"]["shop_image1"] == ""
-  #       value["image_url"]["shop_image1"] = "https://food-line.herokuapp.com/no_image.png"
-  #     end
-  #     if value["opentime"] == ""
-  #       value["opentime"] = '不明'
-  #     end
-  #       buf.push({
-  #         name: value["name"],
-  #         category: value["category"],
-  #         url_mobile: value["url_mobile"],
-  #         shop_image: value["image_url"]["shop_image1"],
-  #         address: value["address"],
-  #         opentime: value["opentime"],
-  #         latitude: value["latitude"],
-  #         longitude: value["longitude"]
-  #       })
-  #   end
-  #
-  #   return buf
-  # end
-  #
-  # def rest
-  #   json["rest"]
-  # end
 
 end
