@@ -1,9 +1,10 @@
-module Search
+module Extraction
 
   YAHOO_SITE_NAME = "Yahooショッピング"
   YAHOO_SITE_KAGI = "【yahoo】"
   RAKUTEN_SITE_NAME = "楽天ショッピング"
   RAKUTEN_SITE_KAGI = "【rakuten】"
+  NO_ITEM_SYMBLE = "-"
 
   # 金額関係のデータにカンマを入れる。
   def addcomma(num, sep)
@@ -72,11 +73,11 @@ module Search
   end
 
   def get_old_price
-    "¥#{@value["Product"]["salesMinPrice"].to_s(:delimited)}"
+    addcomma(@value["Product"]["salesMinPrice"],3)
   end
 
   def get_new_price
-    "¥#{@value["Product"]["usedExcludeSalesMinPrice"].to_s(:delimited)}"
+    addcomma(@value["Product"]["usedExcludeSalesMinPrice"],3)
   end
 
   def get_image_url
@@ -89,6 +90,10 @@ module Search
 
   def get_review_count
     @value["Product"]["reviewCount"].to_s
+  end
+
+  def products
+    @json["Products"]
   end
 
   # ぐるなび用のメソッド
@@ -109,7 +114,11 @@ module Search
   end
 
   def get_shop_image
-    @value["image_url"]["shop_image1"]
+    if @value["image_url"]["shop_image1"].empty?
+      @value["image_url"]["shop_image1"] = "https://food-line.herokuapp.com/no_image.png"
+    else
+      @value["image_url"]["shop_image1"]
+    end
   end
 
   def get_address
@@ -117,7 +126,11 @@ module Search
   end
 
   def get_opentime
-    @value["opentime"]
+    if @value["opentime"].empty?
+      @value["opentime"] = '不明'
+    else
+      @value["opentime"]
+    end
   end
 
   def get_latitude
@@ -126,6 +139,10 @@ module Search
 
   def get_longitude
     @value["longitude"]
+  end
+
+  def latitude_empty?
+    @value["latitude"].empty?
   end
 
 end
