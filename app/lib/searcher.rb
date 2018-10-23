@@ -6,11 +6,12 @@ class Searcher
   end
 
   def keyword_sanitizing(keyword)
-    keyword.gsub!(/☆/, ' ')
-    keyword.gsub!(/【/, ' ')
-    keyword.gsub!(/】/, ' ')
-    keyword.gsub!(/%/, ' ')
-
+    keyword.gsub(/test|☆|【|】|%/,
+                  "☆" => " ",
+                  "【" => " ",
+                  "】" => " ",
+                  "%" => " "
+                )
     return keyword
   end
 
