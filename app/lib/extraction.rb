@@ -5,6 +5,7 @@ module Extraction
   RAKUTEN_SITE_NAME = "楽天ショッピング"
   RAKUTEN_SITE_KAGI = "【rakuten】"
   NO_ITEM_SYMBLE = "-"
+  FLEX_MAX_PAGE = 10
 
   # 金額関係のデータにカンマを入れる。
   def addcomma(num, sep)

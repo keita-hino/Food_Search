@@ -23,7 +23,7 @@ class Processor
 
     get_yahoo_result.each do |key,value|
       counter += 1
-      break if counter == 10
+      break if counter == Extraction::FLEX_MAX_PAGE
       @value = value
       buf.push({
         name:         get_yahoo_name,
@@ -57,7 +57,7 @@ class Processor
 
     products.each do |value|
       counter += 1
-      break if counter == 10
+      break if counter == Extraction::FLEX_MAX_PAGE
       @value = value
       buf.push({
         name:         get_rakuten_name,

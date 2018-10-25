@@ -4,20 +4,120 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     </head>
 
-    <body>
+    <body onload="get_list()">
         <h2>商品検索画面</h2>
         <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
-        <!-- <div id='user_name'>Name : XXXX</div> -->
-        <!-- <img id='user_photo' src="" width="200px"/><br><br> -->
         <label for="name1">キーワードを入力してください</label><br>
         <input name="textBox1" id="id_textBox1" size="40" type="text" value="" placeholder="例）ナイキ　黒"/><br><br>
-        <label for="name1">商品を検索するサイトを選択してください</label><br>
+        <label for="name1">検索するサイトとジャンルを選択してください</label><br>
         <form id="target">
-        	<input id="raku" name="site" type="radio" value="【rakuten】" checked="checked"> 楽天<br>
-        	<input id="ya" name="site" type="radio" value="【yahoo】"> Yahoo
+        	<input id="raku" name="site" type="radio" value="【rakuten:" checked="checked"onclick="get_rakuten_list()"> 楽天<br>
+        	<input id="ya" name="site" type="radio" value="【yahoo:"onclick="get_yahoo_list()"> Yahoo<br>
+          <select id="genre"></select><br>
         </form><br>
         <button onclick='clicked()'>商品検索</button>
         <script>
+          // セレクトボックスの初期化
+          function init_list(){
+            len = document.getElementById("genre").length;
+            for(var i=0; i<len + 1;i++){
+              document.getElementById("genre").remove(0);
+            }
+          }
+          // 楽天のジャンルをセット
+          function get_rakuten_list() {
+            init_list();
+            for(key in rakuten_list){
+              let op = document.createElement("option");
+              op.value = key;  //value値
+              op.text = rakuten_list[key];   //テキスト値
+              document.getElementById("genre").appendChild(op);
+            }
+          }
+          // yahooのジャンルをセット
+          function get_yahoo_list(){
+            init_list();
+            for(key in yahoo_list){
+              let op = document.createElement("option");
+              op.value = key;  //value値
+              op.text = yahoo_list[key];   //テキスト値
+              document.getElementById("genre").appendChild(op);
+            }
+          }
+
+          // ジャンルを配列にセット
+          function get_list(){
+            rakuten_list =　{
+              "99999": "全てのカテゴリ",
+              "101240": "CD・DVD",
+              "100804": "インテリア・寝具・収納",
+              "101164": "ホビー",
+              "566382": "おもちゃ・ゲーム",
+              "100533": "キッズ・ベビー・マタニティ",
+              "215783": "日用品雑貨・文房具・手芸",
+              "216129": "ジュエリー・アクセサリー",
+              "101070": "スポーツ・アウトドア",
+              "100938": "ダイエット・健康",
+              "100316": "水・ソフトドリンク",
+              "100026": "パソコン・周辺機器",
+              "216131": "バッグ・小物・ブランド雑貨",
+              "100371": "レディースファッション",
+              "100005": "花・ガーデン・DIY",
+              "101213": "ペット・ペットグッズ",
+              "211742": "TV・オーディオ・カメラ",
+              "101114": "車・バイク",
+              "100227": "食品",
+              "100939": "美容・コスメ・香水",
+              "200162": "本・雑誌・コミック",
+              "101381": "カタログギフト・チケット",
+              "101438": "サービス・リフォーム",
+              "100000": "百貨店・総合通販・ギフト",
+              "402853": "デジタルコンテンツ",
+              "503190": "車用品・バイク用品",
+              "100433": "インナー・下着・ナイトウエア",
+              "510901": "日本酒・焼酎",
+              "510915": "ビール・洋酒",
+              "551167": "スイーツ・お菓子",
+              "551169": "医薬品・コンタクト・介護",
+              "551177": "メンズファッション",
+              "558885": "靴",
+              "558929": "腕時計",
+              "558944": "キッチン用品・食器・調理器具",
+              "562637": "家電",
+              "564500": "スマートフォン・タブレット",
+              "565004": "光回線・モバイル通信",
+              "112493": "楽器・音響機器"
+            };
+            yahoo_list =　{
+              '999': '全てのカテゴリ',
+              '13457': 'ファッション',
+              '2498': '食品',
+              '2513': 'アウトドア、釣り、旅行用品',
+              '2500': 'ダイエット、健康',
+              '2501': 'コスメ、美容、ヘアケア',
+              '2502': 'スマホ、タブレット、パソコン',
+              '2504': 'テレビ、オーディオ、カメラ',
+              '2505': '家電',
+              '2506': '家具、インテリア',
+              '2507': '花、ガーデニング',
+              '2508': 'キッチン、日用品、文具',
+              '2503': 'DIY、工具',
+              '2509': 'ペット用品、生き物',
+              '2510': '楽器、手芸、コレクション',
+              '2511': 'ゲーム、おもちゃ',
+              '2497': 'ベビー、キッズ、マタニティ',
+              '2512': 'スポーツ',
+              '2514': '車、バイク、自転車',
+              '2516': 'CD、音楽ソフト、チケット',
+              '2517': 'DVD、映像ソフト',
+              '10002': '本、雑誌、コミック',
+              '47727': 'レンタル、各種サービス'
+            };
+            rakuten_len = Object.keys(rakuten_list).length
+            get_rakuten_list();
+
+          }
+
             liff.init(
               data => {
                 // Now you can call LIFF API
@@ -41,9 +141,6 @@
 
                 if(document.getElementById('id_textBox1').value == "" ){
                   window.alert('キーワードを入力してください。');
-                  // window.alert(document.getElementById('raku').checked);
-                  // window.alert(document.getElementById('target').elements[1].value);
-                  // window.alert(document.getElementById('target').length);
                 }else{
                   var search_site;
                   for(var i=0; i<document.getElementById('target').length;i++){
@@ -51,10 +148,13 @@
                           search_site = document.getElementById('target').elements[i].value;
                       }
                   }
+
+                  var idx = document.getElementById("genre").selectedIndex;
+                  var value = document.getElementById("genre").options[idx].value + "】"
                   liff.sendMessages([
                     {
                       type:'text',
-                      text: search_site + document.getElementById('id_textBox1').value
+                      text: search_site + value + document.getElementById('id_textBox1').value
                     }
                   ])
                   // liff.closeWindow();
