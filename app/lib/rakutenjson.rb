@@ -1,6 +1,6 @@
 class Rakutenjson
 
-  def fashion_search(code,keyword)
+  def fashion_search(code='999',keyword)
     s = Searcher.new
     re_keyword = s.keyword_sanitizing(keyword)
     uri = "https://app.rakuten.co.jp/services/api/Product/Search/20170426?format=json&keyword=#{re_keyword}&applicationId=#{ENV['RAKUTEN_APPLICATION_ID']}&affiliateId=#{ENV['RAKUTEN_AFFILIATE_ID']}"
