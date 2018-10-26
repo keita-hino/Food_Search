@@ -41,7 +41,7 @@ class LinebotController < ApplicationController
 
             #楽天
             r = Rakutenjson.new
-            message = r.fashion_search($2,$3)
+            message = r.fashion_search($2.chop!,$3)
 
           when /【yahoo】*/
             keyword = event.message['text']
@@ -50,7 +50,7 @@ class LinebotController < ApplicationController
 
             # Yahoo
             y = Yahoojson.new
-            message = y.fashion_search($2,$3)
+            message = y.fashion_search($2.chop!,$3)
 
           else
             message = c.get_another_text(event.message['text'])
