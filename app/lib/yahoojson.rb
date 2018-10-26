@@ -1,6 +1,6 @@
 class Yahoojson
 
-  def fashion_search(keyword)
+  def fashion_search(code='999',keyword)
     s = Searcher.new
 
     re_keyword = s.keyword_sanitizing(keyword)

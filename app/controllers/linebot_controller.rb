@@ -36,19 +36,21 @@ class LinebotController < ApplicationController
             message = c.get_search_form
           when /【rakuten】*/
             keyword = event.message['text']
-            keyword.slice!(0..8)
+            pat = /(【.*:)(.*】)(.*)/
+            keyword =~ pat
 
             #楽天
             r = Rakutenjson.new
-            message = r.fashion_search(keyword)
+            message = r.fashion_search($2,$3)
 
           when /【yahoo】*/
             keyword = event.message['text']
-            keyword.slice!(0..6)
+            pat = /(【.*:)(.*】)(.*)/
+            keyword =~ pat
 
             # Yahoo
             y = Yahoojson.new
-            message = y.fashion_search(keyword)
+            message = y.fashion_search($2,$3)
 
           else
             message = c.get_another_text(event.message['text'])
@@ -77,19 +79,21 @@ class LinebotController < ApplicationController
           case event['postback']['data']
           when /【rakuten】*/
             keyword = event['postback']['data']
-            keyword.slice!(0..8)
+            pat = /(【.*】)(.*)/
+            keyword =~ pat
 
             #楽天
             r = Rakutenjson.new
-            message = r.fashion_search(keyword)
+            message = r.fashion_search($2)
 
           when /【yahoo】*/
             keyword = event['postback']['data']
-            keyword.slice!(0..6)
+            pat = /(【.*】)(.*)/
+            keyword =~ pat
 
             # Yahoo
             y = Yahoojson.new
-            message = y.fashion_search(keyword)
+            message = y.fashion_search($2)
 
           else
             array = event['postback']['data'].split(",")
