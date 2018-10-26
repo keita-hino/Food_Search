@@ -32,31 +32,31 @@ module Extraction
      @json["ResultSet"]["0"]["Result"]["0"]["_attributes"]["index"] == "0"
   end
 
-  def get_yahoo_result
+  def yahoo_result
     @json["ResultSet"]["0"]["Result"]
   end
 
-  def get_yahoo_name
+  def yahoo_name
     @value["Name"]
   end
 
-  def get_yahoo_price
+  def yahoo_price
     addcomma(@value["Price"]["_value"],3)
   end
 
-  def get_yahoo_review
+  def yahoo_review
     @value["Review"]["Rate"]
   end
 
-  def get_yahoo_rcount
+  def yahoo_rcount
     @value["Review"]["Count"]
   end
 
-  def get_yahoo_image
+  def yahoo_image
     @value["Image"]["Medium"]
   end
 
-  def get_yahoo_url
+  def yahoo_url
     @value["Url"]
   end
 
@@ -65,31 +65,31 @@ module Extraction
     @json["Products"].blank?
   end
 
-  def get_rakuten_name
+  def rakuten_name
     @value["Product"]["productName"]
   end
 
-  def get_review_avg
+  def review_avg
     @value["Product"]["reviewAverage"].to_f.to_s
   end
 
-  def get_old_price
+  def old_price
     addcomma(@value["Product"]["salesMinPrice"],3)
   end
 
-  def get_new_price
+  def new_price
     addcomma(@value["Product"]["usedExcludeSalesMinPrice"],3)
   end
 
-  def get_image_url
+  def image_url
     @value["Product"]["mediumImageUrl"].sub!(/\?.*/, "")
   end
 
-  def get_affi_url
+  def affi_url
     @value["Product"]["affiliateUrl"]
   end
 
-  def get_review_count
+  def review_count
     @value["Product"]["reviewCount"].to_s
   end
 
@@ -102,19 +102,19 @@ module Extraction
     @json["rest"]
   end
 
-  def get_rest_name
+  def rest_name
     @value["name"]
   end
 
-  def get_category
+  def category
     @value["category"]
   end
 
-  def get_url_mobile
+  def url_mobile
     @value["url_mobile"]
   end
 
-  def get_shop_image
+  def shop_image
     if @value["image_url"]["shop_image1"].empty?
       @value["image_url"]["shop_image1"] = "https://food-line.herokuapp.com/no_image.png"
     else
@@ -122,11 +122,11 @@ module Extraction
     end
   end
 
-  def get_address
+  def address
     @value["address"]
   end
 
-  def get_opentime
+  def opentime
     if @value["opentime"].empty?
       @value["opentime"] = '不明'
     else
@@ -134,11 +134,11 @@ module Extraction
     end
   end
 
-  def get_latitude
+  def latitude
     @value["latitude"]
   end
 
-  def get_longitude
+  def longitude
     @value["longitude"]
   end
 

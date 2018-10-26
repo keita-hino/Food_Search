@@ -21,18 +21,18 @@ class Processor
     #yahooのAPIのレスポンスに使わない項目があるため、削除
     remove_key
 
-    get_yahoo_result.each do |key,value|
+    yahoo_result.each do |key,value|
       counter += 1
       break if counter == Extraction::FLEX_MAX_PAGE
       @value = value
       buf.push({
-        name:         get_yahoo_name,
-        new_price:    get_yahoo_price,
+        name:         yahoo_name,
+        new_price:    yahoo_price,
         old_price:    Extraction::NO_ITEM_SYMBLE,
-        review_avg:   get_yahoo_review,
-        review_count: get_yahoo_rcount,
-        image_url:    get_yahoo_image,
-        affi_url:     get_yahoo_url,
+        review_avg:   yahoo_review,
+        review_count: yahoo_rcount,
+        image_url:    yahoo_image,
+        affi_url:     yahoo_url,
         site_kagi:    Extraction::RAKUTEN_SITE_KAGI,
         site_name:    Extraction::RAKUTEN_SITE_NAME,
         hit_flag:     true
@@ -60,13 +60,13 @@ class Processor
       break if counter == Extraction::FLEX_MAX_PAGE
       @value = value
       buf.push({
-        name:         get_rakuten_name,
-        review_avg:   get_review_avg,
-        old_price:    get_old_price,
-        new_price:    get_new_price,
-        image_url:    get_image_url,
-        affi_url:     get_affi_url,
-        review_count: get_review_count,
+        name:         rakuten_name,
+        review_avg:   review_avg,
+        old_price:    old_price,
+        new_price:    new_price,
+        image_url:    image_url,
+        affi_url:     affi_url,
+        review_count: review_count,
         site_kagi:    Extraction::YAHOO_SITE_KAGI,
         site_name:    Extraction::YAHOO_SITE_NAME,
         hit_flag:     true
@@ -85,14 +85,14 @@ class Processor
       @value = value
       next if latitude_empty?
         buf.push({
-          name:       get_rest_name,
-          category:   get_category,
-          url_mobile: get_url_mobile,
-          shop_image: get_shop_image,
-          address:    get_address,
-          opentime:   get_opentime,
-          latitude:   get_latitude,
-          longitude:  get_longitude
+          name:       rest_name,
+          category:   category,
+          url_mobile: url_mobile,
+          shop_image: shop_image,
+          address:    address,
+          opentime:   opentime,
+          latitude:   latitude,
+          longitude:  longitude
         })
     end
 
