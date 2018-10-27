@@ -65,6 +65,10 @@ module Extraction
     @json["Products"].blank?
   end
 
+  def rakuten_no_stock?
+    @value["Product"]["salesItemCount"].zero?
+  end
+
   def rakuten_name
     @value["Product"]["productName"]
   end

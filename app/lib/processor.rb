@@ -56,9 +56,11 @@ class Processor
     end
 
     products.each do |value|
+      @value = value
+      next if rakuten_no_stock?
       counter += 1
       break if counter == Extraction::FLEX_MAX_PAGE
-      @value = value
+
       buf.push({
         name:         rakuten_name,
         review_avg:   review_avg,

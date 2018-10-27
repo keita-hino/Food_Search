@@ -5,17 +5,29 @@
     </head>
 
     <body onload="get_list()">
-        <h2>商品検索画面</h2>
+        <!-- <form> -->
+          <!-- <div class="form-group"> -->
+
+            <h2>商品検索画面</h2>
+          <!-- </div> -->
         <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
-        <label for="name1">キーワードを入力してください</label><br>
-        <input name="textBox1" id="id_textBox1" size="40" type="text" value="" placeholder="例）ナイキ　黒"/><br><br>
-        <label for="name1">検索するサイトとジャンルを選択してください</label><br>
-        <form id="target">
-        	<input id="raku" name="site" type="radio" value="【rakuten:" checked="checked"onclick="get_rakuten_list()"> 楽天<br>
-        	<input id="ya" name="site" type="radio" value="【yahoo:"onclick="get_yahoo_list()"> Yahoo<br>
-          <select id="genre"></select><br>
-        </form><br>
+        <!-- <div class="form-group "> -->
+          <label for="name1">キーワードを入力してください</label><br>
+          <input name="textBox1" id="id_textBox1" size="30" type="text" value="" placeholder="例）ナイキ　黒"/><br><br>
+        <!-- </div> -->
+        <!-- <div class="form-group"> -->
+          <label for="name1">検索するサイトとジャンルを選択してください</label><br>
+          <form id="target">
+          	<input id="raku" name="site" type="radio" value="【rakuten:" checked="checked"onclick="get_rakuten_list()"> 楽天<br>
+          	<input id="ya" name="site" type="radio" value="【yahoo:"onclick="get_yahoo_list()"> Yahoo<br>
+            <select id="genre"></select><br>
+          </form><br>
+        <!-- </div> -->
+        <!-- <button type="button" class="btn btn-success" onclick='clicked()'>商品検索</button> -->
         <button onclick='clicked()'>商品検索</button>
+
+      <!-- </form> -->
+
         <script>
           // セレクトボックスの初期化
           function init_list(){

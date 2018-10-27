@@ -4,7 +4,7 @@ class Yahoojson
     s = Searcher.new
 
     re_keyword = s.keyword_sanitizing(keyword)
-    uri = "http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?appid=#{ENV['YAHOO_APP_ID']}&query=#{re_keyword}&sort=-review_count&image_size=76"
+    uri = "http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?appid=#{ENV['YAHOO_APP_ID']}&query=#{re_keyword}&sort=-score&image_size=76&availability=1"
     uri << "&category_id=#{code}" unless code == '999'
     json = s.get_search(uri)
     pro = Processor.new(json)
