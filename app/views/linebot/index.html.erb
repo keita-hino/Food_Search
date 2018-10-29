@@ -2,31 +2,31 @@
     <head>
         <title>sample application</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+        <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
     </head>
 
     <body onload="get_list()">
-        <!-- <form> -->
-          <!-- <div class="form-group"> -->
+      <div class="contact-clean">
+        <div class="body-margin">
+          <h2 class="text-center">商品検索画面</h2>
+          <div class="text-margin">
+            <label for="name1">キーワードを入力してください</label><br>
+            <input name="textBox1" id="id_textBox1" size="30" type="text" value="" placeholder="例）ナイキ　黒"/><br>
+          </div>
+          <div class="text-margin">
+            <label for="name1">検索条件を選択してください</label><br>
+            <form id="target">
+            	<input id="raku" name="site" type="radio" value="【rakuten:" checked="checked"onclick="get_rakuten_list()"> 楽天ショッピング<br>
+            	<input id="ya" name="site" type="radio" value="【yahoo:"onclick="get_yahoo_list()"> Yahooショッピング<br>
+              <div class="select-margin">
+                <select id="genre"></select><br>
+              </div>
+            </form>
+          </div>
+          <button class="btn" onclick='clicked()'>商品検索</button>
+        </div>
+      </div>
 
-            <h2>商品検索画面</h2>
-          <!-- </div> -->
-        <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
-        <!-- <div class="form-group "> -->
-          <label for="name1">キーワードを入力してください</label><br>
-          <input name="textBox1" id="id_textBox1" size="30" type="text" value="" placeholder="例）ナイキ　黒"/><br><br>
-        <!-- </div> -->
-        <!-- <div class="form-group"> -->
-          <label for="name1">検索するサイトとジャンルを選択してください</label><br>
-          <form id="target">
-          	<input id="raku" name="site" type="radio" value="【rakuten:" checked="checked"onclick="get_rakuten_list()"> 楽天<br>
-          	<input id="ya" name="site" type="radio" value="【yahoo:"onclick="get_yahoo_list()"> Yahoo<br>
-            <select id="genre"></select><br>
-          </form><br>
-        <!-- </div> -->
-        <!-- <button type="button" class="btn btn-success" onclick='clicked()'>商品検索</button> -->
-        <button onclick='clicked()'>商品検索</button>
-
-      <!-- </form> -->
 
         <script>
           // セレクトボックスの初期化
@@ -163,6 +163,7 @@
 
                   var idx = document.getElementById("genre").selectedIndex;
                   var value = document.getElementById("genre").options[idx].value + "】"
+
                   liff.sendMessages([
                     {
                       type:'text',
