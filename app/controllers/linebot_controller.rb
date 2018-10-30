@@ -27,7 +27,7 @@ class LinebotController < ApplicationController
         case event.type
         when Line::Bot::Event::MessageType::Text
           c = Command.new
-          user_id = ""
+          user_id = event["source"]["userId"]
           case event.message['text']
           when '$help','マニュアル','使い方'
             message = c.get_help
@@ -39,8 +39,6 @@ class LinebotController < ApplicationController
             message = c.get_search_form
             client.reply_message(event['replyToken'], message)
           when /【rakuten】*/
-            user_id = event["source"]["userId"]
-
             keyword = event.message['text']
             pat = /(【.*:)(.*】)(.*)/
             keyword =~ pat
@@ -48,12 +46,10 @@ class LinebotController < ApplicationController
             #楽天
             r = Rakutenjson.new
             message = r.fashion_search($2.chop!,$3)
-            
+
             client.push_message(user_id, message)
 
           when /【yahoo】*/
-            user_id = event["source"]["userId"]
-
             keyword = event.message['text']
             pat = /(【.*:)(.*】)(.*)/
             keyword =~ pat
@@ -63,6 +59,24 @@ class LinebotController < ApplicationController
             message = y.fashion_search($2.chop!,$3)
 
             client.push_message(user_id, message)
+
+          when /【all】*/
+            keyword = event.message['text']
+            pat = /(【.*】)(.*)/
+            keyword =~ pat
+            _,raku_code,yahoo_code = $1.split(",")
+
+            #楽天
+            r = Rakutenjson.new
+            raku_message = r.fashion_search(raku_code,$2)
+
+            client.push_message(user_id, raku_message)
+
+            # Yahoo
+            y = Yahoojson.new
+            yahoo_message = y.fashion_search(yahoo_code.chop!,$2)
+
+            client.push_message(user_id, yahoo_message)
 
           else
             message = c.get_another_text(event.message['text'])

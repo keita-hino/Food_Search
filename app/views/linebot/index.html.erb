@@ -16,10 +16,13 @@
           <div class="text-margin">
             <label for="name1">検索条件を選択してください</label><br>
             <form id="target">
-            	<input id="raku" name="site" type="radio" value="【rakuten:" checked="checked"onclick="get_rakuten_list()"> 楽天ショッピング<br>
-            	<input id="ya" name="site" type="radio" value="【yahoo:"onclick="get_yahoo_list()"> Yahooショッピング<br>
+            	<input id="raku" name="site" type="checkbox" value="【rakuten:" onclick="get_check()"> 楽天ショッピング<br>
               <div class="select-margin">
-                <select id="genre"></select><br>
+                <select id="rakuten_genre"></select><br>
+              </div><br>
+              <input id="ya" name="site" type="checkbox" value="【yahoo:"onclick="get_check()"> Yahooショッピング<br>
+              <div class="select-margin">
+                <select id="yahoo_genre"></select><br>
               </div>
             </form>
           </div>
@@ -31,29 +34,36 @@
         <script>
           // セレクトボックスの初期化
           function init_list(){
-            len = document.getElementById("genre").length;
-            for(var i=0; i<len + 1;i++){
-              document.getElementById("genre").remove(0);
-            }
+            get_list();
+            // get_rakuten_list();
+            // get_yahoo_list();
+            // len = document.getElementById("genre").length;
+            // for(var i=0; i<len + 1;i++){
+            //   document.getElementById("genre").remove(0);
+            // }
           }
           // 楽天のジャンルをセット
+          function get_check(){
+            // todo:チェックボックスが選択されていない場合は、セレクトボックスをdisableにする。
+          }
+
           function get_rakuten_list() {
-            init_list();
+            // init_list();
             for(key in rakuten_list){
               let op = document.createElement("option");
               op.value = key;  //value値
               op.text = rakuten_list[key];   //テキスト値
-              document.getElementById("genre").appendChild(op);
+              document.getElementById("rakuten_genre").appendChild(op);
             }
           }
           // yahooのジャンルをセット
           function get_yahoo_list(){
-            init_list();
+            // init_list();
             for(key in yahoo_list){
               let op = document.createElement("option");
               op.value = key;  //value値
               op.text = yahoo_list[key];   //テキスト値
-              document.getElementById("genre").appendChild(op);
+              document.getElementById("yahoo_genre").appendChild(op);
             }
           }
 
@@ -127,6 +137,7 @@
             };
             rakuten_len = Object.keys(rakuten_list).length
             get_rakuten_list();
+            get_yahoo_list();
 
           }
 
@@ -150,19 +161,41 @@
               }
             );
             clicked = function(){
+                var idx;
+                var value;
+                var search_site;
 
                 if(document.getElementById('id_textBox1').value == "" ){
                   window.alert('キーワードを入力してください。');
                 }else{
                   var search_site;
-                  for(var i=0; i<document.getElementById('target').length;i++){
-                      if(document.getElementById('target').elements[i].checked){
-                          search_site = document.getElementById('target').elements[i].value;
-                      }
+                  var raku_idx = document.getElementById("rakuten_genre").selectedIndex;
+                  var yahoo_idx = document.getElementById("yahoo_genre").selectedIndex;
+
+                  if (document.getElementById("raku").checked && document.getElementById("ya").checked){
+                    var raku_code = document.getElementById("rakuten_genre").options[raku_idx].value
+                    var yahoo_code = document.getElementById("yahoo_genre").options[yahoo_idx].value
+                    value = raku_code + "," + yahoo_code + "】"
+                    search_site = "【all,";
+                  }else if(document.getElementById("raku").checked && !(document.getElementById("ya").checked)){
+                    value = document.getElementById("rakuten_genre").options[raku_idx].value + "】"
+                    search_site = document.getElementById('target').elements[0].value
+                  }else if(document.getElementById("ya").checked && !(document.getElementById("raku").checked)){
+                    value = document.getElementById("yahoo_genre").options[yahoo_idx].value + "】"
+                    search_site = document.getElementById('target').elements[2].value
                   }
 
-                  var idx = document.getElementById("genre").selectedIndex;
-                  var value = document.getElementById("genre").options[idx].value + "】"
+                  // for(var i=0; i<document.getElementById('target').length;i++){
+                  //     if(document.getElementById('target').elements[i].checked){
+                  //         search_site = document.getElementById('target').elements[i].value;
+                  //     }
+                  // }
+
+                  // var idx = document.getElementById("rakuten_genre").selectedIndex;
+                  // // alert(idx);
+                  // var value = document.getElementById("rakuten_genre").options[idx].value + "】"
+                  // var check = document.getElementById("raku").checked
+                  // alert(check);
 
                   liff.sendMessages([
                     {
