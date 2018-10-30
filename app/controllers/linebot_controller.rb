@@ -27,14 +27,20 @@ class LinebotController < ApplicationController
         case event.type
         when Line::Bot::Event::MessageType::Text
           c = Command.new
+          user_id = ""
           case event.message['text']
           when '$help','マニュアル','使い方'
             message = c.get_help
+            client.reply_message(event['replyToken'], message)
           when '$creater','製作者'
             message = c.get_creater
+            client.reply_message(event['replyToken'], message)
           when '$search','商品検索'
             message = c.get_search_form
+            client.reply_message(event['replyToken'], message)
           when /【rakuten】*/
+            user_id = event["source"]["userId"]
+
             keyword = event.message['text']
             pat = /(【.*:)(.*】)(.*)/
             keyword =~ pat
@@ -42,8 +48,12 @@ class LinebotController < ApplicationController
             #楽天
             r = Rakutenjson.new
             message = r.fashion_search($2.chop!,$3)
+            
+            client.push_message(user_id, message)
 
           when /【yahoo】*/
+            user_id = event["source"]["userId"]
+
             keyword = event.message['text']
             pat = /(【.*:)(.*】)(.*)/
             keyword =~ pat
@@ -52,11 +62,13 @@ class LinebotController < ApplicationController
             y = Yahoojson.new
             message = y.fashion_search($2.chop!,$3)
 
+            client.push_message(user_id, message)
+
           else
             message = c.get_another_text(event.message['text'])
+            client.reply_message(event['replyToken'], message)
           end
 
-        client.reply_message(event['replyToken'], message)
         when Line::Bot::Event::MessageType::Location
 
           lat = (event.message['latitude']).to_f
