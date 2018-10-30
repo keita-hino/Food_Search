@@ -60,17 +60,23 @@ class LinebotController < ApplicationController
 
             client.push_message(user_id, message)
 
+          # マルチスレッド版
           when /【all】*/
             keyword = event.message['text']
             pat = /(【.*】)(.*)/
             keyword =~ pat
             _,raku_code,yahoo_code = $1.split(",")
 
-            #楽天
-            r = Rakutenjson.new
-            raku_message = r.fashion_search(raku_code,$2)
 
-            client.push_message(user_id, raku_message)
+            start_time = Time.now
+
+            fork do
+              #楽天
+              r = Rakutenjson.new
+              raku_message = r.fashion_search(raku_code,$2)
+
+              client.push_message(user_id, raku_message)
+            end
 
             # Yahoo
             y = Yahoojson.new
@@ -78,9 +84,37 @@ class LinebotController < ApplicationController
 
             client.push_message(user_id, yahoo_message)
 
+            puts "😄処理概要 #{Time.now - start_time}s"
+
+          # シングルスレッド（バックアップ）
+          # when /【all】*/
+          #   keyword = event.message['text']
+          #   pat = /(【.*】)(.*)/
+          #   keyword =~ pat
+          #   _,raku_code,yahoo_code = $1.split(",")
+          #
+          #
+          #   start_time = Time.now
+          #
+          #   #楽天
+          #   r = Rakutenjson.new
+          #   raku_message = r.fashion_search(raku_code,$2)
+          #
+          #   client.push_message(user_id, raku_message)
+          #
+          #   # Yahoo
+          #   y = Yahoojson.new
+          #   yahoo_message = y.fashion_search(yahoo_code.chop!,$2)
+          #
+          #   client.push_message(user_id, yahoo_message)
+          #
+          #   puts "😄処理概要 #{Time.now - start_time}s"
+          #
+
           else
             message = c.get_another_text(event.message['text'])
             client.reply_message(event['replyToken'], message)
+
           end
 
         when Line::Bot::Event::MessageType::Location
