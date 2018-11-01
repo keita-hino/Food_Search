@@ -75,6 +75,13 @@ class Processor
       })
     end
 
+    if buf.empty?
+      buf.push({
+        site_name: Extraction::RAKUTEN_SITE_NAME,
+        hit_flag:  false
+      })
+    end
+
     return buf
   end
 
