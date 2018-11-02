@@ -1,14 +1,4 @@
-class Linejson
-
-  def food_search(lat,lon)
-    searcher = Searcher.new
-    uri = "https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=#{ENV['FOOD_SEARCH_APIKEY']}&latitude=#{lat}&longitude=#{lon}&range=5"
-    json = searcher.get_search(uri)
-    # json = search.get_food_json
-    pro = Processor.new(json)
-
-    return pro.line_extraction
-  end
+class Manucreater
 
   #LINEにPOSTするJSON作成
   def line_fashion_json(reply)

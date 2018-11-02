@@ -67,9 +67,6 @@ class LinebotController < ApplicationController
             keyword =~ pat
             _,raku_code,yahoo_code = $1.split(",")
 
-            # 処理時間計測用
-            start_time = Time.now
-
             # 子プロセス作成
             pid = fork do
               #楽天
@@ -88,9 +85,6 @@ class LinebotController < ApplicationController
 
             client.push_message(user_id, yahoo_message)
 
-            # 処理時間計測用
-            puts "😄処理概要 #{Time.now - start_time}s"
-
           else
             message = c.get_another_text(event.message['text'])
             client.reply_message(event['replyToken'], message)
@@ -104,12 +98,6 @@ class LinebotController < ApplicationController
 
           s = Searcher.new
           message = s.food_search(lat,lon)
-
-          # デバッグ用
-          # message = {
-          #   type: 'text',
-          #   text: "test"
-          # }
 
           client.reply_message(event['replyToken'], message)
 
