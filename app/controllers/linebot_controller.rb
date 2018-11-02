@@ -44,8 +44,8 @@ class LinebotController < ApplicationController
             keyword =~ pat
 
             #楽天
-            r = Rakutenjson.new
-            message = r.fashion_search($2.chop!,$3)
+            s = Searcher.new
+            message = s.rakuten_search($3,$2.chop!)
 
             client.push_message(user_id, message)
 
@@ -55,8 +55,8 @@ class LinebotController < ApplicationController
             keyword =~ pat
 
             # Yahoo
-            y = Yahoojson.new
-            message = y.fashion_search($2.chop!,$3)
+            s = Searcher.new
+            message = s.yahoo_search($3,$2.chop!)
 
             client.push_message(user_id, message)
 
@@ -73,18 +73,18 @@ class LinebotController < ApplicationController
             # 子プロセス作成
             pid = fork do
               #楽天
-              r = Rakutenjson.new
-              raku_message = r.fashion_search(raku_code,$2)
+              s = Searcher.new
+              raku_message = s.rakuten_search($2,raku_code)
 
               client.push_message(user_id, raku_message)
             end
 
-            # 子プロセスの終了ステータス解放
+            # 子プロセスの終了ステータス情報解放
             Process.detach(pid)
 
             # Yahoo
-            y = Yahoojson.new
-            yahoo_message = y.fashion_search(yahoo_code.chop!,$2)
+            s = Searcher.new
+            yahoo_message = s.yahoo_search($2,yahoo_code.chop!)
 
             client.push_message(user_id, yahoo_message)
 
@@ -102,9 +102,8 @@ class LinebotController < ApplicationController
           lat = (event.message['latitude']).to_f
           lon = (event.message['longitude']).to_f
 
-          line = Linejson.new
-          reply = line.food_search(lat,lon)
-          message = line.get_json_test(reply)
+          s = Searcher.new
+          message = s.food_search(lat,lon)
 
           # デバッグ用
           # message = {
@@ -123,8 +122,8 @@ class LinebotController < ApplicationController
             keyword =~ pat
 
             #楽天
-            r = Rakutenjson.new
-            message = r.fashion_search($2)
+            s = Searcher.new
+            message = s.rakuten_search($2)
 
           when /【yahoo】*/
             keyword = event['postback']['data']
@@ -132,8 +131,8 @@ class LinebotController < ApplicationController
             keyword =~ pat
 
             # Yahoo
-            y = Yahoojson.new
-            message = y.fashion_search($2)
+            s = Searcher.new
+            message = s.yahoo_search($2)
 
           else
             array = event['postback']['data'].split(",")

@@ -2,6 +2,7 @@ class Processor
   attr_accessor :json
   def initialize(json)
     @json = json
+    @line = Linejson.new
     extend(Extraction)
   end
 
@@ -15,7 +16,7 @@ class Processor
         site_name: Extraction::YAHOO_SITE_NAME,
         hit_flag:  false
       })
-      return buf
+      return @line.line_fashion_json(buf)
     end
 
     #yahooのAPIのレスポンスに使わない項目があるため、削除
@@ -38,7 +39,10 @@ class Processor
         hit_flag:     true
       })
     end
-    return buf
+
+    message = @line.line_fashion_json(buf)
+    reply = JSON.generate(message)
+    return eval(reply)
 
   end
 
@@ -52,7 +56,7 @@ class Processor
         site_name: Extraction::RAKUTEN_SITE_NAME,
         hit_flag:  false
       })
-      return buf
+      return @line.line_fashion_json(buf)
     end
 
     products.each do |value|
@@ -82,7 +86,10 @@ class Processor
       })
     end
 
-    return buf
+    message = @line.line_fashion_json(buf)
+    reply = JSON.generate(message)
+    return eval(reply)
+
   end
 
   #リファクタリング用
@@ -104,8 +111,8 @@ class Processor
           longitude:  longitude
         })
     end
+    return @line.get_json_test(buf)
 
-    return buf
   end
 
 end
