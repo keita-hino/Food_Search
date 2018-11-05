@@ -1,5 +1,6 @@
 class Processor
-  attr_accessor :json
+  # attr_accessor :json
+  attr_reader :manu, :json
   def initialize(json)
     @json = json
     @manu = Manucreater.new
@@ -16,7 +17,7 @@ class Processor
         site_name: Extraction::YAHOO_SITE_NAME,
         hit_flag:  false
       })
-      return @manu.line_fashion_json(buf)
+      return manu.line_fashion_json(buf)
     end
 
     #yahooのAPIのレスポンスに使わない項目があるため、削除
@@ -54,7 +55,7 @@ class Processor
         site_name: Extraction::RAKUTEN_SITE_NAME,
         hit_flag:  false
       })
-      return @manu.line_fashion_json(buf)
+      return manu.line_fashion_json(buf)
     end
 
     products.each do |value|
@@ -106,12 +107,12 @@ class Processor
           longitude:  longitude
         })
     end
-    return @manu.get_json_test(buf)
+    return manu.get_json_test(buf)
 
   end
 
   def reply_message(buf)
-    message = @manu.line_fashion_json(buf)
+    message = manu.line_fashion_json(buf)
     reply = JSON.generate(message)
   end
 
