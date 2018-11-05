@@ -22,18 +22,18 @@ module Extraction
 
   #yahooのAPIでgetした項目の中で不要なkeyを削除
   def remove_key
-    @json["ResultSet"]["0"]["Result"].delete("Request")
-    @json["ResultSet"]["0"]["Result"].delete("Modules")
-    @json["ResultSet"]["0"]["Result"].delete("_container")
+    json["ResultSet"]["0"]["Result"].delete("Request")
+    json["ResultSet"]["0"]["Result"].delete("Modules")
+    json["ResultSet"]["0"]["Result"].delete("_container")
   end
 
   # Yahoo用のメソッド
   def no_item?
-     @json["ResultSet"]["0"]["Result"]["0"]["_attributes"]["index"] == "0"
+     json["ResultSet"]["0"]["Result"]["0"]["_attributes"]["index"] == "0"
   end
 
   def yahoo_result
-    @json["ResultSet"]["0"]["Result"]
+    json["ResultSet"]["0"]["Result"]
   end
 
   def yahoo_name
@@ -62,7 +62,7 @@ module Extraction
 
   # 楽天用のメソッド
   def rakuten_no_item?
-    @json["Products"].blank?
+    json["Products"].blank?
   end
 
   def rakuten_no_stock?
@@ -98,12 +98,12 @@ module Extraction
   end
 
   def products
-    @json["Products"]
+    json["Products"]
   end
 
   # ぐるなび用のメソッド
   def rest
-    @json["rest"]
+    json["rest"]
   end
 
   def rest_name
