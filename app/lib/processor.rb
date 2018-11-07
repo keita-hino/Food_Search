@@ -3,7 +3,7 @@ class Processor
   attr_reader :manu, :json
   def initialize(json)
     @json = json
-    @manu = Manucreater.new
+    @manu = Menucreater.new
     extend(Extraction)
   end
 
@@ -88,7 +88,7 @@ class Processor
     return eval(reply_message(buf))
   end
 
-  #リファクタリング用
+  # リファクタリング用
   # ぐるなびAPIのレスポンスデータを加工する処理
   def line_extraction
     buf = []
@@ -107,7 +107,7 @@ class Processor
           longitude:  longitude
         })
     end
-    return manu.get_json_test(buf)
+    return manu.get_json(buf)
 
   end
 
