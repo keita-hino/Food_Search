@@ -133,7 +133,6 @@ class LinebotController < ApplicationController
             }
           end
 
-          # puts event['postback']['data']
             client.reply_message(event['replyToken'], message)
       end
     }
