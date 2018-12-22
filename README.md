@@ -1,3 +1,4 @@
+# [![Build Status](https://travis-ci.org/keita-hino/food_search.svg?branch=master)](https://travis-ci.org/keita-hino/food_search)
 # README
 
 本botは大きく近くの飲食店を検索する機能と複数のECサイトから最安値を検索する機能があります。
