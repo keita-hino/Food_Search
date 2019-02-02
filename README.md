@@ -12,5 +12,5 @@
 ![image](https://user-images.githubusercontent.com/15973671/48669108-7baa6900-eb40-11e8-8ca4-801b936f1428.png)
 
 
-・ECサイトから最安値を検索する機能
+・複数のECサイトから最安値を検索する機能
 ![image](https://user-images.githubusercontent.com/15973671/48669169-06d82e80-eb42-11e8-9685-74737cf6c679.png)
