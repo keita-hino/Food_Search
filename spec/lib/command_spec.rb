@@ -5,7 +5,7 @@ describe Command do
     @command = Command.new
   end
   describe '.get_another_text' do
-    it 'is create message correct' do
+    it 'オウム返しする' do
       message = {
         type:'text',
         text:'test'
@@ -15,7 +15,7 @@ describe Command do
   end
 
   describe '.get_search_form' do
-    it 'is create search form correct' do
+    it '検索用のリンクを含んだメッセージを返す' do
       message = {
         type: "flex",
         altText: "this is a flex message",
