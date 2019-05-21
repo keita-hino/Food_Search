@@ -9,7 +9,7 @@ gem 'line-bot-api'
 gem 'liff_selector'
 ruby "2.5.1"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.6'
+gem 'rails', '~> 5.2.2'
 gem 'jquery-rails'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
@@ -20,7 +20,8 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
-gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap', '~> 4.3.1'
+gem 'bootsnap', '>= 1.1.0', require: false
 # gem 'net/http'
 # gem 'uri'
 gem 'json'
