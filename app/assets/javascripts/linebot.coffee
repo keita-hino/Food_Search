@@ -1,3 +1,12 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$ ->
+  $('#rakuten_check').click ->
+    if $('#rakuten_check').prop("checked")
+      $('#rakuten_genre').prop("disabled",false)
+    else
+      $('#rakuten_genre').prop("disabled",true)
+
+  $('#yahoo_check').click ->
+    if $('#yahoo_check').prop("checked")
+      $('#yahoo_genre').prop("disabled",false)
+    else
+      $('#yahoo_genre').prop("disabled",true)

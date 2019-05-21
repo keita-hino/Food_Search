@@ -1,127 +1,88 @@
-<html>
-    <head>
-        <title>sample application</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-        <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
-    </head>
-
-    <body">
-      <div class="contact-clean">
-        <div class="body-margin">
-          <h2 class="text-center">商品検索画面</h2>
-          <div class="text-margin">
-            <label for="name1">キーワードを入力してください</label><br>
-            <input name="textBox1" id="id_textBox1" size="30" type="text" value="" placeholder="例）ナイキ　黒"/><br>
-          </div>
-          <div class="text-margin">
-            <label for="name1">検索条件を選択してください</label><br>
-            <form id="target">
-            	<input id="raku" name="site" type="checkbox" value="【rakuten:" onclick="get_rakuten_check()"> 楽天ショッピング<br>
-              <div class="select-margin">
-                <select disabled id="rakuten_genre">
-                  <% @rakuten_list.each do | key,value |%>
-                    <option value=<%=key%>><%=value%></option>
-                  <% end %>
-                </select>
-                <br>
-              </div><br>
-              <input id="ya" name="site" type="checkbox" value="【yahoo:"onclick="get_yahoo_check()"> Yahooショッピング<br>
-              <div class="select-margin">
-                <select disabled id="yahoo_genre">
-                  <% @yahoo_list.each do | key,value |%>
-                    <option value=<%=key%>><%=value%></option>
-                  <% end %>
-                </select>
-              </div>
-            </form>
-          </div>
-          <button class="btn" onclick='clicked()'>商品検索</button>
+<div class="contact-clean">
+  <div class="body-margin">
+    <h2 class="text-center">商品検索画面</h2>
+    <div class="text-margin">
+      <label for="name1">キーワードを入力してください</label><br>
+      <input name="textBox1" id="id_textBox1" size="30" type="text" value="" placeholder="例）ナイキ　黒"/><br>
+    </div>
+    <div class="text-margin">
+      <label for="name1">検索条件を選択してください</label><br>
+      <form id="target">
+      	<input id="rakuten_check" name="site" type="checkbox" value="【rakuten:"> 楽天ショッピング<br>
+        <div class="select-margin">
+          <select disabled id="rakuten_genre">
+            <% @rakuten_list.each do | key,value |%>
+              <option value=<%=key%>><%=value%></option>
+            <% end %>
+          </select>
+          <br>
+        </div><br>
+        <input id="yahoo_check" name="site" type="checkbox" value="【yahoo:"> Yahooショッピング<br>
+        <div class="select-margin">
+          <select disabled id="yahoo_genre">
+            <% @yahoo_list.each do | key,value |%>
+              <option value=<%=key%>><%=value%></option>
+            <% end %>
+          </select>
         </div>
-      </div>
+      </form>
+    </div>
+    <button class="btn" onclick='clicked()'>商品検索</button>
+  </div>
+</div>
 
+<script>
+  liff.init(
+    data => {
+      // Now you can call LIFF API
+      const userId = data.context.userId;
+      liff.getProfile()
+      .then(profile => {
+        document.getElementById('user_name').innerText = 'Name : ' + profile.displayName;
+        const name = profile.displayName
+        document.getElementById('user_photo').src = profile.pictureUrl;
+      })
+      .catch((err) => {
+        console.log('error', err);
+      });
 
-        <script>
-          function get_rakuten_check(){
-            var check = document.getElementById("raku").checked;
-            if(check){
-              document.getElementById("rakuten_genre").disabled = false
-            }else{
-              document.getElementById("rakuten_genre").disabled = true
-            }
-          }
-          function get_yahoo_check(){
-            var check = document.getElementById("ya").checked;
-            if(check){
-              document.getElementById("yahoo_genre").disabled = false
-            }else{
-              document.getElementById("yahoo_genre").disabled = true
-            }
-          }
+    },
+    err => {
+      // LIFF initialization failed
+    }
+  );
+  clicked = function(){
 
-          // yahooのジャンルをセット
-          function get_yahoo_list(){
-            // init_list();
-            for(key in yahoo_list){
-              let op = document.createElement("option");
-              op.value = key;  //value値
-              op.text = yahoo_list[key];   //テキスト値
-              document.getElementById("yahoo_genre").appendChild(op);
-            }
-          }
-            liff.init(
-              data => {
-                // Now you can call LIFF API
-                const userId = data.context.userId;
-                liff.getProfile()
-                .then(profile => {
-                  document.getElementById('user_name').innerText = 'Name : ' + profile.displayName;
-                  const name = profile.displayName
-                  document.getElementById('user_photo').src = profile.pictureUrl;
-                })
-                .catch((err) => {
-                  console.log('error', err);
-                });
+    if(document.getElementById('id_textBox1').value == "" ){
+      window.alert('キーワードを入力してください。');
+    }else{
+      var value;
+      var search_site;
+      var raku_idx = document.getElementById("rakuten_genre").selectedIndex;
+      var yahoo_idx = document.getElementById("yahoo_genre").selectedIndex;
+      var raku_check = document.getElementById("raku").checked
+      var yahoo_check = document.getElementById("ya").checked
 
-              },
-              err => {
-                // LIFF initialization failed
-              }
-            );
-            clicked = function(){
+      if (raku_check && yahoo_check){
+        var raku_code = document.getElementById("rakuten_genre").options[raku_idx].value
+        var yahoo_code = document.getElementById("yahoo_genre").options[yahoo_idx].value
+        value = raku_code + "," + yahoo_code + "】"
+        search_site = "【all,";
+      }else if(raku_check && !(yahoo_check)){
+        value = document.getElementById("rakuten_genre").options[raku_idx].value + "】"
+        search_site = document.getElementById('target').elements[0].value
+      }else if(yahoo_check && !(raku_check)){
+        value = document.getElementById("yahoo_genre").options[yahoo_idx].value + "】"
+        search_site = document.getElementById('target').elements[2].value
+      }
 
-                if(document.getElementById('id_textBox1').value == "" ){
-                  window.alert('キーワードを入力してください。');
-                }else{
-                  var value;
-                  var search_site;
-                  var raku_idx = document.getElementById("rakuten_genre").selectedIndex;
-                  var yahoo_idx = document.getElementById("yahoo_genre").selectedIndex;
-                  var raku_check = document.getElementById("raku").checked
-                  var yahoo_check = document.getElementById("ya").checked
-
-                  if (raku_check && yahoo_check){
-                    var raku_code = document.getElementById("rakuten_genre").options[raku_idx].value
-                    var yahoo_code = document.getElementById("yahoo_genre").options[yahoo_idx].value
-                    value = raku_code + "," + yahoo_code + "】"
-                    search_site = "【all,";
-                  }else if(raku_check && !(yahoo_check)){
-                    value = document.getElementById("rakuten_genre").options[raku_idx].value + "】"
-                    search_site = document.getElementById('target').elements[0].value
-                  }else if(yahoo_check && !(raku_check)){
-                    value = document.getElementById("yahoo_genre").options[yahoo_idx].value + "】"
-                    search_site = document.getElementById('target').elements[2].value
-                  }
-
-                  liff.sendMessages([
-                    {
-                      type:'text',
-                      text: search_site + value + document.getElementById('id_textBox1').value
-                    }
-                  ])
-                  // liff.closeWindow();
-                }
-            }
-        </script>
-    </body>
-
-</html>
+      liff.sendMessages([
+        {
+          type:'text',
+          text: search_site + value + document.getElementById('id_textBox1').value
+        }
+      ])
+      // liff.closeWindow();
+      }
+    }
+</script>
