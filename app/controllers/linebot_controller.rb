@@ -140,7 +140,8 @@ class LinebotController < ApplicationController
     head :ok
   end
   def index
-
+    @rakuten_list = EasySettings.rakuten_list
+    @yahoo_list = EasySettings.yahoo_list
   end
 
 end

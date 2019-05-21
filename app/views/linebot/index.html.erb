@@ -5,7 +5,7 @@
         <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
     </head>
 
-    <body onload="get_list()">
+    <body">
       <div class="contact-clean">
         <div class="body-margin">
           <h2 class="text-center">商品検索画面</h2>
@@ -18,11 +18,20 @@
             <form id="target">
             	<input id="raku" name="site" type="checkbox" value="【rakuten:" onclick="get_rakuten_check()"> 楽天ショッピング<br>
               <div class="select-margin">
-                <select disabled id="rakuten_genre"></select><br>
+                <select disabled id="rakuten_genre">
+                  <% @rakuten_list.each do | key,value |%>
+                    <option value=<%=key%>><%=value%></option>
+                  <% end %>
+                </select>
+                <br>
               </div><br>
               <input id="ya" name="site" type="checkbox" value="【yahoo:"onclick="get_yahoo_check()"> Yahooショッピング<br>
               <div class="select-margin">
-                <select disabled id="yahoo_genre"></select><br>
+                <select disabled id="yahoo_genre">
+                  <% @yahoo_list.each do | key,value |%>
+                    <option value=<%=key%>><%=value%></option>
+                  <% end %>
+                </select>
               </div>
             </form>
           </div>
@@ -32,10 +41,6 @@
 
 
         <script>
-          // セレクトボックスの初期化
-          function init_list(){
-            get_list();
-          }
           function get_rakuten_check(){
             var check = document.getElementById("raku").checked;
             if(check){
@@ -53,15 +58,6 @@
             }
           }
 
-          function get_rakuten_list() {
-            // init_list();
-            for(key in rakuten_list){
-              let op = document.createElement("option");
-              op.value = key;  //value値
-              op.text = rakuten_list[key];   //テキスト値
-              document.getElementById("rakuten_genre").appendChild(op);
-            }
-          }
           // yahooのジャンルをセット
           function get_yahoo_list(){
             // init_list();
@@ -72,81 +68,6 @@
               document.getElementById("yahoo_genre").appendChild(op);
             }
           }
-
-          // ジャンルを配列にセット
-          function get_list(){
-            rakuten_list =　{
-              "999": "全てのカテゴリ",
-              "101240": "CD・DVD",
-              "100804": "インテリア・寝具・収納",
-              "101164": "ホビー",
-              "566382": "おもちゃ・ゲーム",
-              "100533": "キッズ・ベビー・マタニティ",
-              "215783": "日用品雑貨・文房具・手芸",
-              "216129": "ジュエリー・アクセサリー",
-              "101070": "スポーツ・アウトドア",
-              "100938": "ダイエット・健康",
-              "100316": "水・ソフトドリンク",
-              "100026": "パソコン・周辺機器",
-              "216131": "バッグ・小物・ブランド雑貨",
-              "100371": "レディースファッション",
-              "100005": "花・ガーデン・DIY",
-              "101213": "ペット・ペットグッズ",
-              "211742": "TV・オーディオ・カメラ",
-              "101114": "車・バイク",
-              "100227": "食品",
-              "100939": "美容・コスメ・香水",
-              "200162": "本・雑誌・コミック",
-              "101381": "カタログギフト・チケット",
-              "101438": "サービス・リフォーム",
-              "100000": "百貨店・総合通販・ギフト",
-              "402853": "デジタルコンテンツ",
-              "503190": "車用品・バイク用品",
-              "100433": "インナー・下着・ナイトウエア",
-              "510901": "日本酒・焼酎",
-              "510915": "ビール・洋酒",
-              "551167": "スイーツ・お菓子",
-              "551169": "医薬品・コンタクト・介護",
-              "551177": "メンズファッション",
-              "558885": "靴",
-              "558929": "腕時計",
-              "558944": "キッチン用品・食器・調理器具",
-              "562637": "家電",
-              "564500": "スマートフォン・タブレット",
-              "565004": "光回線・モバイル通信",
-              "112493": "楽器・音響機器"
-            };
-            yahoo_list =　{
-              '999': '全てのカテゴリ',
-              '13457': 'ファッション',
-              '2498': '食品',
-              '2513': 'アウトドア、釣り、旅行用品',
-              '2500': 'ダイエット、健康',
-              '2501': 'コスメ、美容、ヘアケア',
-              '2502': 'スマホ、タブレット、パソコン',
-              '2504': 'テレビ、オーディオ、カメラ',
-              '2505': '家電',
-              '2506': '家具、インテリア',
-              '2507': '花、ガーデニング',
-              '2508': 'キッチン、日用品、文具',
-              '2503': 'DIY、工具',
-              '2509': 'ペット用品、生き物',
-              '2510': '楽器、手芸、コレクション',
-              '2511': 'ゲーム、おもちゃ',
-              '2497': 'ベビー、キッズ、マタニティ',
-              '2512': 'スポーツ',
-              '2514': '車、バイク、自転車',
-              '2516': 'CD、音楽ソフト、チケット',
-              '2517': 'DVD、映像ソフト',
-              '10002': '本、雑誌、コミック',
-              '47727': 'レンタル、各種サービス'
-            };
-            rakuten_len = Object.keys(rakuten_list).length
-            get_rakuten_list();
-            get_yahoo_list();
-
-          }
-
             liff.init(
               data => {
                 // Now you can call LIFF API
