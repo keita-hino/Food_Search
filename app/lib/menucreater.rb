@@ -240,8 +240,18 @@ class Menucreater
                   type: "uri",
                   label: "WEBSITE",
                   uri: json[:url_mobile]
-                  }
                 }
+              },
+              {
+                type: "button",
+                style: "link",
+                height: "sm",
+                action: {
+                  type: "postback",
+                  label: "RECORD",
+                  data: "RECORD,#{json[:name]},#{json[:address]},#{json[:opentime] = json[:opentime].slice(0,130) if json[:opentime].length > 130},#{json[:latitude]},#{json[:longitude]}"
+                }
+              }
               ]
             }
           }

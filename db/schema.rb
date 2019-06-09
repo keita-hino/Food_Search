@@ -16,20 +16,13 @@ ActiveRecord::Schema.define(version: 20190608021121) do
   enable_extension "plpgsql"
 
   create_table "restaurants", force: :cascade do |t|
-    t.integer "user_id"
+    t.binary "user_id"
     t.string "name"
     t.string "address"
     t.string "open_info"
     t.decimal "latitude"
     t.decimal "longitude"
     t.text "url"
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.binary "encrypted_user_token"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

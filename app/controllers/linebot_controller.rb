@@ -92,7 +92,6 @@ class LinebotController < ApplicationController
           end
 
         when Line::Bot::Event::MessageType::Location
-
           lat = (event.message['latitude']).to_f
           lon = (event.message['longitude']).to_f
 
@@ -124,13 +123,26 @@ class LinebotController < ApplicationController
 
           else
             array = event['postback']['data'].split(",")
-            message = {
-              type:       "location",
-              title:      array[0],
-              address:    array[1],
-              latitude:   array[2],
-              longitude:  array[3]
-            }
+            if array[0] == 'RECORD'
+              restaurant = Restaurant.new(
+                user_id: event["source"]["userId"],
+                name: array[1],
+                address: array[2],
+                open_info: array[3],
+                latitude: array[4],
+                longitude: array[5]
+              )
+              restaurant.save
+              message = "登録しました。"
+            else
+              message = {
+                type:       "location",
+                title:      array[0],
+                address:    array[1],
+                latitude:   array[2],
+                longitude:  array[3]
+              }
+            end
           end
 
             client.reply_message(event['replyToken'], message)
