@@ -133,7 +133,10 @@ class LinebotController < ApplicationController
                 longitude: array[5]
               )
               restaurant.save
-              message = "登録しました。"
+              message = {
+                type: 'text',
+                text: "【#{array[1]}】を保存したぞ！"
+              }
             else
               message = {
                 type:       "location",
@@ -144,8 +147,7 @@ class LinebotController < ApplicationController
               }
             end
           end
-
-            client.reply_message(event['replyToken'], message)
+          client.reply_message(event['replyToken'], message)
       end
     }
 
