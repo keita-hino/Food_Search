@@ -130,7 +130,8 @@ class LinebotController < ApplicationController
                 address: array[2],
                 open_info: array[3],
                 latitude: array[4],
-                longitude: array[5]
+                longitude: array[5],
+                url: array[6]
               )
               restaurant.save
               message = {

@@ -249,7 +249,7 @@ class Menucreater
                 action: {
                   type: "postback",
                   label: "RECORD",
-                  data: "RECORD,#{json[:name]},#{json[:address]},#{json[:opentime] = json[:opentime].slice(0,130) if json[:opentime].length > 130},#{json[:latitude]},#{json[:longitude]}"
+                  data: "RECORD,#{json[:name]},#{json[:address]},#{json[:opentime] = json[:opentime].slice(0,130) if json[:opentime].length > 130},#{json[:latitude]},#{json[:longitude]},#{json[:shop_image]}"
                 }
               }
               ]
