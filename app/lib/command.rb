@@ -57,6 +57,120 @@ class Command
     }
   end
 
+  def get_record_store_info(user_id)
+
+    restaurants = Restaurant.user_id_is(user_id).limit(10)
+
+    buf_test = {
+      type: "flex",
+      altText: "this is a flex message",
+      contents: {
+        type: "carousel",
+        contents:
+        restaurants.map do |restaurant|
+          {
+          type: "bubble",
+          hero: {
+            type: "image",
+            url: restaurant.image_url,
+            size: "full",
+            aspectRatio: "20:13"
+          },
+          body: {
+            type: "box",
+            layout: "vertical",
+            contents: [
+              {
+                type: "text",
+                text: restaurant.name,
+                weight: "bold",
+                size: "xl"
+              },
+            {
+              type: "box",
+              layout: "vertical",
+              margin: "lg",
+              spacing: "sm",
+              contents: [
+                {
+                  type: "box",
+                  layout: "baseline",
+                  spacing: "sm",
+                  contents: [
+                    {
+                      type: "text",
+                      text: "Place",
+                      color: "#aaaaaa",
+                      size: "sm",
+                      flex: 1
+                    },
+                    {
+                      type: "text",
+                      text: restaurant.address.blank? ? "no info" : restaurant.address,
+                      wrap: true,
+                      color: "#666666",
+                      size: "sm",
+                      flex: 5
+                    }
+                  ]
+                },
+                {
+                  type: "box",
+                  layout: "baseline",
+                  spacing: "sm",
+                  contents: [
+                    {
+                      type: "text",
+                      text: "Time",
+                      color: "#aaaaaa",
+                      size: "sm",
+                      flex: 1
+                    },
+                    {
+                      type: "text",
+                      text: restaurant.open_info.blank? ? "no info" : restaurant.open_info,
+                      wrap: true,
+                      color: "#666666",
+                      size: "sm",
+                      flex: 5
+                    }
+                  ]
+                }
+              ]
+            }
+            ]
+          },
+          footer: {
+            type: "box",
+            layout: "vertical",
+            contents: [
+              {
+                type: "button",
+                height: "sm",
+                action: {
+                  type: "postback",
+                  label: "ACCESS",
+                  data: "#{restaurant.name},#{restaurant.address},#{restaurant.latitude},#{restaurant.longitude}"
+                }
+              },
+              {
+                type: "button",
+                style: "link",
+                height: "sm",
+                action: {
+                  type: "uri",
+                  label: "WEBSITE",
+                  uri: restaurant.site_url
+                }
+              }
+              ]
+            }
+          }
+        end
+      }
+    }
+  end
+
   #help画面表示
   def get_help
     a = {
