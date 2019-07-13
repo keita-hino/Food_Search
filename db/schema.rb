@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190608021121) do
+ActiveRecord::Schema.define(version: 2019_07_13_045837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "lineusers", force: :cascade do |t|
+    t.text "userid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "restaurants", force: :cascade do |t|
     t.binary "user_id"
@@ -25,6 +31,13 @@ ActiveRecord::Schema.define(version: 20190608021121) do
     t.text "image_url"
     t.text "site_url"
     t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "temps", force: :cascade do |t|
+    t.text "userid"
+    t.jsonb "payload"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
