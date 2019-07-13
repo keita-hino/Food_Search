@@ -20,6 +20,7 @@ class LinebotController < ApplicationController
     end
 
     events = client.parse_events_from(body)
+    user_id = events[0]["source"]["userId"]
     # ただのテキストが送られたとき
     events.each { |event|
       case event
@@ -27,7 +28,6 @@ class LinebotController < ApplicationController
         case event.type
         when Line::Bot::Event::MessageType::Text
           c = Command.new
-          user_id = event["source"]["userId"]
           case event.message['text']
           when '$help','マニュアル','使い方'
             message = c.get_help
@@ -40,6 +40,12 @@ class LinebotController < ApplicationController
             client.reply_message(event['replyToken'], message)
           when '$record_show','過去に行った店'
             message = c.get_record_store_info(user_id)
+            temp = c.get_record_store_info_temp(user_id)
+
+            Temp.create(
+              userid:user_id,
+              payload:temp
+            )
             client.reply_message(event['replyToken'], message)
           when /【rakuten】*/
             keyword = event.message['text']
@@ -88,6 +94,28 @@ class LinebotController < ApplicationController
 
             client.push_message(user_id, yahoo_message)
 
+          when /【SHARE】/
+            keyword = event.message['text']
+            pat = /(【.*】)(.*)/
+            keyword =~ pat
+
+            users = Lineuser.all
+            req = Request.new(
+              client: client,
+              users: users,
+              share_name: $2
+            )
+
+            client.push_message(req.share_id, {
+              type: "text",
+              text: "#{req.my_name(user_id)}さんから過去に行った店をシェアされました。"
+            })
+
+            message = Temp.find_by_userid(user_id)
+
+            client.push_message(req.share_id, message.payload)
+            Temp.where(userid: user_id).delete_all
+
           else
             message = c.get_another_text(event.message['text'])
             client.reply_message(event['replyToken'], message)
@@ -104,8 +132,25 @@ class LinebotController < ApplicationController
           client.reply_message(event['replyToken'], message)
 
         end
+
+      when Line::Bot::Event::Follow
+       lineuser = Lineuser.new(userid: user_id)
+       lineuser.save
+
+     # ブロックされた時の処理
+     when Line::Bot::Event::Unfollow
+       Lineuser.where(userid: user_id).delete_all
+
       when Line::Bot::Event::Postback
           case event['postback']['data']
+          when "share"
+            users = Lineuser.all
+            req = Request.new(
+              client: client,
+              users: users
+            )
+
+            message = Command.share_reply(req.user_list)
           when /【rakuten】*/
             keyword = event['postback']['data']
             pat = /(【.*】)(.*)/

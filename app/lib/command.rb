@@ -162,6 +162,130 @@ class Command
                   label: "WEBSITE",
                   uri: restaurant.site_url
                 }
+              },
+              {
+                type: 'button',
+                style: "link",
+                height: "sm",
+                action: {
+                  type: "postback",
+                  label: "シェアする",
+                  data: "share"
+                }
+              }
+              ]
+            }
+          }
+        end
+      }
+    }
+  end
+
+  def get_record_store_info_temp(user_id)
+
+    restaurants = Restaurant.user_id_is(user_id).limit(10)
+
+    {
+      type: "flex",
+      altText: "this is a flex message",
+      contents: {
+        type: "carousel",
+        contents:
+        restaurants.map do |restaurant|
+          {
+          type: "bubble",
+          hero: {
+            type: "image",
+            url: restaurant.image_url,
+            size: "full",
+            aspectRatio: "20:13"
+          },
+          body: {
+            type: "box",
+            layout: "vertical",
+            contents: [
+              {
+                type: "text",
+                text: restaurant.name,
+                weight: "bold",
+                size: "xl"
+              },
+            {
+              type: "box",
+              layout: "vertical",
+              margin: "lg",
+              spacing: "sm",
+              contents: [
+                {
+                  type: "box",
+                  layout: "baseline",
+                  spacing: "sm",
+                  contents: [
+                    {
+                      type: "text",
+                      text: "Place",
+                      color: "#aaaaaa",
+                      size: "sm",
+                      flex: 1
+                    },
+                    {
+                      type: "text",
+                      text: restaurant.address.blank? ? "no info" : restaurant.address,
+                      wrap: true,
+                      color: "#666666",
+                      size: "sm",
+                      flex: 5
+                    }
+                  ]
+                },
+                {
+                  type: "box",
+                  layout: "baseline",
+                  spacing: "sm",
+                  contents: [
+                    {
+                      type: "text",
+                      text: "Time",
+                      color: "#aaaaaa",
+                      size: "sm",
+                      flex: 1
+                    },
+                    {
+                      type: "text",
+                      text: restaurant.open_info.blank? ? "no info" : restaurant.open_info,
+                      wrap: true,
+                      color: "#666666",
+                      size: "sm",
+                      flex: 5
+                    }
+                  ]
+                }
+              ]
+            }
+            ]
+          },
+          footer: {
+            type: "box",
+            layout: "vertical",
+            contents: [
+              {
+                type: "button",
+                height: "sm",
+                action: {
+                  type: "postback",
+                  label: "ACCESS",
+                  data: "#{restaurant.name},#{restaurant.address},#{restaurant.latitude},#{restaurant.longitude}"
+                }
+              },
+              {
+                type: "button",
+                style: "link",
+                height: "sm",
+                action: {
+                  type: "uri",
+                  label: "WEBSITE",
+                  uri: restaurant.site_url
+                }
               }
               ]
             }
@@ -266,5 +390,26 @@ class Command
           }]
         }
       }
+  end
+
+  def self.share_reply(user)
+    {
+      type: 'text',
+      text: 'シェアする相手を選んでください',
+      quickReply: {
+        items:
+        user.map do |v|
+          {
+          type: 'action',
+          imageUrl: v[:url],
+          action: {
+            type: 'message',
+            label: v[:name],
+            text: "【SHARE】#{v[:name]}"
+          }
+        }
+        end
+      }
+    }
   end
 end
