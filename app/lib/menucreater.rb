@@ -147,6 +147,9 @@ class Menucreater
         type: "carousel",
         contents:
         reply.map do |json|
+          if json[:opentime].length > 50
+            json[:opentime] = json[:opentime].slice(0,50)
+          end
           {
           type: "bubble",
           hero: {
@@ -240,8 +243,18 @@ class Menucreater
                   type: "uri",
                   label: "WEBSITE",
                   uri: json[:url_mobile]
-                  }
                 }
+              },
+              {
+                type: "button",
+                style: "link",
+                height: "sm",
+                action: {
+                  type: "postback",
+                  label: "RECORD",
+                  data: "RECORD,#{json[:name]},#{json[:address]},#{json[:opentime]},#{json[:latitude]},#{json[:longitude]},#{json[:shop_image]},#{json[:url_mobile]}"
+                }
+              }
               ]
             }
           }

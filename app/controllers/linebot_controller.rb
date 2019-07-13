@@ -38,6 +38,9 @@ class LinebotController < ApplicationController
           when '$search','商品検索'
             message = c.get_search_form
             client.reply_message(event['replyToken'], message)
+          when '$record_show','過去に行った店'
+            message = c.get_record_store_info(user_id)
+            client.reply_message(event['replyToken'], message)
           when /【rakuten】*/
             keyword = event.message['text']
             pat = /(【.*:)(.*】)(.*)/
@@ -92,7 +95,6 @@ class LinebotController < ApplicationController
           end
 
         when Line::Bot::Event::MessageType::Location
-
           lat = (event.message['latitude']).to_f
           lon = (event.message['longitude']).to_f
 
@@ -124,16 +126,34 @@ class LinebotController < ApplicationController
 
           else
             array = event['postback']['data'].split(",")
-            message = {
-              type:       "location",
-              title:      array[0],
-              address:    array[1],
-              latitude:   array[2],
-              longitude:  array[3]
-            }
-          end
+            if array[0] == 'RECORD'
+              restaurant = Restaurant.new(
+                user_id: event["source"]["userId"],
+                name: array[1],
+                address: array[2],
+                open_info: array[3],
+                latitude: array[4],
+                longitude: array[5],
+                image_url: array[6],
+                site_url: array[7],
 
-            client.reply_message(event['replyToken'], message)
+              )
+              restaurant.save
+              message = {
+                type: 'text',
+                text: "【#{array[1]}】を保存したぞ！"
+              }
+            else
+              message = {
+                type:       "location",
+                title:      array[0],
+                address:    array[1],
+                latitude:   array[2],
+                longitude:  array[3]
+              }
+            end
+          end
+          client.reply_message(event['replyToken'], message)
       end
     }
 
