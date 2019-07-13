@@ -22,7 +22,8 @@ ActiveRecord::Schema.define(version: 20190608021121) do
     t.string "open_info"
     t.decimal "latitude"
     t.decimal "longitude"
-    t.text "url"
+    t.text "image_url"
+    t.text "site_url"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

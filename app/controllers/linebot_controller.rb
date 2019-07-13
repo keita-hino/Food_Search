@@ -38,6 +38,9 @@ class LinebotController < ApplicationController
           when '$search','商品検索'
             message = c.get_search_form
             client.reply_message(event['replyToken'], message)
+          when '$record_show','過去に行った店'
+            message = c.get_record_store_info(user_id)
+            client.reply_message(event['replyToken'], message)
           when /【rakuten】*/
             keyword = event.message['text']
             pat = /(【.*:)(.*】)(.*)/
@@ -131,7 +134,9 @@ class LinebotController < ApplicationController
                 open_info: array[3],
                 latitude: array[4],
                 longitude: array[5],
-                url: array[6]
+                image_url: array[6],
+                site_url: array[7],
+
               )
               restaurant.save
               message = {
