@@ -30,3 +30,4 @@ deploy:
   on:
     repo: keita-hino/food_search
     branch: master
+    run: "rake db:migrate"
