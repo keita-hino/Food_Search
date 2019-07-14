@@ -26,7 +26,9 @@ deploy:
   api_key:
     provider: heroku
     secure: aVNWgYqAswY5pw/b4oa5p3BMh/jrnaLBzN51Y3HiG9P95buV2u63uxXiuFwx3J2npISuJPU4BAOxjjpxfRGakfsiPvtg03v0vWt5APcUJU2lzIX+T9ZtA5SpSkGxbH4DytuL5ZZh3BSvdfhS2tdmg1XHSC1GUrOjPgifI2ZhjcwSTj2S9m0Rr4O0Bw5okAhLLvIjdMo/vJekoGB7IaT4FU949kzrSsVyC0HEZb0UVVzpkimmlA4Ej3lEldmUMPtTeIvGEkSFG5PpQGMPouXtnzQbU2fHcQ54QVpP+vjhDEfaezebjv8RJKxJJN53DFHfm4dp80pNsEhJNt8eeJ8q6PFwY8IDDOxwB9iYdjM5VwWJnIm+OcLm4Gl7+HdsAOQUbZEQfke+f7k9rmd33EF3RuqwLP5kVKBJk0snTE6c/O9twCa7yH7yX12BMnP8n+yNXx19tN9WehLTFy25zdjYDL62VpKCZ3Dog57lrmj28XIKl7uDfD6zwUC+LKT45ygGd89Nu6u//I7Y+5JhaWpitvfeR3lb3DpqxdZ2SeSlWP+zjHYLlR6AHfSijxM5bhfyFh/p2I7XsGY0cmNWbU94Jp1rHxDq+B7pfUJEAWPtStPG79O8UcBwpjo5vVY359Fl60qu9mQGWjIz6uN18kacH5nSa3FQITJoSZ2xuWo/ToU=
-    app: food-line
+    app:
+      master: food_search
+      production: food-line
   on:
     tags: false
     branch: master
