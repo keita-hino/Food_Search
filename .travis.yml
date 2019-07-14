@@ -3,17 +3,17 @@ rvm: 2.5.1
 services: postgresql
 cache: bundler
 before_install:
-  - sudo /etc/init.d/postgresql stop
-  - sudo apt-get update
-  - sudo apt-get purge postgresql-9.1 postgresql-9.2 postgresql-9.3
-  - sudo apt-get install postgresql-9.4
-  - sudo chmod 777 /etc/postgresql/9.4/main/pg_hba.conf
-  - sudo echo "local   all         postgres                          trust" >  /etc/postgresql/9.4/main/pg_hba.conf
-  - sudo echo "local   all         all                               trust" >> /etc/postgresql/9.4/main/pg_hba.conf
-  - sudo echo "host    all         all         127.0.0.1/32          trust" >> /etc/postgresql/9.4/main/pg_hba.conf
-  - sudo echo "host    all         all         ::1/128               trust" >> /etc/postgresql/9.4/main/pg_hba.conf
-  - sudo /etc/init.d/postgresql restart
-  - psql --version
+- sudo /etc/init.d/postgresql stop
+- sudo apt-get update
+- sudo apt-get purge postgresql-9.1 postgresql-9.2 postgresql-9.3
+- sudo apt-get install postgresql-9.4
+- sudo chmod 777 /etc/postgresql/9.4/main/pg_hba.conf
+- sudo echo "local   all         postgres                          trust" >  /etc/postgresql/9.4/main/pg_hba.conf
+- sudo echo "local   all         all                               trust" >> /etc/postgresql/9.4/main/pg_hba.conf
+- sudo echo "host    all         all         127.0.0.1/32          trust" >> /etc/postgresql/9.4/main/pg_hba.conf
+- sudo echo "host    all         all         ::1/128               trust" >> /etc/postgresql/9.4/main/pg_hba.conf
+- sudo /etc/init.d/postgresql restart
+- psql --version
 before_script:
 - cp config/database.travis.yml config/database.yml
 - bundle exec rake db:create
@@ -22,3 +22,10 @@ script: bundle exec rspec spec/
 notifications:
   slack:
     secure: dCN7Bhp5z6EaVoebyWrqSgZS+C1kPjG4a71dk59NqKqkAtCQxMplg9asm9VBuEZVuaNVtXb4AmIPMpxRiHIL67/PR0yqJqBEvf85KZrX7Ld7Z6oVWHfq6At36CE9GU01LT8OILS26v7SitAjFgF4b11rCEeakYcVbIIqwtq8gcTJoGOS3mt8bW9YOYKKcjQ78O1611dI2lhlNJEcxzSkyTUy+R+lCdzkWHGa3FU2Mc+uVlJcOvnFWS4O0m+0LbJ7n6WwXkdNazYqx4o34+rMgwdVZYBFXvP3Ja/X34MW+w8Ry5BSnnCE2t8kcdU5ko5n3M9Ov/IwFmqIEJ6SGWJ19vqgBlzgVDB+M2IgL4g/Jx0ELypL9yQMcShc1o4rqyaDkiIKDGChKdWDSEn6Si38euaRf34RKaLEfO8SllFOOD6KrjQ/RLryeTmzD5QXr3sffANYKTqJKLNVUM4LzBR79dKsUV4LHk6f0tqKW+egajwrL7j/FCRiW++pK+C24xganNU5E1I4uwRVF7FKdyPtEdaQWDbftp/x3WuZXuNyzbKUjZC9m9J07QLStDYjF0JUD2RE5OVCKmp2m1M+j+L2NJExWNQt4Q+Jy3WHtw5KRuwCtJ/3SMYyj20Fn4Y8Uf7CMmXXuksuIX/K8z1cQFKOaz2jgQoxtqS5g2wFPOVIUHQ=
+deploy:
+  api_key:
+    secure: Nv3YRbTHfxMYuWTlPVjxE1LWvZupHn3BERPIGY3tNmEOJgNMRsEh4o4wHqy7+sCD536ekpp2St3QgCgNV8Shdq8Bociya7w+gD/GSAyp8Hh3N5XNkcpzlafR0lFEGsv/gn4+0UsfbAXrLDTQucTJizD22xEbm+LMHUM0AjfRuUOPRThZOP25CyIVm86ZTNuIq26IGsjRRx1+wflXndehuttw8Ck0eTfEWxcVkl9/k7zVvfWy7Y5xyCQQnFJyoIg8jDN0YMDIWSIgd0iAnz3mhl6BAOoAfc5f726Q5ss/O7iKGjMrDFVnLtcVUIO9hOHDpHsz0t8ntm4RmM8PcuepZRSH5tymi5zveW9xi0BMe9wu4ffGbNVoe/X+S9plBBNMNPxP6/e2dh9gDHtNYw0DU3ktfLgz5o31x5yd3VpzEzv/CLtjxOMo5DBZM1fMycThFdvwwqLZoaP7dmJqU0mkKAarGCXbn+RBUEKxCL5gF7LnjaYf0L55d4qt3L40nVfbzDwMhIEsjxxTCe9pTxtOX64Tsuv2ESaSYYggZ60wz10dEotkF9GMxkBMevmdo9HA/wnppgTzND/GGvwT417B83vPYiJCpY6hDgbclGFttqSfmNEpP/BOgKZBGq2bB0dSbZgHUhADcGt81R4ElAjnqlVy4M/P4MG+k+TtEvsAi50=
+  on:
+    tags: false
+    branch: master
+    run: "rake db:migrate"
