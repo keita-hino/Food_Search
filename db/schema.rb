@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2019_07_13_045837) do
   end
 
   create_table "restaurants", force: :cascade do |t|
-    t.binary "user_id"
+    t.text "user_id"
     t.string "name"
     t.string "address"
     t.string "open_info"

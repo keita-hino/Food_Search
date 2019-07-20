@@ -26,6 +26,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # gem 'uri'
 gem 'json'
 gem 'easy_settings'
+gem 'pry-doc'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
