@@ -1,5 +1,6 @@
 language: ruby
 rvm: 2.5.1
+dist: trusty
 services: postgresql
 cache: bundler
 before_install:

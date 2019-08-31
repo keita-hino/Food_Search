@@ -19,6 +19,7 @@ gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+gem "nokogiri", ">= 1.10.4"
 
 gem 'bootstrap', '~> 4.3.1'
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -26,6 +27,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # gem 'uri'
 gem 'json'
 gem 'easy_settings'
+gem 'pry-doc'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
