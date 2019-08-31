@@ -1,7 +1,7 @@
 language: ruby
 rvm: 2.5.1
 services: postgresql
-cache: bundler
+# cache: bundler
 before_install:
 - sudo /etc/init.d/postgresql stop
 - sudo apt-get update
