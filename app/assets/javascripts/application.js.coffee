@@ -15,3 +15,9 @@
 #= require jquery
 #= require jquery_ujs
 #= require_tree .
+#= require materialize
+
+document.addEventListener 'DOMContentLoaded', ->
+  elems = document.querySelectorAll('.fixed-action-btn')
+  instances = M.FloatingActionButton.init(elems, direction: 'left', hoverEnabled: false)
+  return
