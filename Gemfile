@@ -42,6 +42,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'paranoia' # 論理削除用
 gem 'devise'
+gem 'omniauth-line'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -59,7 +60,6 @@ group :development, :test do
   # テスト用
   gem 'rspec-rails'
   gem 'factory_bot_rails'
-  gem 'omniauth-line'
 end
 
 group :development do
