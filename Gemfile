@@ -28,6 +28,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'json'
 gem 'easy_settings'
 gem 'pry-doc'
+# マテリアルデザイン導入
+gem 'materialize-sass', '~> 1.0.0'
+gem 'material_icons' 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -55,6 +58,8 @@ group :development, :test do
   # テスト用
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'omniauth-line'
+  gem 'devise'
 end
 
 group :development do

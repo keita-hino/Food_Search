@@ -3,8 +3,15 @@ class Restaurant < ApplicationRecord
   acts_as_paranoid
 
   ####################################
+  # リレーション
+  ####################################
+  # belongs_to :user, option: true
+
+  ####################################
   # スコープ
   ####################################
-  scope :user_id_is, -> (user_id) { where(user_id:user_id) }
+  scope :user_uid_is, -> (value) {
+     where(user_id: value) 
+  }
 
 end
