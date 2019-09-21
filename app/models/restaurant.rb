@@ -10,6 +10,8 @@ class Restaurant < ApplicationRecord
   ####################################
   # スコープ
   ####################################
-  scope :user_id_is, -> (user_id) { where(user_id:user_id) }
+  scope :user_uid_is, -> (value) {
+     where(user_id: value) 
+  }
 
 end
