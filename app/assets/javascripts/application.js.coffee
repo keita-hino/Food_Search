@@ -21,3 +21,16 @@ document.addEventListener 'DOMContentLoaded', ->
   elems = document.querySelectorAll('.fixed-action-btn')
   instances = M.FloatingActionButton.init(elems, direction: 'left', hoverEnabled: false)
   return
+
+document.addEventListener 'DOMContentLoaded', ->
+  elems = document.querySelectorAll('.modal')
+  instances = M.Modal.init(elems, options)
+  return
+# Or with jQuery
+$(document).ready ->
+  $('.modal').modal()
+  return
+
+$(document).ready ->
+  $('.store_name').characterCounter()
+  return
