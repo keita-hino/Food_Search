@@ -3,15 +3,29 @@ class Restaurant < ApplicationRecord
   acts_as_paranoid
 
   ####################################
-  # リレーション
+  # Associations
   ####################################
   # belongs_to :user, option: true
 
   ####################################
-  # スコープ
+  # Scopes
   ####################################
+  
   scope :user_uid_is, -> (value) {
      where(user_id: value) 
   }
+
+  ####################################
+  # Validates
+  ####################################
+  
+  validates :name,
+    presence: true
+    
+  validates :address,
+    presence: true
+
+  validates :open_info,
+    presence: true
 
 end
