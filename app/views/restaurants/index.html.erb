@@ -1,0 +1,42 @@
+<h3 class='center-align'>お店一覧</h3>
+
+<% if @restaurants.present? %>
+  <div class="row">
+    <% @restaurants.each do |restaurant| %>
+      <div class="col s12 l4 m6">
+        <div class="card hoverable">
+          <div class="card-image">
+            <%= image_tag(restaurant.image_url, size: '400x300')%>
+            <span class="card-title"><%= restaurant.name%></span>
+          </div>
+          <div class="card-content">
+            <p>住所</p>
+            <%= restaurant.address%><br>
+            <p>営業時間</p>
+            <%= restaurant.open_info%>
+          </div>
+          <div class="card-action">
+            <%= link_to "サイトへ", restaurant&.site_url %>
+          </div>
+        </div>
+      </div>
+    <%end%>
+  </div>
+<% else %>
+  <p>お店がまだ1件も登録されていません。</p>
+<% end %>
+
+<%# <div id="app">
+</div> %>
+
+<%#  Vue導入する時は下記を入れるだけ %>
+<%# <script>
+  var vm = new Vue({
+      template: '<p>{{ msg }}</p>',
+      el: '#app',
+      data: {
+        msg: 'hello'
+      }
+  })
+</script>
+ %>
