@@ -1,11 +1,13 @@
  <nav>
   <div class="nav-wrapper">
-    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-    <a href="#" class="brand-logo">Food Record</a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><%= link_to "飲食店登録",'#',class: "breadcrumb" %></li>
-      <li><%= link_to "飲食店一覧",'#', class: "breadcrumb" %></li>
-      <li><%= link_to "ログアウト", "#", class: "breadcrumb" %></li>
-    </ul>
+    <div class="container">
+      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <a href="#" class="brand-logo">Food Record</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><%= link_to "お店登録",'#',class: "breadcrumb" %></li>
+        <li><%= link_to "お店一覧", root_path, class: "breadcrumb" %></li>
+        <li><%= link_to "ログアウト", "#", class: "breadcrumb" %></li>
+      </ul>
+    </div>
   </div>
 </nav>
