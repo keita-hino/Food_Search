@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   }
   # get 'users/login'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'welcome#index'
+  root 'restaurants#index'
+  resources :restaurants
   post '/callback' => 'linebot#callback'
   get '/index' => 'linebot#index'
   # root 'users#index'
+  # resources :location
 end

@@ -58,8 +58,7 @@ class Command
   end
 
   def get_record_store_info(user_id)
-
-    restaurants = Restaurant.user_id_is(user_id).limit(10)
+    restaurants = Restaurant.user_uid_is(user_id).limit(10)
 
     buf_test = {
       type: "flex",
@@ -183,7 +182,7 @@ class Command
 
   def get_record_store_info_temp(user_id)
 
-    restaurants = Restaurant.user_id_is(user_id).limit(10)
+    restaurants = Restaurant.user_uid_is(user_id).limit(10)
 
     {
       type: "flex",

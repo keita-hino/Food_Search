@@ -7,10 +7,14 @@
     <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%# <script src=" https://unpkg.com/vue@2.5.17"></script> %>
   </head>
 
   <body>
     <%= render 'layouts/header' %>
-    <%= yield %>
+    <%= render 'layouts/side' %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

@@ -1,0 +1,44 @@
+<div class='restaurant'>
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h2 class='center-align'>お店登録</h2>
+      <div class="container">
+        <%= form_with modle: @restaurant, url: restaurants_path, id: 'restaurant_form', remote: true do |form| %>
+          <div class="input-field col s4">
+            <%= form.label '店名' %>
+            <%= form.text_field :name, data: { length: "30" }, class: 'store_name' %>
+            <div data-field="name" style="display: none;" class="error"></div>
+          </div>
+
+          <div class="input-field col s6">
+            <%= form.label '住所' %>
+            <%= form.text_field :address, data: { length: "50" }, class: 'store_name' %>
+            <div data-field="address" style="display: none;" class="error"></div>
+          </div>
+
+          <div class="input-field col s6">
+            <%= form.label '営業時間' %>
+            <%= form.text_field :open_info, data: { length: "30" }, class: 'store_name' %>
+            <div data-field="open_info" style="display: none;" class="error"></div>
+          </div><br>
+          <div class="row">
+            <%= button_tag '閉じる', class: 'btn btn-info exit_button' %>
+            <%= form.submit '登録', class: 'right-align btn btn-primary', id: 'create_button' %>
+          </div>
+        <% end %>
+        <% if @restaurant&.errors.present? %>
+          <div class='alert alert-danger'>
+            <%= @restaurant.errors.count %>件のエラーがあります。
+          </div>
+          <% @restaurant.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <%# <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div> %>
+  </div>
+</div>
