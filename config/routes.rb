@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :restaurants
   post '/callback' => 'linebot#callback'
   get '/index' => 'linebot#index'
+  post 'restaurants/share' => 'restaurants#share'
   # root 'users#index'
   # resources :location
 end
