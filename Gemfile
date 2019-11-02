@@ -7,9 +7,9 @@ end
 gem 'dotenv-rails'
 gem 'line-bot-api'
 gem 'liff_selector'
-ruby "2.5.1"
+ruby "2.6.1"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.2'
+gem 'rails', '~> 6.0'
 gem 'jquery-rails'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
@@ -43,6 +43,8 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'paranoia' # 論理削除用
+gem 'devise'
+gem 'omniauth-line'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -60,8 +62,6 @@ group :development, :test do
   # テスト用
   gem 'rspec-rails'
   gem 'factory_bot_rails'
-  gem 'omniauth-line'
-  gem 'devise'
 end
 
 group :development do
