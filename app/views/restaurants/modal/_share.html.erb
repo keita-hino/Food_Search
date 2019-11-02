@@ -1,0 +1,23 @@
+<div class='restaurant'>
+  <!-- Modal Structure -->
+  <div id="share_modal" class="modal">
+    <div class="modal-content">
+      <h2 class='center-align'>お店をシェア</h2>
+      <%# <p>シェアする相手を選んでください</p> %>
+      <div class="container">
+        <% @users.each do |user| %>
+          <div class="chip">
+            <% if user[:url].present? %>
+              <%= image_tag(user[:url], size: '400x300')%>
+            <% end %>
+            <%# <img src="images/yuna.jpg" alt="Contact Person"> %>
+            <%= user[:name] %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <%# <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div> %>
+  </div>
+</div>
