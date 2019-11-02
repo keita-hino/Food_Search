@@ -45,7 +45,7 @@ class Request
       case response
       when Net::HTTPSuccess then
         contact = JSON.parse(response.body)
-        user_list.push({name:contact['displayName'],url:contact['pictureUrl']})
+        user_list.push({user_id: contact['userId'], name: contact['displayName'], url: contact['pictureUrl']})
       else
         p "#{response.code} #{response.body}"
       end
