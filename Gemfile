@@ -21,7 +21,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem "nokogiri", ">= 1.10.4"
 
-gem 'bootstrap', '~> 4.3.1'
+# gem 'bootstrap', '~> 4.3.1'
 gem 'bootsnap', '>= 1.1.0', require: false
 # gem 'net/http'
 # gem 'uri'
