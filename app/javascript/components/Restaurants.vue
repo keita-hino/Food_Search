@@ -5,11 +5,11 @@
       <div class="card hoverable">
         <div class="row">
           <div v-for="restaurant in restaurants" :key="restaurant.id">
-            <!-- <div class="card-image"> -->
-              <!-- <img src='{{restaurant.image_url}}'> -->
-              <span>{{restaurant.name}}</span>
-            <!-- </div> -->
-            <!-- <div class="card-content">
+            <div class="card-image">
+              <img src='{{restaurant.image_url}}'>
+              <span class="card-title">{{restaurant.name}}</span>
+            </div>
+            <div class="card-content">
               <p>住所</p>
               {{ restaurant.address }}<br>
               <p>営業時間</p>
@@ -18,7 +18,7 @@
             <div class="card-action">
               サイトへ
               {{ restaurant.open_info }}<br>
-            </div> -->
+            </div>
           </div>
         </div>
       </div>
