@@ -1,28 +1,36 @@
 <template>
-  <div id="restaurants">
-    <h3 class='center-align'>お店一覧</h3>
-    <!-- <div class="col s12 l4 m6">
-      <div class="card hoverable">
-        <div class="row">
-          <div v-for="restaurant in restaurants" :key="restaurant.id">
-            <div class="card-image">
-              <img :src="restaurant.image_url">
-              <span class="card-title">{{restaurant.name}}</span>
-            </div>
-            <div class="card-content">
-              <p>住所</p>
-              {{ restaurant.address }}<br>
-              <p>営業時間</p>
-              {{ restaurant.open_info }}<br>
-            </div>
-            <div class="card-action">
-              サイトへ
-              {{ restaurant.open_info }}<br>
+  <v-app id="restaurants">
+    <v-content>
+      <v-container>
+        <v-row
+          class="lighten-4"
+          justify="center" align-content="start"
+        >
+          <div class='display-3 font-weight-bold'>お店一覧</div>
+        </v-row>
+
+        <!-- <div class="col s12 l4 m6">
+          <div class="card hoverable">
+            <div class="row">
+              <div v-for="restaurant in restaurants" :key="restaurant.id">
+                <div class="card-image">
+                  <img :src="restaurant.image_url">
+                  <span class="card-title">{{restaurant.name}}</span>
+                </div>
+                <div class="card-content">
+                  <p>住所</p>
+                  {{ restaurant.address }}<br>
+                  <p>営業時間</p>
+                  {{ restaurant.open_info }}<br>
+                </div>
+                <div class="card-action">
+                  サイトへ
+                  {{ restaurant.open_info }}<br>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div> -->
+        </div> -->
 
 
     <!--
@@ -46,7 +54,9 @@
   </div>
  -->
     <!-- <p>{{ restaurants }}</p> -->
-  </div>
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
