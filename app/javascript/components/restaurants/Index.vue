@@ -6,7 +6,7 @@
           class="lighten-4"
           justify="center" align-content="start"
         >
-          <div class='display-3 font-weight-regular	'>お店一覧</div>
+          <div class='display-2 font-weight-regular	'>お店一覧</div>
         </v-row>
 
         <!-- <div class="col s12 l4 m6">
