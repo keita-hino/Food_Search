@@ -8,6 +8,57 @@
         >
           <div class='display-2 font-weight-regular	'>お店一覧</div>
         </v-row>
+          <v-card class="mt-4 mb-4 pa-3">
+            <v-layout row wrap>
+            <v-flex xs4 v-for="restaurant in restaurants" :key="restaurant.id">
+              <v-card
+                :color="'#FFFFFF'"
+                :loading="restaurant.is_fetch"
+                class="lighten-3 ma-2"
+                max-width="400"
+                :href="restaurant.site_url"
+              >
+                <v-img
+                  class="white--text align-end"
+                  height="200px"
+                  :src="restaurant.image_url"
+                >
+                  <v-card-title
+                    :color="'#FFFFFF'"
+                  >
+                    {{ restaurant.name}}
+                  </v-card-title>
+                </v-img>
+
+                <v-card-subtitle
+                class="pb-0"
+                :color="'#FFFFFF'"
+                >
+                住所
+                </v-card-subtitle>
+
+                <v-card-text :color="'#FFFFFF'" class="text--primary">
+                  <div>{{ restaurant.address }}</div>
+                </v-card-text>
+
+                <v-card-subtitle :color="'#FFFFFF'" class="pb-0">営業時間</v-card-subtitle>
+
+                <v-card-text :color="'#FFFFFF'" class="text--primary">
+                  <div>{{ restaurant.open_info }}</div>
+                </v-card-text>
+
+                <v-card-actions>
+                  <v-btn
+                    color="orange"
+                    text
+                  >
+                    サイトへ
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-flex>
+          </v-layout>
+        </v-card>
 
         <!-- <div class="col s12 l4 m6">
           <div class="card hoverable">
@@ -66,7 +117,8 @@ import axios from 'axios';
 export default {
   data: function () {
     return {
-      restaurants: []
+      restaurants: [],
+      is_fetch_complate: true
     }
   },
   methods: {
@@ -75,6 +127,7 @@ export default {
         .then(response => {
           for(var i = 0; i < response.data.restaurants.length; i++) {
             this.restaurants.push(response.data.restaurants[i])
+            this.restaurants[i].is_fetch = false;
           }
         });
     }
