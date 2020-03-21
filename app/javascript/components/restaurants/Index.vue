@@ -1,12 +1,12 @@
 <template>
   <div id="restaurants">
     <h3 class='center-align'>お店一覧</h3>
-    <div class="col s12 l4 m6">
+    <!-- <div class="col s12 l4 m6">
       <div class="card hoverable">
         <div class="row">
           <div v-for="restaurant in restaurants" :key="restaurant.id">
             <div class="card-image">
-              <img src='{{restaurant.image_url}}'>
+              <img :src="restaurant.image_url">
               <span class="card-title">{{restaurant.name}}</span>
             </div>
             <div class="card-content">
@@ -22,7 +22,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
+
+
     <!--
       <th><router-link :to="{name: 'ProjectUpdate', params: {id: project.id}}" class="btn btn-info">編集</router-link></th>
 
@@ -44,7 +46,7 @@
   </div>
  -->
     <!-- <p>{{ restaurants }}</p> -->
-  <!-- </div> -->
+  </div>
 </template>
 
 <script>
