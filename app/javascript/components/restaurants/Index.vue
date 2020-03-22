@@ -8,15 +8,77 @@
         >
           <div class='display-2 font-weight-regular	'>お店一覧</div>
         </v-row>
+
+        <!-- モーダル -->
+        <!-- TODO:あとで別コンポーネントに -->
+        <v-dialog v-model="dialog" persistent max-width="600px">
+          <template v-slot:activator="{ on }">
+            <v-btn color="primary" dark v-on="on">お店登録</v-btn>
+          </template>
+          <v-card>
+            <v-card-title>
+              <span class="headline">お店登録</span>
+            </v-card-title>
+            <v-card-text>
+              <v-container>
+                <v-row>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field v-model="form.name" label="店名" required></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field v-model="form.address" label="Legal middle name" hint="住所"></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field
+                      label="Legal last name*"
+                      hint="example of persistent helper text"
+                      persistent-hint
+                      required
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field label="Email*" required></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field label="Password*" type="password" required></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6">
+                    <v-select
+                      :items="['0-17', '18-29', '30-54', '54+']"
+                      label="Age*"
+                      required
+                    ></v-select>
+                  </v-col>
+                  <v-col cols="12" sm="6">
+                    <v-autocomplete
+                      :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
+                      label="Interests"
+                      multiple
+                    ></v-autocomplete>
+                  </v-col>
+                </v-row>
+              </v-container>
+              <small>*indicates required field</small>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
+              <v-btn color="blue darken-1" text @click="dialog = false">Save</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+        <!-- ここまで -->
+
           <v-card class="mt-4 mb-4 pa-3">
             <v-layout row wrap>
-            <v-flex xs4 v-for="restaurant in restaurants" :key="restaurant.id">
+            <v-flex xs12 md4 v-for="restaurant in restaurants" :key="restaurant.id">
               <v-card
                 :color="'#FFFFFF'"
                 :loading="restaurant.is_fetch"
                 class="lighten-3 ma-2"
                 max-width="400"
                 :href="restaurant.site_url"
+                height="450"
               >
                 <v-img
                   class="white--text align-end"
@@ -60,51 +122,6 @@
           </v-layout>
         </v-card>
 
-        <!-- <div class="col s12 l4 m6">
-          <div class="card hoverable">
-            <div class="row">
-              <div v-for="restaurant in restaurants" :key="restaurant.id">
-                <div class="card-image">
-                  <img :src="restaurant.image_url">
-                  <span class="card-title">{{restaurant.name}}</span>
-                </div>
-                <div class="card-content">
-                  <p>住所</p>
-                  {{ restaurant.address }}<br>
-                  <p>営業時間</p>
-                  {{ restaurant.open_info }}<br>
-                </div>
-                <div class="card-action">
-                  サイトへ
-                  {{ restaurant.open_info }}<br>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-
-    <!--
-      <th><router-link :to="{name: 'ProjectUpdate', params: {id: project.id}}" class="btn btn-info">編集</router-link></th>
-
-    <% @restaurants.each do |restaurant| %>
-      <div class="card-image">
-        <%= image_tag(restaurant.image_url, size: '400x300')%>
-        <span class="card-title"><%= restaurant.name%></span>
-      </div>
-      <div class="card-content">
-        <p>住所</p>
-        <%= restaurant.address%><br>
-        <p>営業時間</p>
-        <%= restaurant.open_info%>
-      </div>
-      <div class="card-action">
-        <%= link_to "サイトへ", restaurant&.site_url %>
-      </div>
-    <%end%>
-  </div>
- -->
-    <!-- <p>{{ restaurants }}</p> -->
       </v-container>
     </v-content>
   </v-app>
@@ -118,7 +135,12 @@ export default {
   data: function () {
     return {
       restaurants: [],
-      is_fetch_complate: true
+      is_fetch_complate: true,
+      dialog: false,
+      form: {
+        name: '',
+        address: '',
+      }
     }
   },
   methods: {
