@@ -68,7 +68,6 @@
           </v-card>
         </v-dialog> -->
         <!-- ここまで -->
-
           <v-card class="mt-4 mb-4 pa-3">
             <v-layout row wrap>
             <v-flex xs12 md4 v-for="restaurant in restaurants" :key="restaurant.id">
