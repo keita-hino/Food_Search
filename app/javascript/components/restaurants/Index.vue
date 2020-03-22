@@ -11,7 +11,7 @@
 
         <!-- モーダル -->
         <!-- TODO:あとで別コンポーネントに -->
-        <v-dialog v-model="dialog" persistent max-width="600px">
+        <!-- <v-dialog v-model="dialog" persistent max-width="600px">
           <template v-slot:activator="{ on }">
             <v-btn color="primary" dark v-on="on">お店登録</v-btn>
           </template>
@@ -66,7 +66,7 @@
               <v-btn color="blue darken-1" text @click="dialog = false">Save</v-btn>
             </v-card-actions>
           </v-card>
-        </v-dialog>
+        </v-dialog> -->
         <!-- ここまで -->
 
           <v-card class="mt-4 mb-4 pa-3">
