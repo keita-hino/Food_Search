@@ -78,7 +78,7 @@
                 max-width="400"
                 :href="restaurant.site_url"
                 height="450"
-                hover="true"
+                :hover="true"
               >
                 <v-img
                   class="white--text align-end"
