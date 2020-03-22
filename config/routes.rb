@@ -9,6 +9,11 @@ Rails.application.routes.draw do
   post '/callback' => 'linebot#callback'
   get '/index' => 'linebot#index'
   post 'restaurants/share' => 'restaurants#share'
+  namespace 'api' do
+    namespace 'v1' do
+      resources :restaurants
+    end
+  end
   # root 'users#index'
   # resources :location
 end

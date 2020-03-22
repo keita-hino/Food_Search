@@ -31,11 +31,12 @@ gem 'easy_settings'
 gem 'pry-doc'
 # マテリアルデザイン導入
 gem 'materialize-sass', '~> 1.0.0'
-gem 'material_icons' 
+gem 'material_icons'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
 gem 'websocket-rails'
+gem 'webpacker', github: 'rails/webpacker'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
