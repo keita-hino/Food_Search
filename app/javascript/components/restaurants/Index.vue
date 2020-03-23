@@ -145,7 +145,12 @@
                   </v-spacer>
 
                   <v-btn icon>
-                    <i class="material-icons">list</i>
+                    <v-tooltip top>
+                      <template v-slot:activator="{ on }">
+                        <i v-on="on" class="material-icons">delete</i>
+                      </template>
+                      <span>削除する</span>
+                    </v-tooltip>
                   </v-btn>
 
                 </v-card-actions>
