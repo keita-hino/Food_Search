@@ -1,12 +1,12 @@
 <template>
-  <v-app id="restaurants">
+  <!-- <v-app id="restaurants"> -->
     <v-content>
       <v-container>
         <v-row
           class="lighten-4"
           justify="center" align-content="start"
         >
-          <div class='display-2 font-weight-regular	'>お店一覧</div>
+          <div class='headline'>お店一覧</div>
         </v-row>
 
         <!-- モーダル -->
@@ -68,7 +68,6 @@
           </v-card>
         </v-dialog> -->
         <!-- ここまで -->
-
           <v-card class="mt-4 mb-4 pa-3">
             <v-layout row wrap>
             <v-flex xs12 md4 v-for="restaurant in restaurants" :key="restaurant.id">
@@ -79,6 +78,7 @@
                 max-width="400"
                 :href="restaurant.site_url"
                 height="450"
+                :hover="true"
               >
                 <v-img
                   class="white--text align-end"
@@ -124,7 +124,7 @@
 
       </v-container>
     </v-content>
-  </v-app>
+  <!-- </v-app> -->
 </template>
 
 <script>

@@ -1,10 +1,10 @@
 <template>
-  <div id="app">
-    <!-- <Header/> -->
+  <v-app id="inspire">
+    <Header/>
     <div class="container">
       <router-view/>
     </div>
-  </div>
+  </v-app>
 </template>
 
 <script>
