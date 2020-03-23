@@ -76,9 +76,6 @@
                 :loading="restaurant.is_fetch"
                 class="lighten-3 ma-2"
                 max-width="400"
-                :href="restaurant.site_url"
-                height="450"
-                :hover="true"
               >
                 <v-img
                   class="white--text align-end"
@@ -99,23 +96,58 @@
                 住所
                 </v-card-subtitle>
 
-                <v-card-text :color="'#FFFFFF'" class="text--primary">
-                  <div>{{ restaurant.address }}</div>
-                </v-card-text>
+                <!-- 住所が長い時は省略したものを表示 -->
+                <template v-if="!!restaurant.short_address" >
+                  <v-card-text :color="'#FFFFFF'" class="text--primary">
+                    <v-tooltip top>
+                      <template v-slot:activator="{ on }">
+                          <div v-on="on">{{ getAddress(restaurant) }}</div>
+                          </template>
+                      <span>{{ restaurant.address }}</span>
+                    </v-tooltip>
+                  </v-card-text>
+                </template>
+                <template v-else>
+                  <v-card-text :color="'#FFFFFF'" class="text--primary">
+                    <div>{{ restaurant.address }}</div>
+                  </v-card-text>
+                </template>
 
                 <v-card-subtitle :color="'#FFFFFF'" class="pb-0">営業時間</v-card-subtitle>
 
-                <v-card-text :color="'#FFFFFF'" class="text--primary">
-                  <div>{{ restaurant.open_info }}</div>
-                </v-card-text>
+                <!-- 営業時間が長い時は省略したものを表示 -->
+                <template v-if="!!restaurant.short_open_info" >
+                  <v-card-text :color="'#FFFFFF'" class="text--primary">
+                    <v-tooltip top>
+                      <template v-slot:activator="{ on }">
+                          <div v-on="on">{{ getOpenInfo(restaurant) }}</div>
+                          </template>
+                      <span>{{ restaurant.open_info }}</span>
+                    </v-tooltip>
+                  </v-card-text>
+                </template>
+                <template v-else>
+                  <v-card-text :color="'#FFFFFF'" class="text--primary">
+                    <div>{{ restaurant.open_info }}</div>
+                  </v-card-text>
+                </template>
 
                 <v-card-actions>
-                  <v-btn
+                  <v-spacer>
+                    <v-btn
                     color="orange"
                     text
+                    :href="restaurant.site_url"
                   >
                     サイトへ
                   </v-btn>
+
+                  </v-spacer>
+
+                  <v-btn icon>
+                    <i class="material-icons">list</i>
+                  </v-btn>
+
                 </v-card-actions>
               </v-card>
             </v-flex>
@@ -152,11 +184,24 @@ export default {
             this.restaurants[i].is_fetch = false;
           }
         });
+    },
+
+    // 営業時間が長ければ、省略したものを返す
+    getAddress(restaurant) {
+      return !!restaurant.short_address ? restaurant.short_address : restaurant.address
+    },
+
+    // 営業時間が長ければ、省略したものを返す
+    getOpenInfo(restaurant) {
+      return !!restaurant.short_open_info ? restaurant.short_open_info : restaurant.open_info
     }
   },
   mounted: function(){
     this.setRestaurants();
   },
+
+  computed: {
+  }
 }
 </script>
 
