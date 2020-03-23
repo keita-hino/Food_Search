@@ -22,6 +22,12 @@ class Api::V1::RestaurantsController < ApplicationController
     render partial: 'restaurants/modal/new'
   end
 
+  def destroy
+    @restaurant = Restaurant.find(params[:id])
+    @restaurant.destroy!
+    render json: '', status: :ok
+  end
+
   def share
     restaurants = Restaurant.order(id: 'desc').limit(10)
 

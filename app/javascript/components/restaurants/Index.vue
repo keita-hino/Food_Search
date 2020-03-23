@@ -147,7 +147,7 @@
                   <v-btn icon>
                     <v-tooltip top>
                       <template v-slot:activator="{ on }">
-                        <i v-on="on" class="material-icons">delete</i>
+                        <i v-on="on" @click="deleteRestaurant(restaurant.id)" class="material-icons">delete</i>
                       </template>
                       <span>削除する</span>
                     </v-tooltip>
@@ -167,6 +167,12 @@
 <script>
 // Ajax通信ライブラリ
 import axios from 'axios';
+// TODO:axiosをここでimportするんじゃなくて、application.jsでimportするようにする。
+// 下記の設定もそこで
+axios.defaults.headers.common = {
+    'X-Requested-With': 'XMLHttpRequest',
+    'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+};
 
 export default {
   data: function () {
@@ -188,6 +194,15 @@ export default {
             this.restaurants.push(response.data.restaurants[i])
             this.restaurants[i].is_fetch = false;
           }
+        });
+    },
+
+    deleteRestaurant(id) {
+      axios.delete(`api/v1/restaurants/${id}.json`)
+        .then(response => {
+          // 画面リロード
+          this.$router.go({path: this.$router.currentRoute.path, force: true});
+          // TODO:削除処理成功した時の処理追加。今のところ、アラート
         });
     },
 
