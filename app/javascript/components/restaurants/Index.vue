@@ -7,95 +7,98 @@
       >
         <div class='headline'>お店一覧</div>
       </v-row>
-        <v-card class="mt-4 mb-4 pa-3">
-          <v-layout row wrap>
-          <v-flex xs12 md4 v-for="restaurant in restaurants" :key="restaurant.id">
-            <v-card
-              :color="'#FFFFFF'"
-              class="lighten-3 ma-2"
-              max-width="400"
-            >
-              <v-img
-                class="white--text align-end"
-                height="200px"
-                :src="restaurant.image_url"
+        <Loading v-show="is_loading"></Loading>
+        <template v-if="!is_loading">
+          <v-card class="mt-4 mb-4 pa-3">
+            <v-layout row wrap>
+            <v-flex xs12 md4 v-for="restaurant in restaurants" :key="restaurant.id">
+              <v-card
+                :color="'#FFFFFF'"
+                class="lighten-3 ma-2"
+                max-width="400"
               >
-                <v-card-title
-                  :color="'#FFFFFF'"
+                <v-img
+                  class="white--text align-end"
+                  height="200px"
+                  :src="restaurant.image_url"
                 >
-                  {{ restaurant.name}}
-                </v-card-title>
-              </v-img>
+                  <v-card-title
+                    :color="'#FFFFFF'"
+                  >
+                    {{ restaurant.name}}
+                  </v-card-title>
+                </v-img>
 
-              <v-card-subtitle
-              class="pb-0"
-              :color="'#FFFFFF'"
-              >
-              住所
-              </v-card-subtitle>
-
-              <!-- 住所が長い時は省略したものを表示 -->
-              <template v-if="!!restaurant.short_address" >
-                <v-card-text :color="'#FFFFFF'" class="text--primary">
-                  <v-tooltip top>
-                    <template v-slot:activator="{ on }">
-                        <div v-on="on">{{ getAddress(restaurant) }}</div>
-                        </template>
-                    <span>{{ restaurant.address }}</span>
-                  </v-tooltip>
-                </v-card-text>
-              </template>
-              <template v-else>
-                <v-card-text :color="'#FFFFFF'" class="text--primary">
-                  <div>{{ restaurant.address }}</div>
-                </v-card-text>
-              </template>
-
-              <v-card-subtitle :color="'#FFFFFF'" class="pb-0">営業時間</v-card-subtitle>
-
-              <!-- 営業時間が長い時は省略したものを表示 -->
-              <template v-if="!!restaurant.short_open_info" >
-                <v-card-text :color="'#FFFFFF'" class="text--primary">
-                  <v-tooltip top>
-                    <template v-slot:activator="{ on }">
-                        <div v-on="on">{{ getOpenInfo(restaurant) }}</div>
-                        </template>
-                    <span>{{ restaurant.open_info }}</span>
-                  </v-tooltip>
-                </v-card-text>
-              </template>
-              <template v-else>
-                <v-card-text :color="'#FFFFFF'" class="text--primary">
-                  <div>{{ restaurant.open_info }}</div>
-                </v-card-text>
-              </template>
-
-              <v-card-actions>
-                <v-spacer>
-                  <v-btn
-                  color="orange"
-                  text
-                  :href="restaurant.site_url"
+                <v-card-subtitle
+                class="pb-0"
+                :color="'#FFFFFF'"
                 >
-                  サイトへ
-                </v-btn>
+                住所
+                </v-card-subtitle>
 
-                </v-spacer>
+                <!-- 住所が長い時は省略したものを表示 -->
+                <template v-if="!!restaurant.short_address" >
+                  <v-card-text :color="'#FFFFFF'" class="text--primary">
+                    <v-tooltip top>
+                      <template v-slot:activator="{ on }">
+                          <div v-on="on">{{ getAddress(restaurant) }}</div>
+                          </template>
+                      <span>{{ restaurant.address }}</span>
+                    </v-tooltip>
+                  </v-card-text>
+                </template>
+                <template v-else>
+                  <v-card-text :color="'#FFFFFF'" class="text--primary">
+                    <div>{{ restaurant.address }}</div>
+                  </v-card-text>
+                </template>
 
-                <v-btn icon>
-                  <v-tooltip top>
-                    <template v-slot:activator="{ on }">
-                      <i v-on="on" @click.stop="openModal(restaurant.id)" class="material-icons">delete</i>
-                    </template>
-                    <span>削除する</span>
-                  </v-tooltip>
-                </v-btn>
+                <v-card-subtitle :color="'#FFFFFF'" class="pb-0">営業時間</v-card-subtitle>
 
-              </v-card-actions>
-            </v-card>
-          </v-flex>
-        </v-layout>
-      </v-card>
+                <!-- 営業時間が長い時は省略したものを表示 -->
+                <template v-if="!!restaurant.short_open_info" >
+                  <v-card-text :color="'#FFFFFF'" class="text--primary">
+                    <v-tooltip top>
+                      <template v-slot:activator="{ on }">
+                          <div v-on="on">{{ getOpenInfo(restaurant) }}</div>
+                          </template>
+                      <span>{{ restaurant.open_info }}</span>
+                    </v-tooltip>
+                  </v-card-text>
+                </template>
+                <template v-else>
+                  <v-card-text :color="'#FFFFFF'" class="text--primary">
+                    <div>{{ restaurant.open_info }}</div>
+                  </v-card-text>
+                </template>
+
+                <v-card-actions>
+                  <v-spacer>
+                    <v-btn
+                    color="orange"
+                    text
+                    :href="restaurant.site_url"
+                  >
+                    サイトへ
+                  </v-btn>
+
+                  </v-spacer>
+
+                  <v-btn icon>
+                    <v-tooltip top>
+                      <template v-slot:activator="{ on }">
+                        <i v-on="on" @click.stop="openModal(restaurant.id)" class="material-icons">delete</i>
+                      </template>
+                      <span>削除する</span>
+                    </v-tooltip>
+                  </v-btn>
+
+                </v-card-actions>
+              </v-card>
+            </v-flex>
+          </v-layout>
+        </v-card>
+      </template>
 
     <v-dialog v-model="dialog" persistent max-width="290">
       <v-card>
@@ -143,6 +146,8 @@
 <script>
   // Ajax通信ライブラリ
   import axios from 'axios';
+  import Loading from '../common/Loading'
+
   // TODO:axiosをここでimportするんじゃなくて、application.jsでimportするようにする。
   // 下記の設定もそこで
   axios.defaults.headers.common = {
@@ -157,11 +162,16 @@
         is_fetch_complate: true,
         is_show_complate_dialog: false,
         dialog: false,
+        is_loading: true,
         form: {
           name: '',
           address: '',
         }
       }
+    },
+
+    components: {
+      Loading
     },
 
     methods: {
@@ -188,6 +198,8 @@
       closeComplateModal() {
         // 完了モーダルを閉じる
         this.is_show_complate_dialog = false;
+        // ローディングを表示
+        this.is_loading = true;
         // 画面リロード
         this.$router.go({path: this.$router.currentRoute.path, force: true});
       },
@@ -212,6 +224,7 @@
 
     mounted: function(){
       this.getRestaurants();
+      this.is_loading = false;
     },
 
     computed: {
