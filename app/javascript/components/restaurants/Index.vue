@@ -6,7 +6,7 @@
         class="lighten-4"
         justify="center" align-content="start"
       >
-        <div id="top" class='headline font-italic font-weight-bold'>MY STORES</div>
+        <div id="top" class='headline font-italic font-weight-light'>MY STORES</div>
       </v-row>
         <Loading v-show="is_loading"></Loading>
         <template v-if="!is_loading">
