@@ -4,13 +4,11 @@
     <div class="container">
       <router-view/>
     </div>
-    <SideIcon/>
   </v-app>
 </template>
 
 <script>
   import Header from './components/layouts/Header'
-  import SideIcon from './components/layouts/SideIcon'
   export default {
     data: function () {
       return {
@@ -19,8 +17,7 @@
     },
 
     components: {
-      Header,
-      SideIcon
+      Header
     },
 
   }
