@@ -12,7 +12,6 @@
           <v-flex xs12 md4 v-for="restaurant in restaurants" :key="restaurant.id">
             <v-card
               :color="'#FFFFFF'"
-              :loading="restaurant.is_fetch"
               class="lighten-3 ma-2"
               max-width="400"
             >
@@ -110,6 +109,33 @@
       </v-card>
     </v-dialog>
 
+    <!-- TODO:別コンポーネントに -->
+    <!-- 削除完了モーダル -->
+      <v-dialog
+        v-model="is_show_complate_dialog"
+        max-width="290"
+      >
+        <v-card>
+          <v-card-title class="headline">完了</v-card-title>
+
+          <v-card-text>
+            削除完了しました。
+          </v-card-text>
+
+          <v-card-actions>
+            <!-- 下記で右寄せできる -->
+            <v-spacer></v-spacer>
+            <v-btn
+              color="green darken-1"
+              text
+              @click.stop="closeComplateModal()"
+            >
+              OK
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
     </v-container>
   </v-content>
 </template>
@@ -129,6 +155,7 @@
       return {
         restaurants: [],
         is_fetch_complate: true,
+        is_show_complate_dialog: false,
         dialog: false,
         form: {
           name: '',
@@ -136,27 +163,33 @@
         }
       }
     },
+
     methods: {
-      setRestaurants: function(){
+      // 登録されているお店を取得する
+      getRestaurants: function(){
         axios.get('api/v1/restaurants.json')
           .then(response => {
-            // TODO:ここはforで回さずに直接入れちゃった方が良い
-            for(var i = 0; i < response.data.restaurants.length; i++) {
-              this.restaurants.push(response.data.restaurants[i])
-              this.restaurants[i].is_fetch = false;
-            }
+            this.restaurants = response.data.restaurants
           });
       },
 
+      // 該当のお店を削除する
       deleteRestaurant() {
         axios.delete(`api/v1/restaurants/${this.delete_restaurant_id}.json`)
           .then(response => {
-            // 画面リロード
-            this.$router.go({path: this.$router.currentRoute.path, force: true});
             // モーダルを閉じる
             this.dialog = false
-            // TODO:削除処理成功した時の処理追加。今のところ、アラート
+            // 完了モーダルを表示
+            this.is_show_complate_dialog = true;
           });
+      },
+
+      // 削除完了モーダルを閉じて、画面をリロードする
+      closeComplateModal() {
+        // 完了モーダルを閉じる
+        this.is_show_complate_dialog = false;
+        // 画面リロード
+        this.$router.go({path: this.$router.currentRoute.path, force: true});
       },
 
       // 営業時間が長ければ、省略したものを返す
@@ -176,8 +209,9 @@
         this.dialog = true;
       }
     },
+
     mounted: function(){
-      this.setRestaurants();
+      this.getRestaurants();
     },
 
     computed: {
