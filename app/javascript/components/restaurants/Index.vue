@@ -102,11 +102,13 @@
       </template>
 
     <!-- 右下のアイコン -->
-    <div v-if="isShowTopButton" class="fixed-action-btn">
-      <a class="btn-floating btn-large red">
-        <i v-scroll-to="toTop" class="large material-icons">expand_less</i>
-      </a>
-    </div>
+    <transition name="fade">
+      <div v-if="isShowTopButton" class="fixed-action-btn">
+        <a class="btn-floating btn-large red">
+          <i v-scroll-to="toTop" class="large material-icons">expand_less</i>
+        </a>
+      </div>
+    </transition>
 
     <v-dialog v-model="dialog" persistent max-width="290">
       <v-card>
@@ -272,5 +274,12 @@
 p {
   font-size: 2em;
   text-align: center;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
