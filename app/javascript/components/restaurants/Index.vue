@@ -7,8 +7,8 @@
       >
         <div class='headline'>お店一覧</div>
       </v-row>
-        <Loading v-show="loading"></Loading>
-        <template v-if="!loading">
+        <Loading v-show="is_loading"></Loading>
+        <template v-if="!is_loading">
           <v-card class="mt-4 mb-4 pa-3">
             <v-layout row wrap>
             <v-flex xs12 md4 v-for="restaurant in restaurants" :key="restaurant.id">
@@ -162,7 +162,7 @@
         is_fetch_complate: true,
         is_show_complate_dialog: false,
         dialog: false,
-        loading: true,
+        is_loading: true,
         form: {
           name: '',
           address: '',
@@ -180,7 +180,6 @@
         axios.get('api/v1/restaurants.json')
           .then(response => {
             this.restaurants = response.data.restaurants
-            this.loading = false;
           });
       },
 
@@ -199,6 +198,8 @@
       closeComplateModal() {
         // 完了モーダルを閉じる
         this.is_show_complate_dialog = false;
+        // ローディングを表示
+        this.is_loading = true;
         // 画面リロード
         this.$router.go({path: this.$router.currentRoute.path, force: true});
       },
@@ -223,6 +224,7 @@
 
     mounted: function(){
       this.getRestaurants();
+      this.is_loading = false;
     },
 
     computed: {

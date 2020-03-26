@@ -1,5 +1,5 @@
 <template>
-  <!-- <div v-show="loading"> -->
+  <!-- <div v-show="isLoading"> -->
     <div class="fullview">
       <div class="loading-spacer"></div>
       <vue-loading
