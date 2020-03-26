@@ -14,6 +14,7 @@ class RestaurantsController < ApplicationController
   def create
     # TODO:画像とかどうするか検討
     @restaurant = Restaurant.new(restaurant_params)
+    # TODO:エラー処理追加
     if @restaurant.save
 
     else
@@ -24,20 +25,20 @@ class RestaurantsController < ApplicationController
 
   def share
     restaurants = Restaurant.order(id: 'desc').limit(10)
-    
+
     client.push_message(params[:user_id], {
       type: "text",
       text: "#{current_user.name}さんから過去に行った店をシェアされました。"
     })
-    
+
     # 過去に行った店を送信
     message = Command.new.get_record_store_info_temp(current_user.uid)
     client.push_message(params[:user_id], message)
-    
+
   end
 
   private
-  
+
     def restaurant_params
       params.permit(
         :name,
