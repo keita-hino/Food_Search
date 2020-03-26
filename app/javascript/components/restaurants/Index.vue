@@ -2,10 +2,11 @@
   <v-content>
     <v-container>
       <v-row
+        v-scroll="onScroll"
         class="lighten-4"
         justify="center" align-content="start"
       >
-        <div class='headline'>お店一覧</div>
+        <div id="top" class='headline'>お店一覧</div>
       </v-row>
         <Loading v-show="is_loading"></Loading>
         <template v-if="!is_loading">
@@ -100,6 +101,13 @@
         </v-card>
       </template>
 
+    <!-- 右下のアイコン -->
+    <div v-if="isShowTopButton" class="fixed-action-btn">
+      <a class="btn-floating btn-large red">
+        <i v-scroll-to="toTop" class="large material-icons">expand_less</i>
+      </a>
+    </div>
+
     <v-dialog v-model="dialog" persistent max-width="290">
       <v-card>
         <v-card-title class="headline">削除確認</v-card-title>
@@ -163,6 +171,8 @@
         is_show_complate_dialog: false,
         dialog: false,
         is_loading: true,
+        offsetTop: 0,
+        toTop: '#top',
         form: {
           name: '',
           address: '',
@@ -219,7 +229,30 @@
       openModal(id){
         this.delete_restaurant_id = id;
         this.dialog = true;
-      }
+      },
+
+      // スクロールされた時
+      onScroll (e) {
+        this.offsetTop = window.pageYOffset || document.documentElement.scrollTop
+      },
+
+      // ページ上部へ移動
+      onClickGotoPageTop() {
+            const duration = 1000;  // 移動速度（1秒で終了）
+            const interval = 25;    // 0.025秒ごとに移動
+            const step = -window.scrollY / Math.ceil(duration / interval); // 1回に移動する距離
+            const timer = setInterval(() => {
+
+                window.scrollBy(0, step);   // スクロール位置を移動
+
+                if(window.scrollY <= 0) {
+
+                    clearInterval(timer);
+
+                }
+
+            }, interval);
+      },
     },
 
     mounted: function(){
@@ -228,6 +261,9 @@
     },
 
     computed: {
+      isShowTopButton() {
+        return this.offsetTop > 100
+      }
     }
   }
 </script>
