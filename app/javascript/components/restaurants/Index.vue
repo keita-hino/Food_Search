@@ -176,13 +176,19 @@
           <v-card-text class="pt-4">
 
             <div v-for="user in users" :key="user.id">
-              <v-avatar>
-                <img
-                  :src="user.url"
-                  alt="John"
-                  @click="onClickShareConfirm(user)"
-                >
-              </v-avatar>
+              <v-tooltip top>
+                <template v-slot:activator="{ on }">
+                  <v-avatar>
+                    <img
+                      v-on="on"
+                      :src="user.url"
+                      alt="John"
+                      @click="onClickShareConfirm(user)"
+                    >
+                  </v-avatar>
+                  </template>
+                <span>{{ user.name }}</span>
+              </v-tooltip>
             </div>
 
           </v-card-text>
