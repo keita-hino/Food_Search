@@ -85,6 +85,17 @@
 
                   </v-spacer>
 
+                  <!-- シェアボタン -->
+                  <v-btn icon>
+                    <v-tooltip top>
+                      <template v-slot:activator="{ on }">
+                        <i v-on="on" @click.stop="onClickShareDialog(restaurant.id)" class="material-icons">share</i>
+                      </template>
+                      <span>シェアする</span>
+                    </v-tooltip>
+                  </v-btn>
+
+                  <!-- 削除ボタン -->
                   <v-btn icon>
                     <v-tooltip top>
                       <template v-slot:activator="{ on }">
@@ -110,6 +121,20 @@
       </div>
     </transition>
 
+    <!-- シェア確認モーダル -->
+    <v-dialog v-model="is_show_share_confirm_dialog" persistent max-width="290">
+      <v-card>
+        <v-card-title class="headline">シェア確認</v-card-title>
+        <v-card-text>本当にシェアしてもよろしいですか？</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" text @click.stop="is_show_share_confirm_dialog = false">キャンセル</v-btn>
+          <v-btn color="green darken-1" text @click.stop="shareRestaurant()">OK</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+    <!-- 削除確認モーダル -->
     <v-dialog v-model="dialog" persistent max-width="290">
       <v-card>
         <v-card-title class="headline">削除確認</v-card-title>
@@ -149,6 +174,72 @@
         </v-card>
       </v-dialog>
 
+      <!-- シェア完了モーダル -->
+      <v-dialog
+        v-model="is_show_share_complate_dialog"
+        max-width="290"
+      >
+        <v-card>
+          <v-card-title class="headline">完了</v-card-title>
+
+          <v-card-text>
+            シェアしました。
+          </v-card-text>
+
+          <v-card-actions>
+            <!-- 下記で右寄せできる -->
+            <v-spacer></v-spacer>
+            <v-btn
+              color="green darken-1"
+              text
+              @click.stop="is_show_share_complate_dialog = false"
+            >
+              OK
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
+
+    <!-- シェア相手選択用モーダル -->
+    <v-dialog
+      v-model="is_show_share_dialog"
+      max-width="500"
+
+    >
+      <v-card>
+        <v-card-title class="headline">シェアする相手を選んでください</v-card-title>
+
+        <v-card-text>
+
+          <div v-for="user in users" :key="user.name">
+            <v-avatar>
+              <img
+                :src="user.url"
+                alt="John"
+                @click="onClickShareConfirm(user)"
+              >
+            </v-avatar>
+          </div>
+
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+
+          <v-btn
+            color="green darken-1"
+            text
+            @click="is_show_share_dialog = false"
+          >
+            閉じる
+          </v-btn>
+
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+
     </v-container>
   </v-content>
 </template>
@@ -169,10 +260,16 @@
     data: function () {
       return {
         restaurants: [],
+        users: [],
         is_fetch_complate: true,
         is_show_complate_dialog: false,
+        is_show_share_dialog: false,
+        is_show_share_confirm_dialog: false,
+        is_show_share_complate_dialog: false,
         dialog: false,
         is_loading: true,
+        selected_user: {},
+        selected_restaurant_id: '',
         offsetTop: 0,
         toTop: '#top',
         form: {
@@ -192,6 +289,7 @@
         axios.get('api/v1/restaurants.json')
           .then(response => {
             this.restaurants = response.data.restaurants
+            this.users = response.data.users
           });
       },
 
@@ -206,6 +304,20 @@
           });
       },
 
+      // 該当のお店をシェアする
+      shareRestaurant() {
+        axios.post(`api/v1/restaurants/share.json`, {
+          user: this.selected_user,
+          restaurant_id: this.selected_restaurant_id
+        })
+        .then(response => {
+          // モーダルを閉じる
+          this.is_show_share_confirm_dialog = false
+          // 完了モーダルを開く
+          this.is_show_share_complate_dialog = true
+        });
+      },
+
       // 削除完了モーダルを閉じて、画面をリロードする
       closeComplateModal() {
         // 完了モーダルを閉じる
@@ -214,6 +326,18 @@
         this.is_loading = true;
         // 画面リロード
         this.$router.go({path: this.$router.currentRoute.path, force: true});
+      },
+
+      // シェアモーダル
+      onClickShareDialog(id) {
+        this.selected_restaurant_id = id
+        this.is_show_share_dialog = true
+      },
+
+      // シェア確認用モーダル
+      onClickShareConfirm(user) {
+        this.selected_user = user
+        this.is_show_share_confirm_dialog = true
       },
 
       // 営業時間が長ければ、省略したものを返す
@@ -281,5 +405,24 @@
   }
   .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
+  }
+
+  .image-radio-button {
+            text-align: center;
+            border:1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 20px;
+            padding: 10px;
+            float: left;
+  }
+  .image-radio-button:hover {
+      background: #eee;
+  }
+  .image-radio-button img {
+      height: 150px;
+      margin-top: 10px;
+  }
+  .image-radio-button label {
+      cursor: pointer;
   }
 </style>

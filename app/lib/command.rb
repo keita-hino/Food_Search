@@ -180,9 +180,9 @@ class Command
     }
   end
 
-  def get_record_store_info_temp(user_id)
+  def get_record_store_info_temp(user_id, restaurants = [])
 
-    restaurants = Restaurant.user_uid_is(user_id).limit(10)
+    restaurants ||= Restaurant.user_uid_is(user_id).limit(10)
 
     {
       type: "flex",
