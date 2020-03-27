@@ -182,7 +182,7 @@ class Command
 
   def get_record_store_info_temp(user_id, restaurants = [])
 
-    restaurants ||= Restaurant.user_uid_is(user_id).limit(10)
+    restaurants = restaurants.blank? ? Restaurant.user_uid_is(user_id).limit(10) : restaurants
 
     {
       type: "flex",
