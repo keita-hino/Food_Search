@@ -8,15 +8,13 @@ class Request
 
   # シェアIDを返すメソッド
   def share_id
-    share_id = ""
     users.map do |user|
       response = client.get_profile(user.userid)
       case response
       when Net::HTTPSuccess then
         contact = JSON.parse(response.body)
         if share_name == contact['displayName']
-          share_id = user.userid
-          return share_id
+          return user.userid
         end
       else
         p "#{response.code} #{response.body}"
