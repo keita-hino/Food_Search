@@ -18,7 +18,7 @@ class Api::V1::RestaurantsController < ApplicationController
 
   def share
     restaurants = Restaurant.where(id: share_restaurant_params[:restaurant_id])
-    user_id = User.find(share_restaurant_params[:user][:id])&.uid
+    user_id = Lineuser.find(share_restaurant_params[:user][:id]).userid
 
     client.push_message(user_id, {
       type: "text",
