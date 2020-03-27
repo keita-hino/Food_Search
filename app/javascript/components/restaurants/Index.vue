@@ -412,7 +412,4 @@
       cursor: pointer;
   }
 
-  $dialog-card-text-padding: 15px 24px 20px;
-  $dialog-card-subtitle-padding: 15px 24px 20px;
-
 </style>
