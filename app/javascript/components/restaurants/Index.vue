@@ -361,6 +361,7 @@
       onScroll (e) {
         this.offsetTop = window.pageYOffset || document.documentElement.scrollTop
       },
+    },
 
     mounted: function(){
       this.getRestaurants();
