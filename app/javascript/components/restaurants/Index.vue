@@ -121,24 +121,12 @@
       </div>
     </transition>
 
-    <!-- シェア確認モーダル -->
-    <v-dialog v-model="is_show_share_confirm_dialog" persistent max-width="290">
-      <v-card>
-        <v-card-title class="headline">シェア確認</v-card-title>
-        <v-card-text>本当にシェアしてもよろしいですか？</v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="green darken-1" text @click.stop="is_show_share_confirm_dialog = false">キャンセル</v-btn>
-          <v-btn color="green darken-1" text @click.stop="shareRestaurant()">OK</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-
     <!-- 削除確認モーダル -->
     <v-dialog v-model="dialog" persistent max-width="290">
       <v-card>
-        <v-card-title class="headline">削除確認</v-card-title>
-        <v-card-text>本当に削除してもよろしいですか？</v-card-text>
+        <v-card-title class="subtitle-1">削除確認</v-card-title>
+        <v-divider></v-divider>
+        <v-card-text class="pt-3">本当に削除してもよろしいですか？</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="green darken-1" text @click.stop="dialog = false">キャンセル</v-btn>
@@ -154,9 +142,10 @@
         max-width="290"
       >
         <v-card>
-          <v-card-title class="headline">完了</v-card-title>
+          <v-card-title class="subtitle-1">完了</v-card-title>
+          <v-divider></v-divider>
 
-          <v-card-text>
+          <v-card-text class="pt-3">
             削除完了しました。
           </v-card-text>
 
@@ -174,15 +163,69 @@
         </v-card>
       </v-dialog>
 
+      <!-- シェア相手選択用モーダル -->
+      <v-dialog
+        v-model="is_show_share_dialog"
+        max-width="500"
+
+      >
+        <v-card>
+          <v-card-title class="subtitle-1">シェアする相手を選んでください</v-card-title>
+          <v-divider></v-divider>
+
+          <v-card-text class="pt-4">
+
+            <div v-for="user in users" :key="user.id">
+              <v-avatar>
+                <img
+                  :src="user.url"
+                  alt="John"
+                  @click="onClickShareConfirm(user)"
+                >
+              </v-avatar>
+            </div>
+
+          </v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-btn
+              color="green darken-1"
+              text
+              @click="is_show_share_dialog = false"
+            >
+              閉じる
+            </v-btn>
+
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
+      <!-- シェア確認モーダル -->
+      <v-dialog v-model="is_show_share_confirm_dialog" persistent max-width="290">
+        <v-card>
+          <v-card-title class="subtitle-1">シェア確認</v-card-title>
+          <v-divider></v-divider>
+          <v-card-text class="pt-3">本当にシェアしてもよろしいですか？</v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="green darken-1" text @click.stop="is_show_share_confirm_dialog = false">キャンセル</v-btn>
+            <v-btn color="green darken-1" text @click.stop="shareRestaurant()">OK</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
       <!-- シェア完了モーダル -->
       <v-dialog
         v-model="is_show_share_complate_dialog"
         max-width="290"
       >
         <v-card>
-          <v-card-title class="headline">完了</v-card-title>
+          <v-card-title class="subtitle-1">完了</v-card-title>
+          <v-divider></v-divider>
 
-          <v-card-text>
+          <v-card-text class="pt-3">
             シェアしました。
           </v-card-text>
 
@@ -199,45 +242,6 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-
-
-    <!-- シェア相手選択用モーダル -->
-    <v-dialog
-      v-model="is_show_share_dialog"
-      max-width="500"
-
-    >
-      <v-card>
-        <v-card-title class="headline">シェアする相手を選んでください</v-card-title>
-
-        <v-card-text>
-
-          <div v-for="user in users" :key="user.id">
-            <v-avatar>
-              <img
-                :src="user.url"
-                alt="John"
-                @click="onClickShareConfirm(user)"
-              >
-            </v-avatar>
-          </div>
-
-        </v-card-text>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-
-          <v-btn
-            color="green darken-1"
-            text
-            @click="is_show_share_dialog = false"
-          >
-            閉じる
-          </v-btn>
-
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
 
 
     </v-container>
@@ -376,7 +380,7 @@
   }
 </script>
 
-<style scoped>
+<style lang="sass" scoped>
   p {
     font-size: 2em;
     text-align: center;
@@ -407,4 +411,8 @@
   .image-radio-button label {
       cursor: pointer;
   }
+
+  $dialog-card-text-padding: 15px 24px 20px;
+  $dialog-card-subtitle-padding: 15px 24px 20px;
+
 </style>
