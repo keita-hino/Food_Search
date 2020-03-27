@@ -4,4 +4,9 @@ json.restaurants @restaurants do |restaurant|
   json.short_address restaurant.short_address
 end
 
-json.users @users
+# TODO:ドットでアクセスできるように修正
+json.users @users do |user|
+  json.id user[:id]
+  json.name user[:name]
+  json.url user[:url]
+end

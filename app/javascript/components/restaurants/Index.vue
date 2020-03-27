@@ -212,7 +212,7 @@
 
         <v-card-text>
 
-          <div v-for="user in users" :key="user.name">
+          <div v-for="user in users" :key="user.id">
             <v-avatar>
               <img
                 :src="user.url"

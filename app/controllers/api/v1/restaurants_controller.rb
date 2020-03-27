@@ -30,7 +30,8 @@ class Api::V1::RestaurantsController < ApplicationController
 
   def share
     restaurants = Restaurant.where(id: share_restaurant_params[:restaurant_id])
-    user_id = share_restaurant_params[:user][:user_id]
+    user_id = User.find(share_restaurant_params[:user][:id])&.uid
+
     client.push_message(user_id, {
       type: "text",
       text: "#{current_user.name}さんから過去に行った店をシェアされました。"
