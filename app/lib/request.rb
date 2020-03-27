@@ -9,13 +9,13 @@ class Request
   # シェアIDを返すメソッド
   def share_id
     share_id = ""
-    users.map do |v|
-      response = client.get_profile(v.userid)
+    users.map do |user|
+      response = client.get_profile(user.userid)
       case response
       when Net::HTTPSuccess then
         contact = JSON.parse(response.body)
         if share_name == contact['displayName']
-          share_id = v.userid
+          share_id = user.userid
           return share_id
         end
       else
@@ -40,12 +40,12 @@ class Request
   # lineuserテーブルに格納されているユーザの情報を取得
   def user_list
     user_list = []
-    users.map do |v|
-      response = client.get_profile(v.userid)
+    users.map do |user|
+      response = client.get_profile(user.userid)
       case response
       when Net::HTTPSuccess then
         contact = JSON.parse(response.body)
-        user_list.push({user_id: contact['userId'], name: contact['displayName'], url: contact['pictureUrl']})
+        user_list.push({id: user.id , user_id: contact['userId'], name: contact['displayName'], url: contact['pictureUrl']})
       else
         p "#{response.code} #{response.body}"
       end
