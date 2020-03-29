@@ -14,6 +14,7 @@
             <v-layout row wrap>
             <v-flex xs12 md4 v-for="restaurant in restaurants" :key="restaurant.id">
               <v-card
+                :loading="restaurant.is_fetched"
                 :color="'#FFFFFF'"
                 class="lighten-3 ma-2"
                 max-width="400"
@@ -22,6 +23,7 @@
                   class="white--text align-end"
                   height="200px"
                   :src="restaurant.image_url"
+                  @load="imageLoaded(restaurant)"
                 >
                   <v-card-title
                     :color="'#FFFFFF'"
@@ -326,6 +328,11 @@
           // 完了モーダルを開く
           this.is_show_share_complate_dialog = true
         });
+      },
+
+      // 画像の読み込みを検知する
+      imageLoaded(restaurant){
+        restaurant.is_fetched = false;
       },
 
       // 削除完了モーダルを閉じて、画面をリロードする
