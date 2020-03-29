@@ -1,6 +1,5 @@
 class Api::V1::RestaurantsController < ApplicationController
   def index
-    @restaurant = Restaurant.new
     @restaurants = Restaurant.user_uid_is(current_user.uid)
                             .order('updated_at desc')
 
@@ -11,29 +10,24 @@ class Api::V1::RestaurantsController < ApplicationController
 
   end
 
-  def create
-    # TODO:画像とかどうするか検討
-    @restaurant = Restaurant.new(restaurant_params)
-    if @restaurant.save
-
-    else
-
-    end
-    render partial: 'restaurants/modal/new'
+  def destroy
+    @restaurant = Restaurant.find(params[:id])
+    @restaurant.destroy!
+    render json: '', status: :ok
   end
 
   def share
-    restaurants = Restaurant.order(id: 'desc').limit(10)
+    restaurants = Restaurant.where(id: share_restaurant_params[:restaurant_id])
+    user_id = Lineuser.find(share_restaurant_params[:user][:id]).userid
 
-    client.push_message(params[:user_id], {
+    client.push_message(user_id, {
       type: "text",
       text: "#{current_user.name}さんから過去に行った店をシェアされました。"
     })
 
     # 過去に行った店を送信
-    message = Command.new.get_record_store_info_temp(current_user.uid)
-    client.push_message(params[:user_id], message)
-
+    message = Command.new.get_record_store_info_temp(current_user.uid, restaurants)
+    client.push_message(user_id, message)
   end
 
   private
@@ -43,6 +37,13 @@ class Api::V1::RestaurantsController < ApplicationController
         :name,
         :address,
         :open_info
+      )
+    end
+
+    def share_restaurant_params
+      params.permit(
+        :restaurant_id,
+        user: {}
       )
     end
 

@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   post 'restaurants/share' => 'restaurants#share'
   namespace 'api' do
     namespace 'v1' do
-      resources :restaurants
+      resources :restaurants do
+        collection do
+          post :share
+        end
+      end
     end
   end
   # root 'users#index'

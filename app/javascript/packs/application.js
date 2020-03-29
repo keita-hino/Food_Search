@@ -12,6 +12,7 @@ import Vue from 'vue'
 import App from '../app.vue'
 import router from './router'
 import vuetify from './vuetify'
+import scrollto from './scrollto'
 
 document.addEventListener('DOMContentLoaded', () => {
   const el = document.body.appendChild(document.createElement('app'))
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     router,
     el,
     vuetify,
+    scrollto,
     render: h => h(App)
   })
 
