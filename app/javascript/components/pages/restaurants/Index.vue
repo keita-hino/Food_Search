@@ -259,7 +259,7 @@
 <script>
   // Ajax通信ライブラリ
   import axios from 'axios';
-  import Loading from '../common/Loading'
+  import Loading from '../../common/Loading'
 
   // TODO:axiosをここでimportするんじゃなくて、application.jsでimportするようにする。
   // 下記の設定もそこで
