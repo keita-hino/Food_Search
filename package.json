@@ -12,7 +12,8 @@
     "vue-template-compiler": "^2.6.11",
     "vuetify": "^2.2.18",
     "material-design-icons-iconfont": "^5.0.1",
-    "file-loader": "^6.0.0"
+    "file-loader": "^6.0.0",
+    "@mdi/js": "^5.0.45"
   },
   "devDependencies": {
     "@mdi/js": "^5.0.45",
