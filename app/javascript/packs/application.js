@@ -27,3 +27,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // console.log(app)
 })
+Vue.config.devtools = true;
