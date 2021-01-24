@@ -7,7 +7,7 @@ end
 gem 'dotenv-rails'
 gem 'line-bot-api'
 gem 'liff_selector'
-ruby "2.5.1"
+ruby "2.6.6"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0'
 gem 'jquery-rails'

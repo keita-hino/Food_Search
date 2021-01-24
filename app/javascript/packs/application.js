@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // scrollto,
     render: h => h(App)
   })
+  console.log(vuetify)
 
-  console.log(app)
+  // console.log(app)
 })
+Vue.config.devtools = true;
