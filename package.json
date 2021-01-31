@@ -4,7 +4,7 @@
   "dependencies": {
     "@mdi/js": "^5.0.45",
     "@rails/webpacker": "4.2.2",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "file-loader": "^6.0.0",
     "material-design-icons-iconfont": "^5.0.1",
     "vue": "^2.6.11",
